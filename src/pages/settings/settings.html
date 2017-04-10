@@ -1,0 +1,226 @@
+<!--
+  Generated template for the Settings page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Settings</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logOut()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>
+      Personal Information
+    </ion-list-header>
+
+    <ion-item (click)="updateName()">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            Name
+          </ion-col>
+          <ion-col *ngIf="userProfile?.firstName || userProfile?.lastName">
+            {{userProfile?.firstName}} {{userProfile?.lastName}}
+          </ion-col>
+          <ion-col class="placeholder-profile" *ngIf="!userProfile?.firstName">
+            <span>
+              Tap here to edit.
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item (click)="updateEmail()">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            Email
+          </ion-col>
+          <ion-col col-6 *ngIf="userProfile?.email">
+            {{userProfile?.email}}
+          </ion-col>
+          <ion-col class="placeholder-profile" *ngIf="!userProfile?.email">
+            <span>
+              Tap here to edit.
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item (click)="updatePassword()">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            Password
+          </ion-col>
+          <ion-col class="placeholder-profile">
+            <span>
+              Tap to change password
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      Schedule Information
+    </ion-list-header>
+
+    <ion-item (click)="updateTeacher(1)">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            Pd. 1
+          </ion-col>
+          <ion-col *ngIf="userProfile?.period1">
+            {{userProfile?.period1}}
+          </ion-col>
+          <ion-col class="placeholder-profile" *ngIf="!userProfile?.period1">
+            <span>
+              Tap here to edit.
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item (click)="updateTeacher(2)">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            Pd. 2
+          </ion-col>
+          <ion-col *ngIf="userProfile?.period2">
+            {{userProfile?.period2}}
+          </ion-col>
+          <ion-col class="placeholder-profile" *ngIf="!userProfile?.period2">
+            <span>
+              Tap here to edit.
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item (click)="updateTeacher(3)">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            Pd. 3
+          </ion-col>
+          <ion-col *ngIf="userProfile?.period3">
+            {{userProfile?.period3}}
+          </ion-col>
+          <ion-col class="placeholder-profile" *ngIf="!userProfile?.period3">
+            <span>
+              Tap here to edit.
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item (click)="updateTeacher(4)">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            Pd. 4
+          </ion-col>
+          <ion-col *ngIf="userProfile?.period4">
+            {{userProfile?.period4}}
+          </ion-col>
+          <ion-col class="placeholder-profile" *ngIf="!userProfile?.period4">
+            <span>
+              Tap here to edit.
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item (click)="updateTeacher(5)">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            Pd. 5
+          </ion-col>
+          <ion-col *ngIf="userProfile?.period5">
+            {{userProfile?.period5}}
+          </ion-col>
+          <ion-col class="placeholder-profile" *ngIf="!userProfile?.period5">
+            <span>
+              Tap here to edit.
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item (click)="updateTeacher(6)">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            Pd. 6
+          </ion-col>
+          <ion-col *ngIf="userProfile?.period6">
+            {{userProfile?.period6}}
+          </ion-col>
+          <ion-col class="placeholder-profile" *ngIf="!userProfile?.period6">
+            <span>
+              Tap here to edit.
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item (click)="updateTeacher(7)">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            Pd. 7
+          </ion-col>
+          <ion-col *ngIf="userProfile?.period7">
+            {{userProfile?.period7}}
+          </ion-col>
+          <ion-col class="placeholder-profile" *ngIf="!userProfile?.period7">
+            <span>
+              Tap here to edit.
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item (click)="updateTeacher(8)">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            Pd. 8
+          </ion-col>
+          <ion-col *ngIf="userProfile?.period8">
+            {{userProfile?.period8}}
+          </ion-col>
+          <ion-col class="placeholder-profile" *ngIf="!userProfile?.period8">
+            <span>
+              Tap here to edit.
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
