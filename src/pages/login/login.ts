@@ -53,7 +53,7 @@ export class LoginPage {
             message: error.message,
             buttons: [
               {
-                text: "Ok",
+                text: "OK",
                 role: 'cancel'
               }
             ]

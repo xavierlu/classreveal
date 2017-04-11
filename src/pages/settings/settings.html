@@ -57,15 +57,18 @@
       </ion-grid>
     </ion-item>
 
-    <ion-item (click)="updatePassword()">
+    <ion-item (click)="updateGrade()">
       <ion-grid>
         <ion-row>
           <ion-col col-6>
-            Password
+            Grade
           </ion-col>
-          <ion-col class="placeholder-profile">
+          <ion-col *ngIf="userProfile?.grade">
+            {{userProfile?.grade}}
+          </ion-col>
+          <ion-col class="placeholder-profile" *ngIf="!userProfile?.grade">
             <span>
-              Tap to change password
+              Tap to change
             </span>
           </ion-col>
         </ion-row>
@@ -82,7 +85,7 @@
       <ion-grid>
         <ion-row>
           <ion-col col-6>
-            Pd. 1
+            Peroid 1
           </ion-col>
           <ion-col *ngIf="userProfile?.period1">
             {{userProfile?.period1}}
@@ -100,7 +103,7 @@
       <ion-grid>
         <ion-row>
           <ion-col col-6>
-            Pd. 2
+            Peroid 2
           </ion-col>
           <ion-col *ngIf="userProfile?.period2">
             {{userProfile?.period2}}
@@ -118,7 +121,7 @@
       <ion-grid>
         <ion-row>
           <ion-col col-6>
-            Pd. 3
+            Peroid 3
           </ion-col>
           <ion-col *ngIf="userProfile?.period3">
             {{userProfile?.period3}}
@@ -136,7 +139,7 @@
       <ion-grid>
         <ion-row>
           <ion-col col-6>
-            Pd. 4
+            Peroid 4
           </ion-col>
           <ion-col *ngIf="userProfile?.period4">
             {{userProfile?.period4}}
@@ -154,7 +157,7 @@
       <ion-grid>
         <ion-row>
           <ion-col col-6>
-            Pd. 5
+            Peroid 5
           </ion-col>
           <ion-col *ngIf="userProfile?.period5">
             {{userProfile?.period5}}
@@ -172,7 +175,7 @@
       <ion-grid>
         <ion-row>
           <ion-col col-6>
-            Pd. 6
+            Peroid 6
           </ion-col>
           <ion-col *ngIf="userProfile?.period6">
             {{userProfile?.period6}}
@@ -190,7 +193,7 @@
       <ion-grid>
         <ion-row>
           <ion-col col-6>
-            Pd. 7
+            Peroid 7
           </ion-col>
           <ion-col *ngIf="userProfile?.period7">
             {{userProfile?.period7}}
@@ -208,7 +211,7 @@
       <ion-grid>
         <ion-row>
           <ion-col col-6>
-            Pd. 8
+            Peroid 8
           </ion-col>
           <ion-col *ngIf="userProfile?.period8">
             {{userProfile?.period8}}

@@ -6,7 +6,6 @@ export class ProfileData {
   public userProfile: firebase.database.Reference;
   public currentUser: firebase.User;
 
-
   constructor() {
     this.currentUser = firebase.auth().currentUser;
     this.userProfile = firebase.database().ref('/userProfile');
@@ -44,14 +43,12 @@ export class ProfileData {
 
 
   updatePassword(newPassword: string, oldPassword: string): firebase.Promise<any> {
-    const credential =  firebase.auth.EmailAuthProvider
+    const credential = firebase.auth.EmailAuthProvider
       .credential(this.currentUser.email, oldPassword);
 
     return this.currentUser.reauthenticate(credential).then( user => {
       this.currentUser.updatePassword(newPassword).then( user => {
         console.log("Password Changed");
-      }, error => {
-        console.log(error);
       });
     });
   }

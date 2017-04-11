@@ -1,4 +1,4 @@
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, ActionSheetController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { ProfileData } from '../../providers/profile-data';
 import { AuthData } from '../../providers/auth-data';
@@ -11,9 +11,10 @@ import { LoginPage } from '../login/login';
 export class SettingsPage {
   public userProfile: any;
   public birthDate: string;
+  loading: any;
 
   constructor(public navCtrl: NavController, public profileData: ProfileData,
-    public authData: AuthData, public alertCtrl: AlertController) {
+    public authData: AuthData, public alertCtrl: AlertController, public actionSheetCtrl: ActionSheetController) {
   }
 
   ionViewDidEnter(){
@@ -51,7 +52,30 @@ export class SettingsPage {
         {
           text: 'Save',
           handler: data => {
-            this.profileData.updateName(data.firstName, data.lastName);
+            this.profileData.updateName(data.firstName, data.lastName).then( authData => {
+              let alert2 = this.alertCtrl.create({
+                message: "Successfully updated",
+                buttons: [
+                  {
+                    text: "OK",
+                    role: 'cancel'
+                  }
+                ]
+              });
+              alert2.present();
+            },error => {
+              let alert2 = this.alertCtrl.create({
+                message: error.message,
+                buttons: [
+                  {
+                    text: "OK",
+                    role: 'cancel'
+                  }
+                ]
+              });
+              alert2.present();
+              }
+            );
           }
         }
       ]
@@ -59,9 +83,39 @@ export class SettingsPage {
     alert.present();
   }
 
-  // updateDOB(birthDate){
-  //   this.profileData.updateDOB(birthDate);
-  // }
+  updateGrade(){
+    let actionSheet = this.actionSheetCtrl.create({
+    title: 'Select your grade',
+    buttons: [
+      {
+        text: '9',
+        handler: () => {
+          this.profileData.updateGrade(9);
+        }
+      },
+      {
+        text: '10',
+        handler: () => {
+          this.profileData.updateGrade(10);
+        }
+      },
+      {
+        text: '11',
+        handler: () => {
+          this.profileData.updateGrade(11);
+        }
+      },
+      {
+        text: '12',
+        handler: () => {
+          this.profileData.updateGrade(12);
+        }
+      }
+    ]
+  });
+
+  actionSheet.present();
+  }
 
   updateEmail(){
     let alert = this.alertCtrl.create({
@@ -84,7 +138,30 @@ export class SettingsPage {
         {
           text: 'Save',
           handler: data => {
-            this.profileData.updateEmail(data.newEmail, data.password);
+            this.profileData.updateEmail(data.newEmail, data.password).then( error => {
+              let alert2 = this.alertCtrl.create({
+                message: "Error",
+                buttons: [
+                  {
+                    text: "OK",
+                    role: 'cancel'
+                  }
+                ]
+              });
+              alert2.present();
+            }, authData => {
+              let alert2 = this.alertCtrl.create({
+                message: "Successfully updated",
+                buttons: [
+                  {
+                    text: "OK",
+                    role: 'cancel'
+                  }
+                ]
+              });
+              alert2.present();
+            }
+          );
           }
         }
       ]
@@ -114,7 +191,29 @@ export class SettingsPage {
         {
           text: 'Save',
           handler: data => {
-            this.profileData.updatePassword(data.newPassword, data.oldPassword);
+            this.profileData.updatePassword(data.newPassword, data.oldPassword).then( error => {
+              let alert2 = this.alertCtrl.create({
+                message: "Error",
+                buttons: [
+                  {
+                    text: "OK",
+                    role: 'cancel'
+                  }
+                ]
+              });
+              alert2.present();
+            }, authData => {
+              let alert2 = this.alertCtrl.create({
+                message: "Successfully updated",
+                buttons: [
+                  {
+                    text: "OK",
+                    role: 'cancel'
+                  }
+                ]
+              });
+              alert2.present();
+            });
           }
         }
       ]
@@ -123,13 +222,47 @@ export class SettingsPage {
   }
 
   updateTeacher(periodNumber : number){
+    let tempName : string = "last name";
+    switch(periodNumber){
+      case 1:
+        tempName = this.userProfile.period1;
+        break;
+
+      case 2:
+        tempName = this.userProfile.period2;
+        break;
+
+      case 3:
+        tempName = this.userProfile.period3;
+        break;
+
+      case 4:
+        tempName = this.userProfile.period4;
+        break;
+
+      case 5:
+        tempName = this.userProfile.period5;
+        break;
+
+      case 6:
+        tempName = this.userProfile.period6;
+        break;
+
+      case 7:
+        tempName = this.userProfile.period7;
+        break;
+
+      case 8:
+        tempName = this.userProfile.period8;
+        break;
+    }
     let alert = this.alertCtrl.create({
       title: 'Update teacher',
       message: 'Period ' + periodNumber,
       inputs: [
         {
           name: 'name',
-          placeholder: 'last name'
+          placeholder: tempName
         }
       ],
       buttons: [
