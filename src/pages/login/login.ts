@@ -7,6 +7,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AuthData } from '../../providers/auth-data';
 import { SignupPage } from '../signup/signup';
 import { TabsPage } from '../tabs/tabs';
+import { ListPage } from '../list/list';
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import { EmailValidator } from '../../validators/email';
 
@@ -45,7 +46,7 @@ export class LoginPage {
     } else {
       this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password).then( authData => {
         this.loading.dismiss().then( () => {
-          this.nav.setRoot(TabsPage);
+          this.nav.setRoot(ListPage);
         });
       }, error => {
         this.loading.dismiss().then( () => {
