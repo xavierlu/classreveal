@@ -21,7 +21,9 @@
   </div>
 
   <ion-list>
+    <ion-item *ngFor="let teacher of teachers" (click)="consolePrint(teacher.title)">
       {{teacher.title}}
+    </ion-item>
 
   </ion-list>
 
