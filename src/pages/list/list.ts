@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { NavController } from 'ionic-angular';
 import { TeacherData } from '../../providers/teacher-data';
+import { ProfileData } from '../../providers/profile-data';
 import 'rxjs/add/operator/debounceTime';
 
 /**
@@ -21,7 +22,7 @@ import 'rxjs/add/operator/debounceTime';
      teachers: any;
      searching: any = false;
 
-     constructor(public navCtrl: NavController, public dataService: TeacherData) {
+     constructor(public navCtrl: NavController, public profileData: ProfileData, public dataService: TeacherData) {
          this.searchControl = new FormControl();
      }
 
@@ -47,7 +48,9 @@ import 'rxjs/add/operator/debounceTime';
        this.teachers = this.dataService.filterItems(this.searchTerm);
      }
 
-     consolePrint(text: string){
-       console.log(text);
+     chooseTeacher(teacherName: string){
+       var data = JSON.parse( window.localStorage.getItem('current-modifying-peroid'));
+       this.profileData.updateTeacher(teacherName, data.period);
+       this.navCtrl.pop();
      }
  }

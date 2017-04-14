@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ProfileData } from '../../providers/profile-data';
 import { AuthData } from '../../providers/auth-data';
 import { LoginPage } from '../login/login';
+import { ListPage } from '../list/list';
 
 @Component({
   selector: 'page-settings',
@@ -222,61 +223,10 @@ export class SettingsPage {
   }
 
   updateTeacher(periodNumber : number){
-    let tempName : string = "last name";
-    switch(periodNumber){
-      case 1:
-        tempName = this.userProfile.period1;
-        break;
-
-      case 2:
-        tempName = this.userProfile.period2;
-        break;
-
-      case 3:
-        tempName = this.userProfile.period3;
-        break;
-
-      case 4:
-        tempName = this.userProfile.period4;
-        break;
-
-      case 5:
-        tempName = this.userProfile.period5;
-        break;
-
-      case 6:
-        tempName = this.userProfile.period6;
-        break;
-
-      case 7:
-        tempName = this.userProfile.period7;
-        break;
-
-      case 8:
-        tempName = this.userProfile.period8;
-        break;
-    }
-    let alert = this.alertCtrl.create({
-      title: 'Update teacher',
-      message: 'Period ' + periodNumber,
-      inputs: [
-        {
-          name: 'name',
-          placeholder: tempName
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-        },
-        {
-          text: 'Save',
-          handler: data => {
-            this.profileData.updateTeacher(data.name, periodNumber);
-          }
-        }
-      ]
-    });
-    alert.present();
+    var data = {
+      period : periodNumber
+    };
+    window.localStorage.setItem('current-modifying-peroid', JSON.stringify(data));
+    this.navCtrl.push(ListPage);
   }
 }
