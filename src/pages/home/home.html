@@ -3,39 +3,34 @@
     <ion-title>
       Ionic Blank
     </ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="addBook()">
-	    <ion-icon name="add"></ion-icon>
-	  </button>
-    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <h2>List</h2>
   <ion-list>
-    <button ion-item (click)="viewClass()">
+    <button ion-item (click)="viewClass(1)">
       Period 1
     </button>
-    <button ion-item (click)="viewClass()">
+    <button ion-item (click)="viewClass(2)">
       Period 2
     </button>
-    <button ion-item (click)="viewClass()">
+    <button ion-item (click)="viewClass(3)">
       Period 3
     </button>
-    <button ion-item (click)="viewClass()">
+    <button ion-item (click)="viewClass(4)">
       Period 4
     </button>
-    <button ion-item (click)="viewClass()">
+    <button ion-item (click)="viewClass(5)">
       Period 5
     </button>
-    <button ion-item (click)="viewClass()">
+    <button ion-item (click)="viewClass(6)">
       Period 6
     </button>
-    <button ion-item (click)="viewClass()">
+    <button ion-item (click)="viewClass(7)">
       Period 7
     </button>
-    <button ion-item (click)="viewClass()">
+    <button ion-item (click)="viewClass(8)">
       Period 8
     </button>
     <!-- <ion-item-sliding  *ngFor="let book of books | async">

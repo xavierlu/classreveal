@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { Observable } from 'rxjs/Rx';
 
 /**
  * Generated class for the ListStudent page.
@@ -10,19 +11,16 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
  */
 @Component({
   selector: 'page-list-student',
-  templateUrl: 'list-student.html',
+  templateUrl: 'list-student.html'
 })
 export class ListStudent {
 
-  students: FirebaseListObservable<any>;
+  students: Observable<any>;
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, angFire: AngularFire) {
-    this.students = angFire.database.list('/userProfile');
-    console.log(this.students);
-  }
-
-  ionViewDidLoad() {
-    console.log("loaded");
+    this.students = angFire.database.list('/userProfile').map(items => items.filter(
+      item => item.grade > 9
+    ));
   }
 
 }
