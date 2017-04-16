@@ -14,23 +14,34 @@
 <ion-content padding>
   <h2>List</h2>
   <ion-list>
-    <ion-item-sliding  *ngFor="let book of books | async">
+    <button ion-item (click)="viewClass()">
+      Period 1
+    </button>
+    <button ion-item (click)="viewClass()">
+      Period 2
+    </button>
+    <button ion-item (click)="viewClass()">
+      Period 3
+    </button>
+    <button ion-item (click)="viewClass()">
+      Period 4
+    </button>
+    <button ion-item (click)="viewClass()">
+      Period 5
+    </button>
+    <button ion-item (click)="viewClass()">
+      Period 6
+    </button>
+    <button ion-item (click)="viewClass()">
+      Period 7
+    </button>
+    <button ion-item (click)="viewClass()">
+      Period 8
+    </button>
+    <!-- <ion-item-sliding  *ngFor="let book of books | async">
       <ion-item>
         <p>Title: {{book.title}} </p>
         <p>Author: {{book.author}} </p>
-      </ion-item>
-
-      <ion-item-options side="right">
-        <button ion-button color="secondary" (click)="editBook(book)">
-          <ion-icon name="md-create"> Edit</ion-icon>
-        </button>
-      </ion-item-options>
-
-      <ion-item-options side="left">
-        <button ion-button color="danger" (click)="deleteBook(book.$key)">
-          <ion-icon name="md-trash"> Delete</ion-icon>
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
+      </ion-item> -->
   </ion-list>
 </ion-content>

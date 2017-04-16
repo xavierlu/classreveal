@@ -24327,6 +24327,20 @@ page-list ion-spinner * {
   fill: #222;
 }
 
+page-list-student .spinner-container {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+
+page-list-student ion-spinner * {
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  stroke: #444;
+  fill: #222;
+}
+
 page-login form {
   margin-bottom: 32px;
 }

@@ -7,7 +7,7 @@ import 'rxjs/add/operator/debounceTime';
 
 /**
  * Generated class for the teacher list page.
- * There will be a search bar at the top.
+ * There is a search bar at the top.
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */

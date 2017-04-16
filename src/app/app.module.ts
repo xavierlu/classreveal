@@ -16,6 +16,7 @@ import { LoginPage } from '../pages/login/login';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 import { SignupPage } from '../pages/signup/signup';
 import { ListPage } from '../pages/list/list';
+import { ListStudent } from '../pages/list-student/list-student';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyArtrcZzDp_OEquRaiwxPQ9K--Wx0fw0nU",
@@ -36,7 +37,8 @@ export const firebaseConfig = {
     TabsPage,
     HomePage,
     SettingsPage,
-    ListPage
+    ListPage,
+    ListStudent
 	],
 	imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ export const firebaseConfig = {
     TabsPage,
     HomePage,
     SettingsPage,
-    ListPage
+    ListPage,
+    ListStudent
 	],
 	providers: [
     AuthData,
