@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color = 'orangeYel'>
     <ion-title>
       Schools
     </ion-title>
@@ -33,7 +33,7 @@
     <ion-item *ngFor="let school of schools | async"  (click)="chooseSchool(school.$key)">
       {{school.$key.replace("_"," ")}}
     </ion-item>
-    <ion-item (click)="chooseSchool(this.searchTerm)">
+    <ion-item text-wrap (click)="chooseSchool(this.searchTerm)">
         <ion-icon name="warning"></ion-icon>
             Can't find your school? Add it! {{this.searchTerm}}
     </ion-item>

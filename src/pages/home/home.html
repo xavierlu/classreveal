@@ -1,13 +1,13 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
+  <ion-navbar color = 'orangeYel'>
+    <ion-title >
+      My Classes
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>List</h2>
+  <h2>Periods</h2>
   <ion-list>
     <button ion-item *ngIf="userProfile?.period1"  (click)="viewClass(1)">
       Period 1 - {{userProfile?.period1.replace("_"," ")}}
