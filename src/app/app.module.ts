@@ -8,6 +8,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AuthData } from '../providers/auth-data';
 import { ProfileData } from '../providers/profile-data';
 import { TeacherData } from '../providers/teacher-data';
+import { SchoolData } from '../providers/school-data';
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
 import { HomePage } from '../pages/home/home';
@@ -17,6 +18,9 @@ import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 import { SignupPage } from '../pages/signup/signup';
 import { ListPage } from '../pages/list/list';
 import { ListStudent } from '../pages/list-student/list-student';
+
+import { SchoolListPage } from '../pages/schoolList/schoolList';
+
 
 export const firebaseConfig = {
     apiKey: "AIzaSyArtrcZzDp_OEquRaiwxPQ9K--Wx0fw0nU",
@@ -38,7 +42,8 @@ export const firebaseConfig = {
     HomePage,
     SettingsPage,
     ListPage,
-    ListStudent
+    ListStudent,
+        SchoolListPage
 	],
 	imports: [
     BrowserModule,
@@ -55,12 +60,14 @@ export const firebaseConfig = {
     HomePage,
     SettingsPage,
     ListPage,
-    ListStudent
+    ListStudent,
+        SchoolListPage
 	],
 	providers: [
     AuthData,
     ProfileData,
     TeacherData,
+    SchoolData,
 		StatusBar,
 		SplashScreen,
 		{provide: ErrorHandler, useClass: IonicErrorHandler}

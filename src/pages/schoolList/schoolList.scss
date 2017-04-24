@@ -1,0 +1,14 @@
+page-list {
+
+    .spinner-container {
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+    }
+
+    ion-spinner * {
+      align-items: center;
+      stroke: #444;
+      fill: #222;
+    }
+}

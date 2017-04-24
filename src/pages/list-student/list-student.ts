@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Observable } from 'rxjs/Rx';
+import { ProfileData } from '../../providers/profile-data';
 
 /**
  * Generated class for the ListStudent page.
@@ -15,12 +16,23 @@ import { Observable } from 'rxjs/Rx';
 })
 export class ListStudent {
 
-  students: Observable<any>;
+  public students: Observable<any>;
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController, angFire: AngularFire) {
-    this.students = angFire.database.list('/userProfile').map(items => items.filter(
-      item => item.grade > 9
-    ));
+  constructor(public navCtrl: NavController, public angFire: AngularFire, public profileData: ProfileData) {
+      
+     
   }
+    
+ionViewDidLoad() {
+     var periodNumm =  JSON.parse( window.localStorage.getItem('current-viewing-period')).period;
+
+      console.log("SCHOOL - " + this.profileData.getUsersSchool());
+       console.log("TEACHER - " + this.profileData.getPeriod(periodNumm));
+    console.log("PERIOD - " + periodNumm);
+      
+    this.students = this.angFire.database.list('/schoolData/' + this.profileData.getUsersSchool() + '/classData/' + this.profileData.getPeriod(periodNumm) + '/period' + periodNumm);
+      
+    console.log(this.students);
+}
 
 }

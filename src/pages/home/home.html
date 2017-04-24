@@ -9,34 +9,36 @@
 <ion-content padding>
   <h2>List</h2>
   <ion-list>
-    <button ion-item (click)="viewClass(1)">
-      Period 1
+    <button ion-item *ngIf="userProfile?.period1"  (click)="viewClass(1)">
+      Period 1 - {{userProfile?.period1.replace("_"," ")}}
     </button>
-    <button ion-item (click)="viewClass(2)">
-      Period 2
+    <button ion-item *ngIf="userProfile?.period2"  (click)="viewClass(2)">
+      Period 2 - {{userProfile?.period2.replace("_"," ")}}
     </button>
-    <button ion-item (click)="viewClass(3)">
-      Period 3
+    <button ion-item *ngIf="userProfile?.period3"  (click)="viewClass(3)">
+      Period 3 - {{userProfile?.period3.replace("_"," ")}}
     </button>
-    <button ion-item (click)="viewClass(4)">
-      Period 4
+    <button ion-item *ngIf="userProfile?.period4"  (click)="viewClass(4)">
+      Period 4 - {{userProfile?.period4.replace("_"," ")}}
     </button>
-    <button ion-item (click)="viewClass(5)">
-      Period 5
+    <button ion-item *ngIf="userProfile?.period5"  (click)="viewClass(5)">
+      Period 5 - {{userProfile?.period5.replace("_"," ")}}
     </button>
-    <button ion-item (click)="viewClass(6)">
-      Period 6
+    <button ion-item *ngIf="userProfile?.period6"  (click)="viewClass(6)">
+      Period 6 - {{userProfile?.period6.replace("_"," ")}}
     </button>
-    <button ion-item (click)="viewClass(7)">
-      Period 7
+    <button ion-item *ngIf="userProfile?.period7"  (click)="viewClass(7)">
+      Period 7 - {{userProfile?.period7.replace("_"," ")}}
     </button>
-    <button ion-item (click)="viewClass(8)">
-      Period 8
+    <button ion-item *ngIf="userProfile?.period8"  (click)="viewClass(8)">
+      Period 8 - {{userProfile?.period8.replace("_"," ")}}
     </button>
-    <!-- <ion-item-sliding  *ngFor="let book of books | async">
-      <ion-item>
-        <p>Title: {{book.title}} </p>
-        <p>Author: {{book.author}} </p>
-      </ion-item> -->
+      <button ion-item *ngIf="userProfile?.period9"  (click)="viewClass(9)">
+      Period 9 - {{userProfile?.period9.replace("_"," ")}}
+    </button>
+      <button ion-item *ngIf="userProfile?.period10"  (click)="viewClass(10)">
+      Period 10 - {{userProfile?.period10.replace("_"," ")}}
+    </button>
+
   </ion-list>
 </ion-content>

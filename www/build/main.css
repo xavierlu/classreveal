@@ -24399,6 +24399,20 @@ page-reset-password .error-message .item-inner {
   border-bottom: 0 !important;
 }
 
+page-list .spinner-container {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+
+page-list ion-spinner * {
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  stroke: #444;
+  fill: #222;
+}
+
 page-settings ion-item ion-label {
   margin: 0 !important;
 }

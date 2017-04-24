@@ -4,6 +4,8 @@ import { ProfileData } from '../../providers/profile-data';
 import { AuthData } from '../../providers/auth-data';
 import { LoginPage } from '../login/login';
 import { ListPage } from '../list/list';
+import { SchoolListPage } from '../schoolList/schoolList';
+
 
 @Component({
   selector: 'page-settings',
@@ -11,17 +13,19 @@ import { ListPage } from '../list/list';
 })
 export class SettingsPage {
   public userProfile: any;
-  public birthDate: string;
+//  public birthDate: string;
   loading: any;
 
   constructor(public navCtrl: NavController, public profileData: ProfileData,
     public authData: AuthData, public alertCtrl: AlertController, public actionSheetCtrl: ActionSheetController) {
+      
+      
   }
 
   ionViewDidEnter(){
     this.profileData.getUserProfile().on('value', (data) => {
       this.userProfile = data.val();
-      this.birthDate = this.userProfile.birthDate;
+   //   this.birthDate = this.userProfile.birthDate;
     });
   }
 
@@ -118,6 +122,8 @@ export class SettingsPage {
   actionSheet.present();
   }
 
+   
+    
   updateEmail(){
     let alert = this.alertCtrl.create({
       title: 'Update email',
@@ -169,6 +175,8 @@ export class SettingsPage {
     });
     alert.present();
   }
+    
+    
 
   updatePassword(){
     let alert = this.alertCtrl.create({
@@ -224,9 +232,32 @@ export class SettingsPage {
 
   updateTeacher(periodNumber : number){
     var data = {
-      period : periodNumber
+      period : periodNumber,
+        prevTeacher : this.profileData.getPeriod(periodNumber)
     };
-    window.localStorage.setItem('current-modifying-peroid', JSON.stringify(data));
-    this.navCtrl.push(ListPage);
+    console.log("School - " + this.profileData.getUsersSchool());
+          if(this.profileData.getUsersSchool() === '')
+          {
+              let alert = this.alertCtrl.create({
+              title: 'Please enter your school name',
+              buttons: [
+                {
+                  text: 'Ok',
+                }
+              ]
+                  });
+                alert.present();
+          }
+          else
+          {
+              window.localStorage.setItem('current-modifying-peroid', JSON.stringify(data));
+              this.navCtrl.push(ListPage);
+          }
+    
   }
+    
+     updateSchool(){
+        this.navCtrl.push(SchoolListPage);
+    }
 }
+

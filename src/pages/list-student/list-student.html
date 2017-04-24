@@ -10,7 +10,7 @@
 
   <ion-list>
     <ion-item *ngFor="let student of students | async">
-      {{student.firstName}}
+      {{student.$value}}
     </ion-item>
   </ion-list>
 
