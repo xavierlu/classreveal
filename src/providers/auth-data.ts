@@ -69,11 +69,6 @@ else{
     console.log("logging out " +firebase.auth().currentUser.uid);
 }
       
-     firebase.auth().signOut().then(function() {
-  console.log('Signed Out');
-}, function(error) {
-  console.error('Sign Out Error', error);
-});
 
       
       return firebase.auth().signOut().then(function() {

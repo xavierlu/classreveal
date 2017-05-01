@@ -153,6 +153,7 @@ getPeriod(num : number): String
             if(snapshot.hasChild('firstName'))
                 {
                     this.firstName = snapshot.val().firstName;
+                console.log("updateInfo(): firstname " + this.firstName);
                 }
             if(snapshot.hasChild('lastName'))
                 {

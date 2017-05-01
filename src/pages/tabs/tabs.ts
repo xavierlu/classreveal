@@ -13,6 +13,6 @@ export class TabsPage {
   tab2Root = SettingsPage;
 
 constructor() {
-   // this.profData.updateInfo();
+
   }
 }
