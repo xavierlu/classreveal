@@ -14,8 +14,8 @@ export class HomePage {
 
     public userProfile: any;
 
-  constructor(public navCtrl: NavController, public profileData: ProfileData, angFire: AngularFire) {
-    
+constructor(public navCtrl: NavController, angFire: AngularFire, public profileData: ProfileData) {
+  //  this.profileData.updateInfo();
       
   }
 

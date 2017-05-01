@@ -15,6 +15,7 @@ export class LoginPage {
   public loginForm;
   loading: any;
 
+    
   constructor(public nav: NavController, public authData: AuthData, public formBuilder: FormBuilder,
     public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
 

@@ -5172,19 +5172,19 @@ ion-footer {
 }
 
 ion-app.ios {
-  font-family: -apple-system, "Helvetica Neue", "Roboto", sans-serif;
+  font-family: "Raleway";
   font-size: 1.4rem;
   background-color: #fff;
 }
 
 ion-app.md {
-  font-family: "Roboto", "Helvetica Neue", sans-serif;
+  font-family: "Raleway";
   font-size: 1.4rem;
   background-color: #fff;
 }
 
 ion-app.wp {
-  font-family: "Segoe UI", "Noto Sans", sans-serif;
+  font-family: "Raleway";
   font-size: 1.4rem;
   background-color: #fff;
 }
@@ -26607,13 +26607,15 @@ ion-navbar.toolbar {
 }
 
 @font-face {
-  font-family: Ubuntu;
-  src: url(../assets/fonts/Ubuntu-Regular.ttf) format("ttf");
-  font-weight: 200;
+  font-family: 'Raleway';
+  font-weight: 400;
+  font-style: normal;
+  src: url("../assets/fonts/Raleway-regular/Raleway-regular.eot");
+  src: url("../assets/fonts/Raleway-regular/Raleway-regular.eot?#iefix") format("embedded-opentype"), local("Raleway"), local("Raleway-regular"), url("../assets/fonts/Raleway-regular/Raleway-regular.woff2") format("woff2"), url("../assets/fonts/Raleway-regular/Raleway-regular.woff") format("woff"), url("../assets/fonts/Raleway-regular/Raleway-regular.ttf") format("truetype"), url("../assets/fonts/Raleway-regular/Raleway-regular.svg#Raleway") format("svg");
 }
 
-body, h1, h2, h3, h4, h5, ion-item {
-  font-family: Ubuntu !important;
+body, h1, h2, h3, h4, h5, ion-item, ion-title, ion-label {
+  font-family: "Raleway";
 }
 
 page-list .spinner-container {
