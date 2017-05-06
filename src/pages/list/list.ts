@@ -14,74 +14,72 @@ import { Observable } from 'rxjs/Rx';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
- @Component({
-   selector: 'page-list',
-   templateUrl: 'list.html'
- })
- export class ListPage {
+@Component({
+  selector: 'page-list',
+  templateUrl: 'list.html'
+})
+export class ListPage {
 
-     searchTerm: string = '';
-     searchControl: FormControl;
-     teachers: Observable<any>;
-     searching: any = false;
-school: String;
-     
-     constructor(public navCtrl: NavController, public profileData: ProfileData, public dataService: TeacherData, public angFire: AngularFire, public alertCtrl: AlertController) {
-         this.searchControl = new FormControl();
-         this.school = this.profileData.getUsersSchool();
-  //  console.log("SCHOOL - " + this.school);
-     }
+  searchTerm: string = '';
+  searchControl: FormControl;
+  teachers: Observable<any>;
+  searching: any = false;
+  school: String;
 
-     ionViewDidLoad() {
+  constructor(public navCtrl: NavController, public profileData: ProfileData, public dataService: TeacherData, public angFire: AngularFire, public alertCtrl: AlertController) {
+    this.searchControl = new FormControl();
+    this.school = this.profileData.getUsersSchool();
+    //  console.log("SCHOOL - " + this.school);
+  }
 
-         this.setFilteredItems();
+  ionViewDidLoad() {
 
-         this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
+    this.setFilteredItems();
 
-             this.searching = false;
-             this.setFilteredItems();
+    this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
 
-         });
+      this.searching = false;
+      this.setFilteredItems();
+
+    });
 
 
-     }
+  }
 
-     onSearchInput(){
-       this.searching = true;
-     }
+  onSearchInput() {
+    this.searching = true;
+  }
 
-     setFilteredItems() {
-         this.teachers = this.angFire.database.list('schoolData/' + this.school + '/teachers')
-      .map(schools => schools.filter(school => school.$key.toLowerCase().indexOf(this.searchTerm.replace(" ","_").toLowerCase()) > -1));
-     }
+  setFilteredItems() {
+    this.teachers = this.angFire.database.list('schoolData/' + this.school + '/teachers')
+      .map(schools => schools.filter(school => school.$key.toLowerCase().indexOf(this.searchTerm.replace(" ", "_").toLowerCase()) > -1));
+  }
 
-    removeTeacher()
-    {
-        var data = JSON.parse( window.localStorage.getItem('current-modifying-peroid'));
-        
-        this.profileData.updateTeacher("", data.period, data.prevTeacher);
-               this.navCtrl.pop();
+  removeTeacher() {
+    var data = JSON.parse(window.localStorage.getItem('current-modifying-peroid'));
+
+    this.profileData.updateTeacher("", data.period, data.prevTeacher);
+    this.navCtrl.pop();
+  }
+
+  chooseTeacher(teacherName: string) {
+    var data = JSON.parse(window.localStorage.getItem('current-modifying-peroid'));
+    teacherName = teacherName.replace(" ", "_");
+
+    if (teacherName === "" || teacherName.split("_").length < 2) {
+      let alert = this.alertCtrl.create({
+        title: 'Please enter your teacher\'s full name or go back.',
+        buttons: [
+          {
+            text: 'Ok',
+          }
+        ]
+      });
+      alert.present();
     }
-     
-     chooseTeacher(teacherName: string){
-       var data = JSON.parse( window.localStorage.getItem('current-modifying-peroid'));
-         teacherName = teacherName.replace(" ","_");
-         
-             if(teacherName === "" || teacherName.split("_").length < 2)
-             {
-                 let alert = this.alertCtrl.create({
-                  title: 'Please enter your teacher\'s full name or go back.',
-                  buttons: [
-                    {
-                      text: 'Ok',
-                    }
-                  ]
-                      });
-                    alert.present();
-             }
-            else{
-                this.profileData.updateTeacher(teacherName, data.period, data.prevTeacher);
-               this.navCtrl.pop();
-            }
-     }
- }
+    else {
+      this.profileData.updateTeacher(teacherName, data.period, data.prevTeacher);
+      this.navCtrl.pop();
+    }
+  }
+}

@@ -30,8 +30,8 @@ export class ResetPasswordPage {
    *
    * If the form is invalid it will just log the form value, feel free to handle that as you like.
    */
-  resetPassword(){
-    if (!this.resetPasswordForm.valid){
+  resetPassword() {
+    if (!this.resetPasswordForm.valid) {
       console.log(this.resetPasswordForm.value);
     } else {
       this.authData.resetPassword(this.resetPasswordForm.value.email).then((user) => {

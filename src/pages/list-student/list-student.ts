@@ -17,52 +17,50 @@ import firebase from 'firebase';
 export class ListStudent {
 
   public students: Observable<any>;
-public ids = [];
-public names = [];
-    
-  constructor(public navCtrl: NavController, public angFire: AngularFire, public profileData: ProfileData) {
-      
-     
-  }
-    
-ionViewDidLoad() {
-     var periodNumm =  JSON.parse( window.localStorage.getItem('current-viewing-period')).period;
+  public ids = [];
+  public names = [];
 
-      console.log("SCHOOL - " + this.profileData.getUsersSchool());
-       console.log("TEACHER - " + this.profileData.getPeriod(periodNumm));
+  constructor(public navCtrl: NavController, public angFire: AngularFire, public profileData: ProfileData) {
+
+
+  }
+
+  ionViewDidLoad() {
+    var periodNumm = JSON.parse(window.localStorage.getItem('current-viewing-period')).period;
+
+    console.log("SCHOOL - " + this.profileData.getUsersSchool());
+    console.log("TEACHER - " + this.profileData.getPeriod(periodNumm));
     console.log("PERIOD - " + periodNumm);
-      
+
     this.students = this.angFire.database.list('/schoolData/' + this.profileData.getUsersSchool() + '/classData/' + this.profileData.getPeriod(periodNumm) + '/period' + periodNumm, { preserveSnapshot: true });
-    
+
     this.students.subscribe(snapshots => {
 
-    snapshots.forEach(snapshot => {
-      console.log("key " +snapshot.key)
-      console.log(snapshot.val())
-        
+      snapshots.forEach(snapshot => {
+        console.log("key " + snapshot.key)
+        console.log(snapshot.val())
+
         firebase.database().ref('/userProfile/' + snapshot.key).once(
-            'value',(snapshot) => {
-                var firstName = "";
-                var lastName = "";
-                if(snapshot.hasChild('firstName'))
-                    {
-                        firstName = snapshot.val().firstName;
-                    }
-                if(snapshot.hasChild('lastName'))
-                    {
-                        lastName = snapshot.val().lastName;
-                    }
+          'value', (snapshot) => {
+            var firstName = "";
+            var lastName = "";
+            if (snapshot.hasChild('firstName')) {
+              firstName = snapshot.val().firstName;
+            }
+            if (snapshot.hasChild('lastName')) {
+              lastName = snapshot.val().lastName;
+            }
 
-        console.log("For " + snapshot.key + " name: " + firstName + " " + lastName)
-        this.names.push(firstName + " " + lastName);
-        
-        });
+            console.log("For " + snapshot.key + " name: " + firstName + " " + lastName)
+            this.names.push(firstName + " " + lastName);
+
+          });
+      });
+
+
+      console.log("NAMES:");
+      console.log(this.names);
     });
-    
-    
-    console.log("NAMES:");
-    console.log(this.names);
-        });
 
-}
+  }
 }

@@ -5,15 +5,15 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class SchoolData {
 
-    schools: any;
+  schools: any;
 
-    constructor(angFire: AngularFire) {
-        
+  constructor(angFire: AngularFire) {
+
     //    this.schools = angFire.database().list('/schoolNames/');
-    }
+  }
 
-    filterItems(searchTerm){
-        return this.schools;
-    }
+  filterItems(searchTerm) {
+    return this.schools;
+  }
 
 }

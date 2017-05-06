@@ -13,29 +13,29 @@ import { SchoolListPage } from '../schoolList/schoolList';
 })
 export class SettingsPage {
   public userProfile: any;
-//  public birthDate: string;
+  //  public birthDate: string;
   loading: any;
 
   constructor(public navCtrl: NavController, public profileData: ProfileData,
     public authData: AuthData, public alertCtrl: AlertController, public actionSheetCtrl: ActionSheetController) {
-      
-      
+
+
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     this.profileData.getUserProfile().on('value', (data) => {
       this.userProfile = data.val();
-   //   this.birthDate = this.userProfile.birthDate;
+      //   this.birthDate = this.userProfile.birthDate;
     });
   }
 
-  logOut(){
+  logOut() {
     this.authData.logoutUser().then(() => {
       this.navCtrl.setRoot(LoginPage);
     });
   }
 
-  updateName(){
+  updateName() {
     let alert = this.alertCtrl.create({
       title: 'Update name',
       inputs: [
@@ -57,7 +57,7 @@ export class SettingsPage {
         {
           text: 'Save',
           handler: data => {
-            this.profileData.updateName(data.firstName, data.lastName).then( authData => {
+            this.profileData.updateName(data.firstName, data.lastName).then(authData => {
               let alert2 = this.alertCtrl.create({
                 message: "Successfully updated",
                 buttons: [
@@ -68,7 +68,7 @@ export class SettingsPage {
                 ]
               });
               alert2.present();
-            },error => {
+            }, error => {
               let alert2 = this.alertCtrl.create({
                 message: error.message,
                 buttons: [
@@ -79,7 +79,7 @@ export class SettingsPage {
                 ]
               });
               alert2.present();
-              }
+            }
             );
           }
         }
@@ -88,43 +88,43 @@ export class SettingsPage {
     alert.present();
   }
 
-  updateGrade(){
+  updateGrade() {
     let actionSheet = this.actionSheetCtrl.create({
-    title: 'Select your grade',
-    buttons: [
-      {
-        text: '9',
-        handler: () => {
-          this.profileData.updateGrade(9);
+      title: 'Select your grade',
+      buttons: [
+        {
+          text: '9',
+          handler: () => {
+            this.profileData.updateGrade(9);
+          }
+        },
+        {
+          text: '10',
+          handler: () => {
+            this.profileData.updateGrade(10);
+          }
+        },
+        {
+          text: '11',
+          handler: () => {
+            this.profileData.updateGrade(11);
+          }
+        },
+        {
+          text: '12',
+          handler: () => {
+            this.profileData.updateGrade(12);
+          }
         }
-      },
-      {
-        text: '10',
-        handler: () => {
-          this.profileData.updateGrade(10);
-        }
-      },
-      {
-        text: '11',
-        handler: () => {
-          this.profileData.updateGrade(11);
-        }
-      },
-      {
-        text: '12',
-        handler: () => {
-          this.profileData.updateGrade(12);
-        }
-      }
-    ]
-  });
+      ]
+    });
 
-  actionSheet.present();
+    actionSheet.present();
   }
 
-   
-    
-  updateEmail(){
+
+
+  updateEmail() {
     let alert = this.alertCtrl.create({
       title: 'Update email',
       inputs: [
@@ -145,7 +145,7 @@ export class SettingsPage {
         {
           text: 'Save',
           handler: data => {
-            this.profileData.updateEmail(data.newEmail, data.password).then( error => {
+            this.profileData.updateEmail(data.newEmail, data.password).then(error => {
               let alert2 = this.alertCtrl.create({
                 message: "Error",
                 buttons: [
@@ -168,17 +168,17 @@ export class SettingsPage {
               });
               alert2.present();
             }
-          );
+            );
           }
         }
       ]
     });
     alert.present();
   }
-    
-    
 
-  updatePassword(){
+
+
+  updatePassword() {
     let alert = this.alertCtrl.create({
       title: 'Change password',
       inputs: [
@@ -200,7 +200,7 @@ export class SettingsPage {
         {
           text: 'Save',
           handler: data => {
-            this.profileData.updatePassword(data.newPassword, data.oldPassword).then( error => {
+            this.profileData.updatePassword(data.newPassword, data.oldPassword).then(error => {
               let alert2 = this.alertCtrl.create({
                 message: "Error",
                 buttons: [
@@ -230,34 +230,31 @@ export class SettingsPage {
     alert.present();
   }
 
-  updateTeacher(periodNumber : number){
+  updateTeacher(periodNumber: number) {
     var data = {
-      period : periodNumber,
-        prevTeacher : this.profileData.getPeriod(periodNumber)
+      period: periodNumber,
+      prevTeacher: this.profileData.getPeriod(periodNumber)
     };
     console.log("School - " + this.profileData.getUsersSchool());
-          if(this.profileData.getUsersSchool() === '')
+    if (this.profileData.getUsersSchool() === '') {
+      let alert = this.alertCtrl.create({
+        title: 'Please enter your school name',
+        buttons: [
           {
-              let alert = this.alertCtrl.create({
-              title: 'Please enter your school name',
-              buttons: [
-                {
-                  text: 'Ok',
-                }
-              ]
-                  });
-                alert.present();
+            text: 'Ok',
           }
-          else
-          {
-              window.localStorage.setItem('current-modifying-peroid', JSON.stringify(data));
-              this.navCtrl.push(ListPage);
-          }
-    
-  }
-    
-     updateSchool(){
-        this.navCtrl.push(SchoolListPage);
+        ]
+      });
+      alert.present();
     }
-}
+    else {
+      window.localStorage.setItem('current-modifying-peroid', JSON.stringify(data));
+      this.navCtrl.push(ListPage);
+    }
 
+  }
+
+  updateSchool() {
+    this.navCtrl.push(SchoolListPage);
+  }
+}

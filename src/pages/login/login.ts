@@ -15,7 +15,7 @@ export class LoginPage {
   public loginForm;
   loading: any;
 
-    
+
   constructor(public nav: NavController, public authData: AuthData, public formBuilder: FormBuilder,
     public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
 
@@ -38,15 +38,15 @@ export class LoginPage {
    * If the form is invalid it will just log the form value, feel free to handle that as you like.
    */
   loginUser(): void {
-    if (!this.loginForm.valid){
+    if (!this.loginForm.valid) {
       console.log(this.loginForm.value);
     } else {
-      this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password).then( authData => {
-        this.loading.dismiss().then( () => {
+      this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password).then(authData => {
+        this.loading.dismiss().then(() => {
           this.nav.setRoot(TabsPage);
         });
       }, error => {
-        this.loading.dismiss().then( () => {
+        this.loading.dismiss().then(() => {
           let alert = this.alertCtrl.create({
             message: error.message,
             buttons: [

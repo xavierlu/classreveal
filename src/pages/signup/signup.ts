@@ -33,29 +33,29 @@ export class SignupPage {
    *
    * If the form is invalid it will just log the form value, feel free to handle that as you like.
    */
-  signupUser(){
-    if (!this.signupForm.valid){
+  signupUser() {
+    if (!this.signupForm.valid) {
       console.log(this.signupForm.value);
     } else {
       this.authData.signupUser(this.signupForm.value.email, this.signupForm.value.password)
-      .then(() => {
-        this.loading.dismiss().then( () => {
-          this.nav.setRoot(TabsPage);
-        });
-      }, (error) => {
-        this.loading.dismiss().then( () => {
-          let alert = this.alertCtrl.create({
-            message: error.message,
-            buttons: [
-              {
-                text: "Ok",
-                role: 'cancel'
-              }
-            ]
+        .then(() => {
+          this.loading.dismiss().then(() => {
+            this.nav.setRoot(TabsPage);
           });
-          alert.present();
+        }, (error) => {
+          this.loading.dismiss().then(() => {
+            let alert = this.alertCtrl.create({
+              message: error.message,
+              buttons: [
+                {
+                  text: "Ok",
+                  role: 'cancel'
+                }
+              ]
+            });
+            alert.present();
+          });
         });
-      });
       this.loading = this.loadingCtrl.create();
       this.loading.present();
     }

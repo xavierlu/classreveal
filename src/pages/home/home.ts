@@ -12,23 +12,23 @@ import { ProfileData } from '../../providers/profile-data';
 
 export class HomePage {
 
-    public userProfile: any;
+  public userProfile: any;
 
-constructor(public navCtrl: NavController, angFire: AngularFire, public profileData: ProfileData) {
-  //  this.profileData.updateInfo();
-      
+  constructor(public navCtrl: NavController, angFire: AngularFire, public profileData: ProfileData) {
+    //  this.profileData.updateInfo();
+
   }
 
-    ionViewDidEnter(){
+  ionViewDidEnter() {
     this.profileData.getUserProfile().on('value', (data) => {
       this.userProfile = data.val();
-   //   this.birthDate = this.userProfile.birthDate;
+      //   this.birthDate = this.userProfile.birthDate;
     });
   }
-    
-viewClass(periodNumber : number): void {
+
+  viewClass(periodNumber: number): void {
     var data = {
-      period : periodNumber
+      period: periodNumber
     };
     window.localStorage.setItem('current-viewing-period', JSON.stringify(data));
     this.navCtrl.push(ListStudent);
