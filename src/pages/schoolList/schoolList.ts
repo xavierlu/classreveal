@@ -4,8 +4,7 @@ import { NavController, AlertController } from 'ionic-angular';
 import { ProfileData } from '../../providers/profile-data';
 import { SchoolData } from '../../providers/school-data';
 import 'rxjs/add/operator/debounceTime';
-
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFire } from 'angularfire2';
 import { Observable } from 'rxjs/Rx';
 
 /**

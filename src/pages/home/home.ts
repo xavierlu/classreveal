@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AngularFire } from 'angularfire2';
 import { ListStudent } from '../list-student/list-student';
-import { Observable } from 'rxjs/Rx';
 import { ProfileData } from '../../providers/profile-data';
 
 @Component({
