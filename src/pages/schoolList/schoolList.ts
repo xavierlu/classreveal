@@ -57,7 +57,7 @@ export class SchoolListPage {
 
   setFilteredItems() {
 
-    this.schools = this.angFire.database.list('schoolData')
+    this.schools = this.angFire.database.list('schoolNames')
       .map(schools => schools.filter(school => school.$key.toLowerCase().indexOf(this.searchTerm.replace(" ", "_").toLowerCase()) > -1));
 
   }

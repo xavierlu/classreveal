@@ -51,10 +51,10 @@ export class ListPage {
   }
 
   setFilteredItems() {
-    this.teachers = this.angFire.database.list('schoolData/' + this.school + '/classData')
+    this.teachers = this.angFire.database.list('schoolData/' + this.school + '/teachers')
       .map(schools => schools.filter(school => school.$key.toLowerCase().indexOf(this.searchTerm.replace(" ", "_").toLowerCase()) > -1));
   }
-  s
+
   removeTeacher() {
     var data = JSON.parse(window.localStorage.getItem('current-modifying-peroid'));
 

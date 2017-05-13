@@ -201,7 +201,7 @@ export class ProfileData {
 
     this.dataReference.ref('schoolData/' + newSchoolName).once('value', (snapshot) => {
       if (!snapshot.exists()) {
-        this.dataReference.ref().child('schoolData/').update({ [newSchoolName]: { classData: 'true' } });
+        this.dataReference.ref().child('schoolData/').update({ [newSchoolName]: { classData: 'true', teachers: 'true' } });
       }
     });
 
@@ -215,6 +215,8 @@ export class ProfileData {
   addToSchools(newSchoolName: string) {
 
   }
+
+
 
   updateTeacher(newTeacherName: string, periodNumber: number, prevTeacher: string): firebase.Promise<any> {
 
@@ -231,7 +233,10 @@ export class ProfileData {
           this.dataReference.ref('schoolData/' + this.usersSchool + '/classData/' + newTeacherName).child('/period' + periodNumber).update({ [this.currentUser.uid]: this.firstName + " " + this.lastName });
         }
         else {
+          this.dataReference.ref('schoolData/' + this.usersSchool).child('/teachers').update({ [newTeacherName]: 'true' });
+
           this.dataReference.ref('schoolData/' + this.usersSchool).child('/classData').update({ [newTeacherName]: { period1: 'true', period2: 'true', period3: 'true', period4: 'true', period5: 'true', period6: 'true', period7: 'true', period8: 'true', period9: 'true', period10: 'true' } });
+
           this.dataReference.ref('schoolData/' + this.usersSchool + '/classData/' + newTeacherName).child('/period' + periodNumber).update({ [this.currentUser.uid]: this.firstName + " " + this.lastName });
         }
       });
