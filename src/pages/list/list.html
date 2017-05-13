@@ -32,7 +32,7 @@
     <ion-item *ngFor="let teacher of teachers | async" (click)="chooseTeacher(teacher.$key)">
       {{teacher.$key.replace("_"," ")}}
     </ion-item>
-    <ion-item (click)="chooseTeacher(this.searchTerm)">
+    <ion-item (click)="addTeacher()">
       <ion-icon name="person-add"></ion-icon>
       Can't find your teacher? Add them! {{this.searchTerm}}
     </ion-item>

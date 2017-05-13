@@ -82,4 +82,51 @@ export class ListPage {
       this.navCtrl.pop();
     }
   }
+
+  addTeacher() {
+    var data = JSON.parse(window.localStorage.getItem('current-modifying-peroid'));
+
+    let alert = this.alertCtrl.create({
+      title: 'Add Teacher',
+      inputs: [
+        {
+          name: 'teacherFirstName',
+          placeholder: 'First name'
+        },
+        {
+          name: 'teacherLastName',
+          placeholder: 'Last name'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+        },
+        {
+          text: 'Save',
+          handler: input => {
+            var temp = this.capitalizeFirstLetter(input.teacherFirstName) + "_" + this.capitalizeFirstLetter(input.teacherLastName);
+            this.profileData.updateTeacher(temp, data.period, data.prevTeacher).catch(error => {
+              let alert2 = this.alertCtrl.create({
+                message: error.message,
+                buttons: [
+                  {
+                    text: "OK",
+                    role: 'cancel'
+                  }
+                ]
+              });
+              alert2.present();
+            });
+            this.navCtrl.pop();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  capitalizeFirstLetter(str: string) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 }
