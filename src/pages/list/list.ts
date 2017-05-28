@@ -105,10 +105,9 @@ export class ListPage {
         {
           text: 'Save',
           handler: input => {
-            var temp = this.capitalizeFirstLetter(input.teacherFirstName) + "_" + this.capitalizeFirstLetter(input.teacherLastName);
-            this.profileData.updateTeacher(temp, data.period, data.prevTeacher).catch(error => {
+            if (input.teacherFirstName.split(" ").length > 1 || input.teacherLastName.split(" ").length > 1 || this.isEmoji(input.teacherFirstName) || this.isEmoji(input.teacherLastName)) {
               let alert2 = this.alertCtrl.create({
-                message: error.message,
+                message: "Dude stop",
                 buttons: [
                   {
                     text: "OK",
@@ -117,8 +116,23 @@ export class ListPage {
                 ]
               });
               alert2.present();
-            });
-            this.navCtrl.pop();
+
+            } else {
+              var temp = this.capitalizeFirstLetter(input.teacherFirstName) + "_" + this.capitalizeFirstLetter(input.teacherLastName);
+              this.profileData.updateTeacher(temp, data.period, data.prevTeacher).catch(error => {
+                let alert2 = this.alertCtrl.create({
+                  message: error.message,
+                  buttons: [
+                    {
+                      text: "OK",
+                      role: 'cancel'
+                    }
+                  ]
+                });
+                alert2.present();
+              });
+              this.navCtrl.pop();
+            }
           }
         }
       ]
@@ -128,5 +142,14 @@ export class ListPage {
 
   capitalizeFirstLetter(str: string) {
     return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  isEmoji(str: string) {
+    var ranges = [
+      '\ud83c[\udf00-\udfff]', // U+1F300 to U+1F3FF
+      '\ud83d[\udc00-\ude4f]', // U+1F400 to U+1F64F
+      '\ud83d[\ude80-\udeff]' // U+1F680 to U+1F6FF
+    ];
+    return str.match(ranges.join('|'));
   }
 }

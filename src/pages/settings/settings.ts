@@ -57,20 +57,23 @@ export class SettingsPage {
         {
           text: 'Save',
           handler: data => {
-            this.profileData.updateName(data.firstName, data.lastName).then(authData => {
+            try {
+              this.profileData.updateName(data.firstName, data.lastName).then(authData => {
+                let alert2 = this.alertCtrl.create({
+                  message: "Successfully updated",
+                  buttons: [
+                    {
+                      text: "OK",
+                      role: 'cancel'
+                    }
+                  ]
+                });
+                alert2.present();
+              }
+              );
+            } catch (e) {
               let alert2 = this.alertCtrl.create({
-                message: "Successfully updated",
-                buttons: [
-                  {
-                    text: "OK",
-                    role: 'cancel'
-                  }
-                ]
-              });
-              alert2.present();
-            }, error => {
-              let alert2 = this.alertCtrl.create({
-                message: error.message,
+                message: e.message,
                 buttons: [
                   {
                     text: "OK",
@@ -80,7 +83,6 @@ export class SettingsPage {
               });
               alert2.present();
             }
-            );
           }
         }
       ]

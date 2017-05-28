@@ -157,6 +157,9 @@ export class ProfileData {
   }
 
   updateName(firstName: string, lastName: string): firebase.Promise<any> {
+    if (this.isEmoji(firstName) || this.isEmoji(lastName)) {
+      throw new Error("slippery excuse me please me");
+    }
     return this.userProfile.child(this.currentUser.uid).update({
       firstName: firstName,
       lastName: lastName,
@@ -183,6 +186,9 @@ export class ProfileData {
 
 
   updatePassword(newPassword: string, oldPassword: string): firebase.Promise<any> {
+    if (this.isEmoji(newPassword)) {
+      throw new Error("slippery excuse me please me");
+    }
     const credential = firebase.auth.EmailAuthProvider
       .credential(this.currentUser.email, oldPassword);
 
@@ -194,9 +200,9 @@ export class ProfileData {
   }
 
   updateSchool(newSchoolName: string): firebase.Promise<any> {
-
-
-
+    if (this.isEmoji(newSchoolName)) {
+      throw new Error("slippery excuse me please me");
+    }
     this.dataReference.ref().child('schoolNames/').update({ [newSchoolName]: 'true' });
 
     this.dataReference.ref('schoolData/' + newSchoolName).once('value', (snapshot) => {
@@ -219,7 +225,6 @@ export class ProfileData {
 
 
   updateTeacher(newTeacherName: string, periodNumber: number, prevTeacher: string): firebase.Promise<any> {
-
     if (prevTeacher !== "") {
       this.dataReference.ref('schoolData/' + this.usersSchool + '/classData/' + prevTeacher + '/period' + periodNumber).child(this.currentUser.uid).remove();
     }
@@ -242,8 +247,6 @@ export class ProfileData {
       });
 
     }
-
-
 
     switch (periodNumber) {
       case 1:
@@ -305,5 +308,17 @@ export class ProfileData {
         });
     }
 
+  }
+
+  isEmoji(str: string) {
+    var ranges = [
+      '\ud83c[\udf00-\udfff]', // U+1F300 to U+1F3FF
+      '\ud83d[\udc00-\udeff]', // U+1F400 to U+1F6FF
+      '\ud83d[\ude80-\udeff]', // U+1F680 to U+1F6FF
+      '[$-/:-?{-~!"^_`\[\]]',
+      '[\u2600-\u27ff]',
+      '[1-9]'
+    ];
+    return str.match(ranges.join('|'));
   }
 }
