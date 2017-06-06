@@ -6,7 +6,6 @@ import { LoginPage } from '../login/login';
 import { ListPage } from '../list/list';
 import { SchoolListPage } from '../schoolList/schoolList';
 
-
 @Component({
   selector: 'page-settings',
   templateUrl: 'settings.html',

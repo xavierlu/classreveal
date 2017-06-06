@@ -32,7 +32,7 @@ export class AuthData {
    * @param  {string} email    [User's email address]
    * @param  {string} password [User's password]
    */
-  signupUser(email: string, password: string): firebase.Promise<any> {
+  signupUser(email: string, password: string, firstname: string, lastname: string): firebase.Promise<any> {
     if (firebase.auth().currentUser == null) {
       console.log("current user is null!");
     }
@@ -42,7 +42,9 @@ export class AuthData {
 
     return firebase.auth().createUserWithEmailAndPassword(email, password).then((newUser) => {
       firebase.database().ref('/userProfile').child(newUser.uid).set({
-        email: email
+        email: email,
+        firstName: firstname,
+        lastName: lastname
       });
     });
   }
