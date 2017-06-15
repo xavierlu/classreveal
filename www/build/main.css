@@ -26618,6 +26618,17 @@ body, h1, h2, h3, h4, h5, ion-item, ion-title, ion-label {
   font-family: "Raleway";
 }
 
+page-home ion-card {
+  position: relative;
+  padding: 0%;
+}
+
+page-home .card-header {
+  position: relative;
+  font-weight: bold;
+  color: #AAA;
+}
+
 page-list .spinner-container {
   width: 100%;
   text-align: center;
