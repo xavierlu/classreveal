@@ -123,8 +123,6 @@ export class SettingsPage {
     actionSheet.present();
   }
 
-
-
   updateEmail() {
     let alert = this.alertCtrl.create({
       title: 'Update email',
@@ -176,8 +174,6 @@ export class SettingsPage {
     });
     alert.present();
   }
-
-
 
   updatePassword() {
     let alert = this.alertCtrl.create({

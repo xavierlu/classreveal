@@ -26626,7 +26626,40 @@ page-home ion-card {
 page-home .card-header {
   position: relative;
   font-weight: bold;
-  color: #AAA;
+}
+
+page-intro .toolbar-background {
+  background: #fff;
+  border-color: transparent;
+}
+
+page-intro .slide-zoom {
+  height: 100%;
+}
+
+page-intro .slide-title {
+  margin-top: 2.8rem;
+}
+
+page-intro .slide-image {
+  max-height: 50%;
+  max-width: 60%;
+  margin: 18px 0;
+}
+
+page-intro b {
+  font-weight: 500;
+}
+
+page-intro p {
+  padding: 0 40px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #60646B;
+}
+
+page-intro b {
+  color: #000000;
 }
 
 page-list .spinner-container {

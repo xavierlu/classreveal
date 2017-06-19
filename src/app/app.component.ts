@@ -1,9 +1,13 @@
 import { Component, NgZone } from '@angular/core';
 import { Platform } from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
+import { IntroPage } from '../pages/intro/intro';
+
 
 import firebase from 'firebase';
 
@@ -13,9 +17,9 @@ import firebase from 'firebase';
 export class MyApp {
   rootPage: any;
   zone: NgZone;
+  loader: any;
 
-
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public loadingCtrl: LoadingController, public storage: Storage, statusBar: StatusBar, splashScreen: SplashScreen) {
     this.zone = new NgZone({});
     console.log("initializing firebase...");
     firebase.initializeApp({
@@ -50,13 +54,38 @@ export class MyApp {
       }
     });
 
+    this.presentLoading();
+
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+
+      this.storage.get('introShown').then((result) => {
+
+        if (result) {
+          this.rootPage = TabsPage;
+        } else {
+          this.rootPage = IntroPage;
+          this.storage.set('introShown', true);
+        }
+
+        this.loader.dismiss();
+
+      });
     });
 
+
+  }
+
+  presentLoading() {
+
+    this.loader = this.loadingCtrl.create({
+      content: "Authenticating..."
+    });
+
+    this.loader.present();
 
   }
 }
