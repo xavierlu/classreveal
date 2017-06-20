@@ -82,7 +82,7 @@ export class MyApp {
   presentLoading() {
 
     this.loader = this.loadingCtrl.create({
-      content: "Authenticating..."
+      content: "Loading..."
     });
 
     this.loader.present();

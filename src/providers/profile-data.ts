@@ -23,7 +23,6 @@ export class ProfileData {
   public lastName = "";
 
   constructor() {
-
     this.currentUser = JSON.parse(window.localStorage.getItem('current-user')).thisUser;
 
     // this.currentUser = firebase.auth().currentUser;
@@ -99,9 +98,7 @@ export class ProfileData {
   }
 
   updateInfo() {
-
-    console.log("updateinfo: " + this.currentUser.uid);
-    console.log("firebase updateinfo: " + firebase.auth().currentUser.uid); this.userProfile.child(this.currentUser.uid).once('value', (snapshot) => {
+    this.userProfile.child(this.currentUser.uid).once('value', (snapshot) => {
       if (snapshot.hasChild('schoolName')) {
         this.usersSchool = snapshot.val().schoolName;
       }
@@ -142,8 +139,6 @@ export class ProfileData {
       if (snapshot.hasChild('lastName')) {
         this.lastName = snapshot.val().lastName;
       }
-
-
     });
   }
 
@@ -222,8 +217,6 @@ export class ProfileData {
 
   }
 
-
-
   updateTeacher(newTeacherName: string, periodNumber: number, prevTeacher: string): firebase.Promise<any> {
     if (prevTeacher !== "") {
       this.dataReference.ref('schoolData/' + this.usersSchool + '/classData/' + prevTeacher + '/period' + periodNumber).child(this.currentUser.uid).remove();
@@ -239,9 +232,7 @@ export class ProfileData {
         }
         else {
           this.dataReference.ref('schoolData/' + this.usersSchool).child('/teachers').update({ [newTeacherName]: 'true' });
-
           this.dataReference.ref('schoolData/' + this.usersSchool).child('/classData').update({ [newTeacherName]: { period1: 'true', period2: 'true', period3: 'true', period4: 'true', period5: 'true', period6: 'true', period7: 'true', period8: 'true', period9: 'true', period10: 'true' } });
-
           this.dataReference.ref('schoolData/' + this.usersSchool + '/classData/' + newTeacherName).child('/period' + periodNumber).update({ [this.currentUser.uid]: this.firstName + " " + this.lastName });
         }
       });

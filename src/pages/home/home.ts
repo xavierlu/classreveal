@@ -1,8 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { AngularFire } from 'angularfire2';
 import { ListStudent } from '../list-student/list-student';
 import { ProfileData } from '../../providers/profile-data';
+import { ListPage } from '../list/list';
 
 @Component({
   selector: 'page-home',
@@ -19,7 +20,7 @@ export class HomePage {
     '#4fc3f7', '#4dd0e1', '#4db6ac', '#81c784', '#aed581', '#ff8a65', '#d4e157', '#673ab7',
     '#ffb74d', '#a1887f', '#90a4ae'];
 
-  constructor(private elementRef: ElementRef, public navCtrl: NavController, angFire: AngularFire, public profileData: ProfileData) {
+  constructor(private alertCtrl: AlertController, private elementRef: ElementRef, public navCtrl: NavController, angFire: AngularFire, public profileData: ProfileData) {
   }
 
   ionViewDidEnter() {
@@ -27,6 +28,100 @@ export class HomePage {
       this.userProfile = data.val();
       //   this.birthDate = this.userProfile.birthDate;
     });
+  }
+
+  addClass() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Select Period');
+
+    if (this.userProfile.period1 == "" || this.userProfile.period1 == null)
+      alert.addInput({ type: 'radio', label: 'Period 1', value: '1', checked: false });
+
+    if (this.userProfile.period2 == "" || this.userProfile.period2 == null)
+      alert.addInput({ type: 'radio', label: 'Period 2', value: '2', checked: false });
+
+    if (this.userProfile.period3 == "" || this.userProfile.period3 == null)
+      alert.addInput({ type: 'radio', label: 'Period 3', value: '3', checked: false });
+
+    if (this.userProfile.period4 == "" || this.userProfile.period4 == null)
+      alert.addInput({ type: 'radio', label: 'Period 4', value: '4', checked: false });
+
+    if (this.userProfile.period5 == "" || this.userProfile.period5 == null)
+      alert.addInput({ type: 'radio', label: 'Period 5', value: '5', checked: false });
+
+    if (this.userProfile.period6 == "" || this.userProfile.period6 == null)
+      alert.addInput({ type: 'radio', label: 'Period 6', value: '6', checked: false });
+
+    if (this.userProfile.period7 == "" || this.userProfile.period7 == null)
+      alert.addInput({ type: 'radio', label: 'Period 7', value: '7', checked: false });
+
+    if (this.userProfile.period8 == "" || this.userProfile.period8 == null)
+      alert.addInput({ type: 'radio', label: 'Period 8', value: '8', checked: false });
+
+    if (this.userProfile.period9 == "" || this.userProfile.period9 == null)
+      alert.addInput({ type: 'radio', label: 'Period 9', value: '9', checked: false });
+
+    if (this.userProfile.period10 == "" || this.userProfile.period10 == null)
+      alert.addInput({ type: 'radio', label: 'Period 10', value: '10', checked: false });
+
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Next',
+      handler: periodNumber => {
+        var data = {
+          period: +periodNumber,
+          prevTeacher: this.profileData.getPeriod(+periodNumber)
+        };
+        if (this.profileData.getUsersSchool() === '') {
+          let alert = this.alertCtrl.create({
+            title: 'Please enter your school name',
+            buttons: [{ text: 'OK' }]
+          });
+          alert.present();
+        }
+        else {
+          window.localStorage.setItem('current-modifying-peroid', JSON.stringify(data));
+          this.navCtrl.push(ListPage);
+        }
+      }
+    });
+    alert.present();
+  }
+
+  editTeacher(periodNumber: number) {
+    var data = {
+      period: +periodNumber,
+      prevTeacher: this.profileData.getPeriod(+periodNumber)
+    };
+    if (this.profileData.getUsersSchool() === '') {
+      let alert = this.alertCtrl.create({
+        title: 'Please enter your school name',
+        buttons: [{ text: 'OK' }]
+      });
+      alert.present();
+    }
+    else {
+      window.localStorage.setItem('current-modifying-peroid', JSON.stringify(data));
+      this.navCtrl.push(ListPage);
+    }
+  }
+
+  removeTeacher(periodNumber: number) {
+    let alert = this.alertCtrl.create({
+      message: 'Remove Period' + periodNumber + ' ?',
+      buttons: [
+        {
+          text: 'Cancel',
+        },
+        {
+          text: 'OK',
+          handler: data => {
+            this.profileData.updateTeacher("", periodNumber, "");
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   viewClass(periodNumber: number): void {

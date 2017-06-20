@@ -9,8 +9,8 @@
 <ion-content padding>
   <h2>Periods</h2>
   <ion-list>
-    <button ion-item *ngIf="userProfile?.period1" (click)="viewClass(1)">
-      <ion-card [style.background-color]="getColor(userProfile?.period1.replace('_',' '))">
+    <div ion-item *ngIf="userProfile?.period1">
+      <ion-card [style.background-color]="getColor(userProfile?.period1.replace('_',' '))" (click)="viewClass(1)">
         <ion-card-header>
           Period 1
         </ion-card-header>
@@ -18,9 +18,18 @@
           {{userProfile?.period1.replace("_"," ")}}
         </ion-card-content>
       </ion-card>
-    </button>
-    <button ion-item *ngIf="userProfile?.period2" (click)="viewClass(2)">
-      <ion-card [style.background-color]="getColor(userProfile?.period2.replace('_',' '))">
+      <ion-col>
+        <button ion-button round outline small icon-start color="dark" (click)="editTeacher(1, userProfile?.period1.replace('_',' '))">
+          <ion-icon name='settings'></ion-icon>
+        </button>
+        <button ion-button round outline small icon-start color="dark" (click)="removeTeacher(1)">
+          <ion-icon name='trash'></ion-icon>
+        </button>
+      </ion-col>
+    </div>
+
+    <div ion-item *ngIf="userProfile?.period2">
+      <ion-card [style.background-color]="getColor(userProfile?.period2.replace('_',' '))" (click)="viewClass(2)">
         <ion-card-header>
           Period 2
         </ion-card-header>
@@ -28,9 +37,19 @@
           {{userProfile?.period2.replace("_"," ")}}
         </ion-card-content>
       </ion-card>
-    </button>
-    <button ion-item *ngIf="userProfile?.period3" (click)="viewClass(3)">
-      <ion-card [style.background-color]="getColor(userProfile?.period3.replace('_',' '))">
+      <ion-col>
+        <button ion-button round outline small icon-start color="dark" (click)="editTeacher(2, userProfile?.period2.replace('_',' '))">
+          <ion-icon name='settings'></ion-icon>
+        </button>
+        <button ion-button round outline small icon-start color="dark" (click)="removeTeacher(2)">
+          <ion-icon name='trash'></ion-icon>
+        </button>
+      </ion-col>
+    </div>
+
+
+    <div ion-item *ngIf="userProfile?.period3">
+      <ion-card [style.background-color]="getColor(userProfile?.period3.replace('_',' '))" (click)="viewClass(3)">
         <ion-card-header>
           Period 3
         </ion-card-header>
@@ -38,9 +57,18 @@
           {{userProfile?.period3.replace("_"," ")}}
         </ion-card-content>
       </ion-card>
-    </button>
-    <button ion-item *ngIf="userProfile?.period4" (click)="viewClass(4)">
-      <ion-card [style.background-color]="getColor(userProfile?.period4.replace('_',' '))">
+      <ion-col>
+        <button ion-button round outline small icon-start color="dark" (click)="editTeacher(3, userProfile?.period3.replace('_',' '))">
+        <ion-icon name='settings'></ion-icon>
+      </button>
+        <button ion-button round outline small icon-start color="dark" (click)="removeTeacher(3)">
+        <ion-icon name='trash'></ion-icon>
+      </button>
+      </ion-col>
+    </div>
+
+    <div ion-item *ngIf="userProfile?.period4">
+      <ion-card [style.background-color]="getColor(userProfile?.period4.replace('_',' '))" (click)="viewClass(4)">
         <ion-card-header>
           Period 4
         </ion-card-header>
@@ -48,9 +76,18 @@
           {{userProfile?.period4.replace("_"," ")}}
         </ion-card-content>
       </ion-card>
-    </button>
-    <button ion-item *ngIf="userProfile?.period5" (click)="viewClass(5)">
-      <ion-card [style.background-color]="getColor(userProfile?.period5.replace('_',' '))">
+      <ion-col>
+        <button ion-button round outline small icon-start color="dark" (click)="editTeacher(4, userProfile?.period4.replace('_',' '))">
+        <ion-icon name='settings'></ion-icon>
+      </button>
+        <button ion-button round outline small icon-start color="dark" (click)="removeTeacher(4)">
+        <ion-icon name='trash'></ion-icon>
+      </button>
+      </ion-col>
+    </div>
+
+    <div ion-item *ngIf="userProfile?.period5">
+      <ion-card [style.background-color]="getColor(userProfile?.period5.replace('_',' '))" (click)="viewClass(5)">
         <ion-card-header>
           Period 5
         </ion-card-header>
@@ -58,9 +95,18 @@
           {{userProfile?.period5.replace("_"," ")}}
         </ion-card-content>
       </ion-card>
-    </button>
-    <button ion-item *ngIf="userProfile?.period6" (click)="viewClass(6)">
-      <ion-card [style.background-color]="getColor(userProfile?.period6.replace('_',' '))">
+      <ion-col>
+        <button ion-button round outline small icon-start color="dark" (click)="editTeacher(5, userProfile?.period5.replace('_',' '))">
+        <ion-icon name='settings'></ion-icon>
+      </button>
+        <button ion-button round outline small icon-start color="dark" (click)="removeTeacher(5)">
+        <ion-icon name='trash'></ion-icon>
+      </button>
+      </ion-col>
+    </div>
+
+    <div ion-item *ngIf="userProfile?.period6">
+      <ion-card [style.background-color]="getColor(userProfile?.period6.replace('_',' '))" (click)="viewClass(6)">
         <ion-card-header>
           Period 6
         </ion-card-header>
@@ -68,9 +114,18 @@
           {{userProfile?.period6.replace("_"," ")}}
         </ion-card-content>
       </ion-card>
-    </button>
-    <button ion-item *ngIf="userProfile?.period7" (click)="viewClass(7)">
-      <ion-card [style.background-color]="getColor(userProfile?.period7.replace('_',' '))">
+      <ion-col>
+        <button ion-button round outline small icon-start color="dark" (click)="editTeacher(6, userProfile?.period6.replace('_',' '))">
+        <ion-icon name='settings'></ion-icon>
+      </button>
+        <button ion-button round outline small icon-start color="dark" (click)="removeTeacher(6)">
+        <ion-icon name='trash'></ion-icon>
+      </button>
+      </ion-col>
+    </div>
+
+    <div ion-item *ngIf="userProfile?.period7">
+      <ion-card [style.background-color]="getColor(userProfile?.period7.replace('_',' '))" (click)="viewClass(7)">
         <ion-card-header>
           Period 7
         </ion-card-header>
@@ -78,9 +133,18 @@
           {{userProfile?.period7.replace("_"," ")}}
         </ion-card-content>
       </ion-card>
-    </button>
-    <button ion-item *ngIf="userProfile?.period8" (click)="viewClass(8)">
-      <ion-card [style.background-color]="getColor(userProfile?.period8.replace('_',' '))">
+      <ion-col>
+        <button ion-button round outline small icon-start color="dark" (click)="editTeacher(7, userProfile?.period7.replace('_',' '))">
+        <ion-icon name='settings'></ion-icon>
+      </button>
+        <button ion-button round outline small icon-start color="dark" (click)="removeTeacher(7)">
+        <ion-icon name='trash'></ion-icon>
+      </button>
+      </ion-col>
+    </div>
+
+    <div ion-item *ngIf="userProfile?.period8">
+      <ion-card [style.background-color]="getColor(userProfile?.period8.replace('_',' '))" (click)="viewClass(8)">
         <ion-card-header>
           Period 8
         </ion-card-header>
@@ -88,9 +152,18 @@
           {{userProfile?.period8.replace("_"," ")}}
         </ion-card-content>
       </ion-card>
-    </button>
-    <button ion-item *ngIf="userProfile?.period9" (click)="viewClass(9)">
-      <ion-card [style.background-color]="getColor(userProfile?.period9.replace('_',' '))">
+      <ion-col>
+        <button ion-button round outline small icon-start color="dark" (click)="editTeacher(8, userProfile?.period8.replace('_',' '))">
+        <ion-icon name='settings'></ion-icon>
+      </button>
+        <button ion-button round outline small icon-start color="dark" (click)="removeTeacher(8)">
+        <ion-icon name='trash'></ion-icon>
+      </button>
+      </ion-col>
+    </div>
+
+    <div ion-item *ngIf="userProfile?.period9">
+      <ion-card [style.background-color]="getColor(userProfile?.period9.replace('_',' '))" (click)="viewClass(9)">
         <ion-card-header>
           Period 9
         </ion-card-header>
@@ -98,9 +171,18 @@
           {{userProfile?.period9.replace("_"," ")}}
         </ion-card-content>
       </ion-card>
-    </button>
-    <button ion-item *ngIf="userProfile?.period10" (click)="viewClass(10)">
-      <ion-card [style.background-color]="getColor(userProfile?.period10.replace('_',' '))">
+      <ion-col>
+        <button ion-button round outline small icon-start color="dark" (click)="editTeacher(9, userProfile?.period9.replace('_',' '))">
+        <ion-icon name='settings'></ion-icon>
+      </button>
+        <button ion-button round outline small icon-start color="dark" (click)="removeTeacher(9)">
+        <ion-icon name='trash'></ion-icon>
+      </button>
+      </ion-col>
+    </div>
+
+    <div ion-item *ngIf="userProfile?.period10">
+      <ion-card [style.background-color]="getColor(userProfile?.period10.replace('_',' '))" (click)="viewClass(10)">
         <ion-card-header>
           Period 10
         </ion-card-header>
@@ -108,13 +190,20 @@
           {{userProfile?.period10.replace("_"," ")}}
         </ion-card-content>
       </ion-card>
-    </button>
+      <ion-col>
+        <button ion-button round outline small icon-start color="dark" (click)="editTeacher(10, userProfile?.period10.replace('_',' '))">
+        <ion-icon name='settings'></ion-icon>
+      </button>
+        <button ion-button round outline small icon-start color="dark" (click)="removeTeacher(10)">
+        <ion-icon name='trash'></ion-icon>
+      </button>
+      </ion-col>
+    </div>
 
     <br>
 
-    <button ion-button ion-icon block outline>
-      <ion-icon name="add"></ion-icon>
-        Add Class
+    <button ion-button ion-icon block outline (click)="addClass()">
+      Add Class
     </button>
 
   </ion-list>
