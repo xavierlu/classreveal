@@ -5,6 +5,8 @@ import { ListStudent } from '../list-student/list-student';
 import { ProfileData } from '../../providers/profile-data';
 import { ListPage } from '../list/list';
 
+import { ionicLetterAvatar } from '../../bower_components/ionic-letteravatar/ionic-letteravatar';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'

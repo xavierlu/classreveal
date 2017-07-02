@@ -22,6 +22,7 @@ import { ListPage } from '../pages/list/list';
 import { ListStudent } from '../pages/list-student/list-student';
 
 import { SchoolListPage } from '../pages/schoolList/schoolList';
+import { TextAvatarDirective } from '../directives/text-avatar/text-avatar';
 
 
 export const firebaseConfig = {
@@ -46,7 +47,8 @@ export const firebaseConfig = {
     SettingsPage,
     ListPage,
     ListStudent,
-    SchoolListPage
+    SchoolListPage,
+    TextAvatarDirective
   ],
   imports: [
     BrowserModule,
