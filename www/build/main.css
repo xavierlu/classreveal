@@ -26618,6 +26618,25 @@ body, h1, h2, h3, h4, h5, ion-item, ion-title, ion-label {
   font-family: "Raleway";
 }
 
+text-avatar {
+  background-color: red;
+  color: white;
+}
+
+text-avatar, text-avatar::after {
+  width: 4.2rem;
+  height: 4.2rem;
+  border-radius: 2.1rem;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  font-size: large;
+}
+
+text-avatar::after {
+  content: attr(value);
+}
+
 page-home ion-card {
   position: relative;
   padding: 0%;

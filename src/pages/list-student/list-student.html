@@ -1,17 +1,21 @@
 <ion-header>
   <ion-navbar color='orangeYel'>
     <ion-title>
-      Classmates
+      Period {{periodNum}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
 
+  <ion-item>Teacher: {{teacher}}</ion-item>
+    
   <ion-list>
-    <ion-item *ngFor="let name of names">
-      
-    </ion-item>
+    <button ion-item *ngFor="let name of names" (click)="presentClassmateInfo(name.uid)">
+        <text-avatar [text]="name.fullName" [color]="name.color" item-left></text-avatar>
+        <h2>{{ name.fullName || upper}}</h2>
+
+    </button>
   </ion-list>
 
 </ion-content>

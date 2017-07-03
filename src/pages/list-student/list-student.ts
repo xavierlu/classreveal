@@ -18,8 +18,10 @@ export class ListStudent {
 
   public students: Observable<any>;
   public ids = [];
-  public names = [];
-
+  public names = new Array();
+  public teacher = "";
+    periodNum = 0;
+    
   constructor(public navCtrl: NavController, public angFire: AngularFire, public profileData: ProfileData) {
 
 
@@ -27,11 +29,15 @@ export class ListStudent {
 
   ionViewDidLoad() {
     var periodNumm = JSON.parse(window.localStorage.getItem('current-viewing-period')).period;
-
+    var temp = "";
+      
     console.log("SCHOOL - " + this.profileData.getUsersSchool());
     console.log("TEACHER - " + this.profileData.getPeriod(periodNumm));
     console.log("PERIOD - " + periodNumm);
 
+    this.teacher =  this.profileData.getPeriod(periodNumm)
+    this.periodNum = periodNumm
+      
     this.students = this.angFire.database.list('/schoolData/' + this.profileData.getUsersSchool() + '/classData/' + this.profileData.getPeriod(periodNumm) + '/period' + periodNumm, { preserveSnapshot: true });
 
     this.students.subscribe(snapshots => {
@@ -39,6 +45,9 @@ export class ListStudent {
       snapshots.forEach(snapshot => {
         console.log("key " + snapshot.key)
         console.log(snapshot.val())
+        temp = snapshot.key;  //uid
+        //this.names.[temp] = {name: "", uid: snapshot.key};
+          
 
         firebase.database().ref('/userProfile/' + snapshot.key).once(
           'value', (snapshot) => {
@@ -52,14 +61,24 @@ export class ListStudent {
             }
 
             console.log("For " + snapshot.key + " name: " + firstName + " " + lastName)
-            this.names.push(firstName + " " + lastName);
-
+            
+            var classmateJson = {
+                "uid": snapshot.key,
+                "fullName": firstName + " " + lastName
+            }
+            console.log("JSON");
+            console.log(classmateJson);
+              
+            this.names.push(classmateJson);
+            console.log(this.names)
           });
+          
+        console.log("here")
       });
-
 
       console.log("NAMES:");
       console.log(this.names);
+        
     });
 
   }
