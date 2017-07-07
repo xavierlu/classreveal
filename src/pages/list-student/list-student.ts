@@ -35,7 +35,7 @@ export class ListStudent {
     console.log("TEACHER - " + this.profileData.getPeriod(periodNumm));
     console.log("PERIOD - " + periodNumm);
 
-    this.teacher =  this.profileData.getPeriod(periodNumm)
+    this.teacher =  String(this.profileData.getPeriod(periodNumm))
     this.periodNum = periodNumm
       
     this.students = this.angFire.database.list('/schoolData/' + this.profileData.getUsersSchool() + '/classData/' + this.profileData.getPeriod(periodNumm) + '/period' + periodNumm, { preserveSnapshot: true });

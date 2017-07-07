@@ -1,31 +1,40 @@
-<ion-header>
+ <ion-header>
   <ion-navbar color='orangeYel'>
     <ion-title>
-      My Classes
+      My Schedule
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Periods</h2>
+
   <ion-list>
     <div ion-item *ngIf="userProfile?.period1">
-      <ion-card [style.background-color]="getColor(userProfile?.period1.replace('_',' '))" (click)="viewClass(1)">
-        <ion-card-header>
-          Period 1
-        </ion-card-header>
-        <ion-card-content>
+
+        <h1> Period 1 <h3 style = "color = #fff;">
           {{userProfile?.period1.replace("_"," ")}}
-        </ion-card-content>
-      </ion-card>
-      <ion-col>
-        <button ion-button round outline small icon-start color="dark" (click)="editTeacher(1, userProfile?.period1.replace('_',' '))">
+        </h3>
+        </h1>
+        
+        
+        <ion-grid>
+          <ion-row>
+            <ion-col col-12>
+                <button col-12 ion-button round [style.background-color]="getColor(userProfile?.period1.replace('_',' '))" (click)="viewClass(1)">View Class</button>
+              </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12>
+                <button col-6 ion-button round outline small color = "dark" icon-start (click)="editTeacher(1, userProfile?.period1.replace('_',' '))">
           <ion-icon name='settings'></ion-icon>
         </button>
-        <button ion-button round outline small icon-start color="dark" (click)="removeTeacher(1)">
+        <button col-6 ion-button round outline small icon-start color="dark" (click)="removeTeacher(1)">
           <ion-icon name='trash'></ion-icon>
-        </button>
-      </ion-col>
+        </button></ion-col>
+          </ion-row>
+        </ion-grid>
+          
+        
     </div>
 
     <div ion-item *ngIf="userProfile?.period2">
