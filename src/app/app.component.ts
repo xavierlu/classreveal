@@ -33,7 +33,7 @@ export class MyApp {
 
 
 
-    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         console.log("user found: " + firebase.auth().currentUser.uid);
         var data = {
@@ -41,15 +41,18 @@ export class MyApp {
         };
         window.localStorage.setItem('current-user', JSON.stringify(data));
         console.log("thisUSer " + data.thisUser);
-
+        
         this.rootPage = TabsPage;
       } else {
-        console.log("user found not found " + firebase.auth().currentUser);
-        var data = {
-          thisUser: firebase.auth().currentUser
-        };
-        window.localStorage.setItem('current-user', JSON.stringify(data));
-        console.log("thisUSer " + data.thisUser);
+        console.log("user not found: " + firebase.auth().currentUser);
+          
+          firebase.auth().signOut().then(function() {
+          console.log('Signed Out');
+
+        }, function(error) {
+          console.error('Sign Out Error', error);
+        });
+
         this.rootPage = LoginPage;
       }
     });

@@ -23,17 +23,18 @@ export class ProfileData {
   public lastName = "";
 
   constructor() {
-    this.currentUser = JSON.parse(window.localStorage.getItem('current-user')).thisUser;
+    this.currentUser = firebase.auth().currentUser;
 
     // this.currentUser = firebase.auth().currentUser;
     console.log("profData constructor: " + this.currentUser);
+
     this.userProfile = firebase.database().ref('/userProfile');
     this.dataReference = firebase.database();
     if (this.currentUser != null) {
       this.updateInfo();
     }
   }
-
+/*
   loadLocalStorage() {
     var data = {
       school: this.usersSchool,
@@ -59,7 +60,8 @@ export class ProfileData {
     };
     window.localStorage.setItem('current-user', JSON.stringify(data));
   }
-
+*/
+    
   getUsersSchool(): String {
     return this.usersSchool;
   }
@@ -146,7 +148,7 @@ export class ProfileData {
   getUserProfile(): firebase.database.Reference {
     console.log(this.currentUser.uid);
     console.log("firebase: " + firebase.auth().currentUser.uid);
-    this.updateInfo
+    this.updateInfo();
     this.currentUser = firebase.auth().currentUser;
     return this.userProfile.child(firebase.auth().currentUser.uid);
   }

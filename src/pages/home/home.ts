@@ -28,7 +28,7 @@ export class HomePage {
   ionViewDidEnter() {
     this.profileData.getUserProfile().on('value', (data) => {
       this.userProfile = data.val();
-      //   this.birthDate = this.userProfile.birthDate;
+    console.log("in ionViewDidLoad: " + this.userProfile);
     });
   }
 
