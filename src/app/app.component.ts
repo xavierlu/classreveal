@@ -9,6 +9,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { IntroPage } from '../pages/intro/intro';
 
 
+import { ProfileData } from '../providers/profile-data';
 import firebase from 'firebase';
 
 @Component({
@@ -19,32 +20,28 @@ export class MyApp {
   zone: NgZone;
   loader: any;
 
-  constructor(public platform: Platform, public loadingCtrl: LoadingController, public storage: Storage, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public loadingCtrl: LoadingController, public storage: Storage, statusBar: StatusBar, splashScreen: SplashScreen, public profData: ProfileData) {
     this.zone = new NgZone({});
     console.log("initializing firebase...");
-    firebase.initializeApp({
-      apiKey: "AIzaSyArtrcZzDp_OEquRaiwxPQ9K--Wx0fw0nU",
-      authDomain: "classreveal-3146f.firebaseapp.com",
-      databaseURL: "https://classreveal-3146f.firebaseio.com",
-      projectId: "classreveal-3146f",
-      storageBucket: "classreveal-3146f.appspot.com",
-      messagingSenderId: "691736012118"
-    });
+    
 
-
+      this.rootPage = TabsPage;
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log("user found: " + firebase.auth().currentUser.uid);
+          console.log("authChange: user found: " + firebase.auth().currentUser.uid);
         var data = {
           thisUser: firebase.auth().currentUser
         };
         window.localStorage.setItem('current-user', JSON.stringify(data));
-        console.log("thisUSer " + data.thisUser);
+          console.log("data packaged: thisUser ");
+    console.log(data.thisUser);
         
+    this.profData.updateUser();
+          
         this.rootPage = TabsPage;
       } else {
-        console.log("user not found: " + firebase.auth().currentUser);
+          console.log("authChange: user not found: " + firebase.auth().currentUser);
           
           firebase.auth().signOut().then(function() {
           console.log('Signed Out');
@@ -57,14 +54,14 @@ export class MyApp {
       }
     });
 
-    this.presentLoading();
-
+ //   this.presentLoading();
+    
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-
+/*
       this.storage.get('introShown').then((result) => {
 
         if (result) {
@@ -76,8 +73,8 @@ export class MyApp {
 
         this.loader.dismiss();
 
-      });
-    });
+      }); */
+    }); 
 
 
   }

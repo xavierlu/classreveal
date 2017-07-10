@@ -4,8 +4,7 @@ import { AngularFire } from 'angularfire2';
 import { ListStudent } from '../list-student/list-student';
 import { ProfileData } from '../../providers/profile-data';
 import { ListPage } from '../list/list';
-
-import { ionicLetterAvatar } from '../../bower_components/ionic-letteravatar/ionic-letteravatar';
+import firebase from 'firebase';
 
 @Component({
   selector: 'page-home',
@@ -15,20 +14,23 @@ import { ionicLetterAvatar } from '../../bower_components/ionic-letteravatar/ion
 export class HomePage {
 
   public userProfile: any;
+    public inEditMode = false;
 
-  @ViewChild("1") sketchElement: ElementRef;
+ // @ViewChild("1") sketchElement: ElementRef;
 
   COLORS: any[] = ['#e57373', '#f06292', '#ba68c8', '#9575cd', '#7986cb', '#64b5f6',
     '#4fc3f7', '#4dd0e1', '#4db6ac', '#81c784', '#aed581', '#ff8a65', '#d4e157', '#673ab7',
     '#ffb74d', '#a1887f', '#90a4ae'];
 
   constructor(private alertCtrl: AlertController, private elementRef: ElementRef, public navCtrl: NavController, angFire: AngularFire, public profileData: ProfileData) {
+    console.log("home page constructor");
   }
 
-  ionViewDidEnter() {
-    this.profileData.getUserProfile().on('value', (data) => {
+  ionViewDidLoad() {
+      
+      this.profileData.getUserProfile().on('value', (data) => {
       this.userProfile = data.val();
-    console.log("in ionViewDidLoad: " + this.userProfile);
+      //   this.birthDate = this.userProfile.birthDate;
     });
   }
 

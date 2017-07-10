@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import firebase from 'firebase';
+import { ProfileData } from '../providers/profile-data';
 
 
 @Injectable()
 export class AuthData {
-  constructor() { }
+  constructor(public profileData: ProfileData) { }
 
   /**
    * [loginUser We'll take an email and password and log the user into the firebase app]
@@ -13,12 +14,13 @@ export class AuthData {
    */
   loginUser(email: string, password: string): firebase.Promise<any> {
     if (firebase.auth().currentUser == null) {
-      console.log("current user is null!");
+        console.log("loginUser: current user is null!");
     }
     else {
+    console.log("login user");
       console.log(firebase.auth().currentUser.uid);
     }
-
+    this.profileData.updateUser();
     console.log(email + " " + password);
     return firebase.auth().signInWithEmailAndPassword(email, password);
 

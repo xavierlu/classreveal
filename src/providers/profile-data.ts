@@ -5,7 +5,7 @@ import firebase from 'firebase';
 @Injectable()
 export class ProfileData {
   public userProfile: firebase.database.Reference;
-  public currentUser: firebase.User;
+  public currentUser: firebase.User = null;
   public dataReference: any;
 
   public usersSchool = "";
@@ -23,10 +23,17 @@ export class ProfileData {
   public lastName = "";
 
   constructor() {
-    this.currentUser = firebase.auth().currentUser;
-
-    // this.currentUser = firebase.auth().currentUser;
-    console.log("profData constructor: " + this.currentUser);
+   // this.currentUser = firebase.auth().currentUser;
+firebase.initializeApp({
+      apiKey: "AIzaSyArtrcZzDp_OEquRaiwxPQ9K--Wx0fw0nU",
+      authDomain: "classreveal-3146f.firebaseapp.com",
+      databaseURL: "https://classreveal-3146f.firebaseio.com",
+      projectId: "classreveal-3146f",
+      storageBucket: "classreveal-3146f.appspot.com",
+      messagingSenderId: "691736012118"
+    });
+      
+      console.log("profData constructor: ");
 
     this.userProfile = firebase.database().ref('/userProfile');
     this.dataReference = firebase.database();
@@ -61,6 +68,16 @@ export class ProfileData {
     window.localStorage.setItem('current-user', JSON.stringify(data));
   }
 */
+    
+    updateUser()
+    {
+    console.log("in updateUSer / profdata");
+        this.currentUser = firebase.auth().currentUser;
+        if (this.currentUser != null) {
+          this.updateInfo();
+        }
+    console.log("this.currentUser = " + this.currentUser);
+    }
     
   getUsersSchool(): String {
     return this.usersSchool;

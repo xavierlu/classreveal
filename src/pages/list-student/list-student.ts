@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Platform } from 'ionic-angular';
 import { AngularFire } from 'angularfire2';
 import { Observable } from 'rxjs/Rx';
 import { ProfileData } from '../../providers/profile-data';
 import firebase from 'firebase';
+
+import { SocialSharing } from '@ionic-native/social-sharing';
+
 /**
  * Generated class for the ListStudent page.
  *
@@ -20,9 +23,10 @@ export class ListStudent {
   public ids = [];
   public names = new Array();
   public teacher = "";
-    periodNum = 0;
+  private periodNum = 0;
+  private message = "";
     
-  constructor(public navCtrl: NavController, public angFire: AngularFire, public profileData: ProfileData) {
+  constructor( public navCtrl: NavController, public angFire: AngularFire, public profileData: ProfileData) {
 
 
   }
@@ -37,6 +41,8 @@ export class ListStudent {
 
     this.teacher =  String(this.profileData.getPeriod(periodNumm))
     this.periodNum = periodNumm
+      
+    this.message = "Check out who is in my period " + this.periodNum + " class with " + this.teacher + ": \n";
       
     this.students = this.angFire.database.list('/schoolData/' + this.profileData.getUsersSchool() + '/classData/' + this.profileData.getPeriod(periodNumm) + '/period' + periodNumm, { preserveSnapshot: true });
 
@@ -62,6 +68,8 @@ export class ListStudent {
 
             console.log("For " + snapshot.key + " name: " + firstName + " " + lastName)
             
+              this.message = this.message + firstName + " " + lastName + " \n";
+              
             var classmateJson = {
                 "uid": snapshot.key,
                 "fullName": firstName + " " + lastName
@@ -82,4 +90,12 @@ export class ListStudent {
     });
 
   }
+    
+    shareClass()
+    {
+        
+        
+     //   this.socialSharing.share(message, subject, file, url);
+    }
+    
 }

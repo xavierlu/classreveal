@@ -24,6 +24,8 @@ import { ListStudent } from '../pages/list-student/list-student';
 import { SchoolListPage } from '../pages/schoolList/schoolList';
 import { TextAvatarDirective } from '../directives/text-avatar/text-avatar';
 
+import { SocialSharing } from '@ionic-native/social-sharing';
+
 
 export const firebaseConfig = {
   apiKey: "AIzaSyArtrcZzDp_OEquRaiwxPQ9K--Wx0fw0nU",
@@ -79,6 +81,7 @@ export const firebaseConfig = {
     TeacherData,
     SchoolData,
     StatusBar,
+      SocialSharing,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
