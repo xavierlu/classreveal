@@ -165,7 +165,7 @@ firebase.initializeApp({
   getUserProfile(): firebase.database.Reference {
     console.log(this.currentUser.uid);
     console.log("firebase: " + firebase.auth().currentUser.uid);
-    this.updateInfo();
+  //  this.updateInfo();
     this.currentUser = firebase.auth().currentUser;
     return this.userProfile.child(firebase.auth().currentUser.uid);
   }

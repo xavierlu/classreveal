@@ -8,6 +8,7 @@ import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 import { IntroPage } from '../pages/intro/intro';
 
+import { SettingsPage } from '../pages/settings/settings';
 
 import { ProfileData } from '../providers/profile-data';
 import firebase from 'firebase';
@@ -24,8 +25,9 @@ export class MyApp {
     this.zone = new NgZone({});
     console.log("initializing firebase...");
     
-
-      this.rootPage = TabsPage;
+  //  this.profData.updateUser();
+      
+ //     this.rootPage = TabsPage;
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {

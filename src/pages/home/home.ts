@@ -24,9 +24,13 @@ export class HomePage {
 
   constructor(private alertCtrl: AlertController, private elementRef: ElementRef, public navCtrl: NavController, angFire: AngularFire, public profileData: ProfileData) {
     console.log("home page constructor");
+      
+  //  this.profileData.updateInfo();
   }
 
-  ionViewDidLoad() {
+    
+    
+  ionViewWillEnter() {
       
       this.profileData.getUserProfile().on('value', (data) => {
       this.userProfile = data.val();
