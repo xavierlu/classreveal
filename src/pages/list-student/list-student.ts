@@ -25,8 +25,9 @@ export class ListStudent {
   public teacher = "";
   private periodNum = 0;
   private message = "";
+    private url = "";
     
-  constructor( public navCtrl: NavController, public angFire: AngularFire, public profileData: ProfileData) {
+  constructor( public navCtrl: NavController, public angFire: AngularFire, public profileData: ProfileData, public plt: Platform, private socialSharing: SocialSharing) {
 
 
   }
@@ -43,7 +44,7 @@ export class ListStudent {
     this.periodNum = periodNumm
       
     this.message = "Check out who is in my period " + this.periodNum + " class with " + this.teacher + ": \n";
-      
+    this.url = "hi";
     this.students = this.angFire.database.list('/schoolData/' + this.profileData.getUsersSchool() + '/classData/' + this.profileData.getPeriod(periodNumm) + '/period' + periodNumm, { preserveSnapshot: true });
 
     this.students.subscribe(snapshots => {
@@ -70,6 +71,8 @@ export class ListStudent {
             
               this.message = this.message + firstName + " " + lastName + " \n";
               
+    console.log("MESSAGE: " + this.message)
+              
             var classmateJson = {
                 "uid": snapshot.key,
                 "fullName": firstName + " " + lastName
@@ -92,10 +95,56 @@ export class ListStudent {
   }
     
     shareClass()
-    {
+    {     
         
+        if (this.plt.is('ios')) {
+          // This will only print when on iOS
+          console.log('I am an iOS device!');
+            
+            firebase.database().ref('/shareURLs/').once("value").then(function(snapshot){
+                console.log("IOS");
+                 //   this.url = "";
+                //console.log(this.url);
+                var ur = snapshot.child("ios").val();
+                console.log(ur);    
+                this.message = this.message + "Wanna see who is in your classes? Download Class Reveal: " + this.url;
+                this.socialSharing.share(this.message, "Class Reveal rocks!", null, ur);
+            
+            });
+        }
         
-     //   this.socialSharing.share(message, subject, file, url);
+        else if (this.plt.is('android')) {
+          // This will only print when on iOS
+          console.log('I am an android device!');
+            
+            firebase.database().ref('/shareURLs/').once("value").then(function(snapshot){
+                console.log("ANDROID");
+                 //   this.url = "";
+                //console.log(this.url);
+                var ur = snapshot.child("android").val();
+                console.log(ur);    
+                this.message = this.message + "Wanna see who is in your classes? Download Class Reveal: " + this.url;
+                this.socialSharing.share(this.message, "Class Reveal rocks!", null, ur);
+            
+            });
+        }
+        else {
+            console.log('I am another device!');
+            
+            firebase.database().ref('/shareURLs/').once("value").then(function(snapshot){
+                console.log("OTHER");
+                 //   this.url = "";
+                //console.log(this.url);
+                var ur = snapshot.child("other").val();
+                console.log(ur);    
+                this.message = this.message + "Wanna see who is in your classes? Download Class Reveal: " + this.url;
+                this.socialSharing.share(this.message, "Class Reveal rocks!", null, ur);
+            
+            });
+        }
+    console.log("URL:");
+        console.log(this.url);
+        
     }
     
 }
