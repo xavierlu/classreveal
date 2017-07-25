@@ -63,25 +63,43 @@ export class ListPage {
   }
 
   chooseTeacher(teacherName: string) {
-    var data = JSON.parse(window.localStorage.getItem('current-modifying-peroid'));
-    teacherName = teacherName.replace(" ", "_");
-
-    if (teacherName === "" || teacherName.split("_").length < 2) {
-      let alert = this.alertCtrl.create({
-        title: 'Please enter your teacher\'s full name or go back.',
-        buttons: [
-          {
-            text: 'Ok',
+      
+      
+    let alert = this.alertCtrl.create({
+      message: 'Choose ' + teacherName + ' ?',
+      buttons: [
+        {
+          text: 'No',
+        },
+        {
+          text: 'Yes',
+          handler: data1 => {
+             var data = JSON.parse(window.localStorage.getItem('current-modifying-peroid'));
+    
+              teacherName = teacherName.replace(" ", "_");
+            if (teacherName === "" || teacherName.split("_").length < 2) {
+              let alert = this.alertCtrl.create({
+                title: 'Please enter your teacher\'s full name or go back.',
+                buttons: [
+                  {
+                    text: 'Ok',
+                  }
+                ]
+              });
+              alert.present();
+            }
+            else {
+              this.profileData.edited(data.period);
+              this.profileData.updateTeacher(teacherName, data.period, data.prevTeacher);
+              this.navCtrl.pop();
+            }
           }
-        ]
-      });
-      alert.present();
-    }
-    else {
-      this.profileData.edited(data.period);
-      this.profileData.updateTeacher(teacherName, data.period, data.prevTeacher);
-      this.navCtrl.pop();
-    }
+        }
+      ]
+    });
+    alert.present();
+      
+   
   }
 
   addTeacher() {
