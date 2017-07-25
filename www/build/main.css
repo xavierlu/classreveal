@@ -64087,6 +64087,53 @@ text-avatar::after {
   content: attr(value);
 }
 
+page-settings ion-item ion-label {
+  margin: 0 !important;
+}
+
+page-settings ion-list {
+  margin: 0;
+  padding: 0;
+}
+
+page-settings ion-list-header {
+  background-color: #ECECEC;
+  margin: 0;
+  padding: 10px 16px;
+}
+
+page-settings ion-item {
+  padding: 0;
+}
+
+page-settings ion-datetime {
+  padding-left: 3px !important;
+}
+
+page-settings .item-inner {
+  border: none !important;
+  padding: 0;
+}
+
+page-settings .popover-content {
+  min-height: 0 !important;
+  max-height: 88px !important;
+}
+
+page-settings .settings-popover {
+  margin-top: -1px !important;
+}
+
+page-settings .placeholder-profile {
+  color: #CCCCCC;
+}
+
+page-settings .dob-label {
+  color: #000000 !important;
+  padding: 10px !important;
+  max-width: 50% !important;
+}
+
 page-home ion-card {
   position: relative;
   padding: 0%;

@@ -21,6 +21,8 @@ import { SignupPage } from '../pages/signup/signup';
 import { ListPage } from '../pages/list/list';
 import { ListStudent } from '../pages/list-student/list-student';
 
+import { EditProfile } from '../pages/editProfile/editProfile';
+
 import { SchoolListPage } from '../pages/schoolList/schoolList';
 import { TextAvatarDirective } from '../directives/text-avatar/text-avatar';
 
@@ -50,11 +52,14 @@ export const firebaseConfig = {
     ListPage,
     ListStudent,
     SchoolListPage,
-    TextAvatarDirective
+    TextAvatarDirective,
+    EditProfile
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      tabsHideOnSubPages: true,
+    }),
     IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig)
   ],
@@ -70,7 +75,8 @@ export const firebaseConfig = {
     SettingsPage,
     ListPage,
     ListStudent,
-    SchoolListPage
+    SchoolListPage,
+    EditProfile
   ],
   providers: [
     StatusBar,

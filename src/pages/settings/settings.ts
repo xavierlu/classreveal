@@ -5,6 +5,10 @@ import { AuthData } from '../../providers/auth-data';
 import { LoginPage } from '../login/login';
 import { ListPage } from '../list/list';
 import { SchoolListPage } from '../schoolList/schoolList';
+import { EditProfile } from '../editProfile/editProfile';
+
+import { TextAvatarProfileDirective } from '../../directives/text-avatar-profile/text-avatar-profile';
+
 
 @Component({
   selector: 'page-settings',
@@ -21,6 +25,11 @@ export class SettingsPage {
 
   }
 
+    editPressed()
+    {
+        this.navCtrl.push(EditProfile);
+    }
+    
   ionViewDidEnter() {
     this.profileData.getUserProfile().on('value', (data) => {
       this.userProfile = data.val();
