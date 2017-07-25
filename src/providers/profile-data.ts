@@ -21,8 +21,16 @@ export class ProfileData {
   public period10 = "";
   public firstName = "";
   public lastName = "";
+    
+    
+public editedPeriods = [];
 
   constructor() {
+      
+      for(var i = 0; i < 10; i++) {
+          this.editedPeriods.push(0);
+      }
+      
    // this.currentUser = firebase.auth().currentUser;
 firebase.initializeApp({
       apiKey: "AIzaSyArtrcZzDp_OEquRaiwxPQ9K--Wx0fw0nU",
@@ -41,6 +49,15 @@ firebase.initializeApp({
       this.updateInfo();
     }
   }
+    
+canEdit(num: number): boolean {
+return this.editedPeriods[num-1] == 0;
+}
+    
+edited(num: number) {
+    this.editedPeriods[num-1] = 1;
+}
+    
 /*
   loadLocalStorage() {
     var data = {

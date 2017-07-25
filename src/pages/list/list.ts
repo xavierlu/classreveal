@@ -78,6 +78,7 @@ export class ListPage {
       alert.present();
     }
     else {
+      this.profileData.edited(data.period);
       this.profileData.updateTeacher(teacherName, data.period, data.prevTeacher);
       this.navCtrl.pop();
     }

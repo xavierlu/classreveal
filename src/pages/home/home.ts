@@ -25,7 +25,7 @@ export class HomePage {
   constructor(private alertCtrl: AlertController, private elementRef: ElementRef, public navCtrl: NavController, angFire: AngularFire, public profileData: ProfileData) {
     console.log("home page constructor");
       
-  //  this.profileData.updateInfo();
+      
   }
 
     
@@ -34,8 +34,19 @@ export class HomePage {
       
       this.profileData.getUserProfile().on('value', (data) => {
       this.userProfile = data.val();
-      //   this.birthDate = this.userProfile.birthDate;
+      if (this.profileData.getUsersSchool() === '') {
+          let alert = this.alertCtrl.create({
+            title: 'Please enter your school name in Settings',
+            buttons: [{ text: 'Settings',
+            handler: data => {
+                this.navCtrl.parent.select(1); 
+            }
+            }]
+          });
+          alert.present();
+        }
     });
+      
   }
 
   addClass() {
@@ -76,20 +87,40 @@ export class HomePage {
     alert.addButton({
       text: 'Next',
       handler: periodNumber => {
+        console.log(+periodNumber);
+        if(isNaN(+periodNumber)){
+            return;
+        }
+          
         var data = {
           period: +periodNumber,
           prevTeacher: this.profileData.getPeriod(+periodNumber)
         };
         if (this.profileData.getUsersSchool() === '') {
           let alert = this.alertCtrl.create({
-            title: 'Please enter your school name',
-            buttons: [{ text: 'OK' }]
+            title: 'Please enter your school name in Settings',
+            buttons: [{ text: 'Settings',
+            handler: data => {
+                this.navCtrl.parent.select(1); 
+            } }]
           });
           alert.present();
         }
         else {
-          window.localStorage.setItem('current-modifying-peroid', JSON.stringify(data));
-          this.navCtrl.push(ListPage);
+            
+            if(!this.profileData.canEdit(periodNumber))
+            {
+                let alert = this.alertCtrl.create({
+                    title: 'Hey, stop stalking your crush. You may only change your class once per session.',
+                    buttons: [{ text: "Fine I won't stalk"
+                    }]
+                    });
+                alert.present();
+            }
+            else{
+                window.localStorage.setItem('current-modifying-peroid', JSON.stringify(data));
+                this.navCtrl.push(ListPage);
+            }
         }
       }
     });
@@ -97,21 +128,57 @@ export class HomePage {
   }
 
   editTeacher(periodNumber: number) {
-    var data = {
-      period: +periodNumber,
-      prevTeacher: this.profileData.getPeriod(+periodNumber)
-    };
-    if (this.profileData.getUsersSchool() === '') {
-      let alert = this.alertCtrl.create({
-        title: 'Please enter your school name',
-        buttons: [{ text: 'OK' }]
-      });
-      alert.present();
-    }
-    else {
-      window.localStorage.setItem('current-modifying-peroid', JSON.stringify(data));
-      this.navCtrl.push(ListPage);
-    }
+    console.log("EDIT TEACHER - " + this.profileData.canEdit(periodNumber));
+      
+      
+          if(this.profileData.canEdit(periodNumber))
+          {
+            console.log("in can edit");
+              let alertToConfirm = this.alertCtrl.create({
+                title: 'Do you want to change this teacher? You may only do so once per session.',
+                buttons: [{ text: 'Yes',
+                    handler: data1 => {
+                        var data = {
+                          period: +periodNumber,
+                          prevTeacher: this.profileData.getPeriod(+periodNumber)
+                        };
+                        if (this.profileData.getUsersSchool() === '') {
+                          let alert = this.alertCtrl.create({
+                            title: 'Please enter your school name in settings',
+                            buttons: [{ text: 'Settings',
+                                handler: data => {
+                                    this.navCtrl.parent.select(1); 
+                                }
+                                }]
+                          });
+                        
+                        console.log("edited period" + periodNumber);
+                          alert.present();
+                        }
+                        else {
+                       //   this.profileData.edited(periodNumber);
+                          window.localStorage.setItem('current-modifying-peroid', JSON.stringify(data));
+                          this.navCtrl.push(ListPage);
+                        }
+                    }
+                    },
+                    {text: 'No'}
+                ]
+              });
+              alertToConfirm.present();
+          }
+            
+        else {
+            let alert = this.alertCtrl.create({
+                title: 'Hey, stop stalking your crush. You may only change your class once per session.',
+                buttons: [{ text: "Fine I won't stalk"
+                }]
+                });
+            alert.present();
+        }
+      
+      
+        
   }
 
   removeTeacher(periodNumber: number) {
