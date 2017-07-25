@@ -64235,6 +64235,12 @@ page-login .error-message .item-inner {
   border-bottom: 0 !important;
 }
 
+page-login .center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
 page-reset-password form {
   margin-bottom: 32px;
 }
