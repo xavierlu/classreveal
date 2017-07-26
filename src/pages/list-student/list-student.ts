@@ -40,7 +40,7 @@ export class ListStudent {
     console.log("TEACHER - " + this.profileData.getPeriod(periodNumm));
     console.log("PERIOD - " + periodNumm);
 
-    this.teacher =  String(this.profileData.getPeriod(periodNumm))
+    this.teacher =  String(this.profileData.getPeriod(periodNumm).replace("_", " "))
     this.periodNum = periodNumm
       
     this.message = "Check out who is in my period " + this.periodNum + " class with " + this.teacher + ": \n";

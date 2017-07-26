@@ -7,17 +7,19 @@
 </ion-header>
 
 <ion-content>
-    <br/>
-    <ion-item><h1>Teacher: {{teacher}}</h1></ion-item>
-    
+  <br/>
+  <ion-item>
+    <h2>Teacher: {{teacher}}</h2>
+  </ion-item>
+
   <ion-list>
     <button ion-item *ngFor="let name of names" (click)="presentClassmateInfo(name.uid)">
         <text-avatar [text]="name.fullName" [color]="name.color" item-left></text-avatar>
-        <h2>{{ name.fullName || upper}}</h2>
+        <h3>{{ name.fullName || upper}}</h3>
 
     </button>
   </ion-list>
-    
-<button col-12 ion-button round color="orangeYel" (click)="shareClass()">Share Class</button>
+
+  <button col-12 ion-button round color="orangeYel" (click)="shareClass()">Share Class</button>
 
 </ion-content>

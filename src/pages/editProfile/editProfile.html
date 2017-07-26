@@ -16,26 +16,20 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-    
-    <!--
+  <!--
         <text-avatar-profile *ngIf="userProfile?.firstName" [text]="userProfile?.firstName" [color]="userProfile?.firstName.color"></text-avatar-profile>
     -->
-    
-    
+
   <ion-list>
     <ion-list-header>
       Personal Information
     </ion-list-header>
 
-      
-      
-      
     <ion-item (click)="updateName()">
       <ion-grid>
         <ion-row>
-          <ion-col col-6 >
+          <ion-col col-6>
             <p color="orangeYel">Name</p>
           </ion-col>
           <ion-col *ngIf="userProfile?.firstName || userProfile?.lastName">
@@ -68,15 +62,13 @@
       </ion-grid>
     </ion-item>
 
-    </ion-list>
-    <ion-list>
-    
-        <ion-list-header>
-        Account Information - note that you can only change your school 3 times.
-        </ion-list-header>
+  </ion-list>
+  <ion-list>
 
-        
-        
+    <ion-list-header>
+      Account Information - note that you can only change your school 3 times.
+    </ion-list-header>
+
     <ion-item (click)="updateEmail()">
       <ion-grid>
         <ion-row>
@@ -112,9 +104,5 @@
         </ion-row>
       </ion-grid>
     </ion-item>
-
-    
   </ion-list>
-
-  
 </ion-content>
