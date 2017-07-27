@@ -71,20 +71,17 @@ export class AuthData {
   /**
    * This function doesn't take any params, it just logs the current user out of the app.
    */
-  logoutUser() : firebase.Promise < any > {
+  logoutUser() : firebase.Promise <any> {
+    
     if(firebase.auth().currentUser == null) {
       console.log("current user is null!");
     } else {
       console.log("logging out " + firebase.auth().currentUser.uid);
     }
 
-    return firebase
-      .auth()
-      .signOut()
-      .then(function () {
+    return firebase.auth().signOut().then(function () {
         console.log('Signed Out');
-
-      }, function (error) {
+        }, function (error) {
         console.error('Sign Out Error', error);
       });
   }
@@ -97,7 +94,7 @@ export class AuthData {
     user
       .delete()
       .then(function () {
-        console.log('yyyyaaaa');
+        console.log('deleted user or smthng');
       }, function (error) {
         console.log('3rror:' + error);
       });

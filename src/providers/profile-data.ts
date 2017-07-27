@@ -286,50 +286,25 @@ firebase.initializeApp({
     if(this.isEmoji(newPassword)) {
       throw new Error("slippery excuse me please me");
     }
-    const credential = firebase
-      .auth
-      .EmailAuthProvider
-      .credential(this.currentUser.email, oldPassword);
+    const credential = firebase.auth.EmailAuthProvider.credential(this.currentUser.email, oldPassword);
 
-    return this
-      .currentUser
-      .reauthenticate(credential)
-      .then(user => {
-        this
-          .currentUser
-          .updatePassword(newPassword)
-          .then(user => {
+    return this.currentUser.reauthenticate(credential).then(user => {
+        this.currentUser.updatePassword(newPassword).then(user => {
             console.log("Password Changed");
           });
       });
   }
 
-<<<<<<< Updated upstream
-  updateSchool(newSchoolName : string) : firebase.Promise < any > {
-    if(this.isEmoji(newSchoolName)) {
-      throw new Error("slippery excuse me please me");
-=======
+
   updateSchool(newSchoolName: string): firebase.Promise<any> {
     if (this.isEmoji(newSchoolName)) {
       throw new Error("slippery excuse me please");
->>>>>>> Stashed changes
     }
-    this
-      .dataReference
-      .ref()
-      .child('schoolNames/')
-      .update({[newSchoolName]: 'true'});
+    this.dataReference.ref().child('schoolNames/').update({[newSchoolName]: 'true'});
 
-    this
-      .dataReference
-      .ref('schoolData/' + newSchoolName)
-      .once('value', (snapshot) => {
+    this.dataReference.ref('schoolData/' + newSchoolName).once('value', (snapshot) => {
         if (!snapshot.exists()) {
-          this
-            .dataReference
-            .ref()
-            .child('schoolData/')
-            .update({
+          this.dataReference.ref().child('schoolData/').update({
               [newSchoolName]: {
                 classData: 'true',
                 teachers: 'true'
@@ -340,82 +315,25 @@ firebase.initializeApp({
 
     this.usersSchool = newSchoolName;
 
-    return this
-      .userProfile
-      .child(this.currentUser.uid)
-      .update({schoolName: newSchoolName});
+    return this.userProfile.child(this.currentUser.uid).update({schoolName: newSchoolName});
   }
 
-  addToSchools(newSchoolName : string) {}
 
-<<<<<<< Updated upstream
-  updateTeacher(newTeacherName : string, periodNumber : number, prevTeacher : string) : firebase.Promise < any > {
-    if(prevTeacher !== "") {
-      this
-        .dataReference
-        .ref('schoolData/' + this.usersSchool + '/classData/' + prevTeacher + '/period' + periodNumber)
-        .child(this.currentUser.uid)
-        .remove();
-    }
-
-    if (newTeacherName == "") {} else {
-      this
-        .dataReference
-        .ref('schoolData/' + this.usersSchool + '/classData')
-        .once('value', (snapshot) => {
-          if (snapshot.hasChild(newTeacherName)) {
-            this
-              .dataReference
-              .ref('schoolData/' + this.usersSchool + '/classData/' + newTeacherName)
-              .child('/period' + periodNumber)
-              .update({
-                [this.currentUser.uid]: this.firstName + " " + this.lastName
-              });
-          } else {
-            this
-              .dataReference
-              .ref('schoolData/' + this.usersSchool)
-              .child('/teachers')
-              .update({[newTeacherName]: 'true'});
-            this
-              .dataReference
-              .ref('schoolData/' + this.usersSchool)
-              .child('/classData')
-              .update({
-                [newTeacherName]: {
-                  period1: 'true',
-                  period2: 'true',
-                  period3: 'true',
-                  period4: 'true',
-                  period5: 'true',
-                  period6: 'true',
-                  period7: 'true',
-                  period8: 'true',
-                  period9: 'true',
-                  period10: 'true'
-                }
-              });
-            this
-              .dataReference
-              .ref('schoolData/' + this.usersSchool + '/classData/' + newTeacherName)
-              .child('/period' + periodNumber)
-              .update({
-                [this.currentUser.uid]: this.firstName + " " + this.lastName
-              });
-          }
-=======
-  }
-
-  updateTeacher(newTeacherName: string, periodNumber: number, prevTeacher: string): firebase.Promise<any> {
+  updateTeacher(newTeacherName : string, periodNumber : number, prevTeacher : string) : firebase.Promise <any> {
     
-    console.log("prevTeacher = " + prevTeacher);
+      console.log("prevTeacher = " + prevTeacher);
     console.log("newTeacher = " + newTeacherName);
-
-    if (prevTeacher !== "") {
+      
+    if(prevTeacher !== "") {
+        
+        //already has teacher. need to take out of that class
+        
       this.dataReference.ref('schoolData/' + this.usersSchool + '/classData/' + prevTeacher + '/period' + periodNumber).child(this.currentUser.uid).remove();
         
+        //need to check student count here and delete if needed/decrement count
         
-      var databaseRef = firebase.database().ref('schoolData/' + this.usersSchool + '/classData' + prevTeacher).child('students');
+        /*
+              var databaseRef = firebase.database().ref('schoolData/' + this.usersSchool + '/classData' + prevTeacher).child('students');
       var removeTeacherNeeded = false;
         var noStudent = false;
             databaseRef.transaction(function(students) {
@@ -448,25 +366,30 @@ firebase.initializeApp({
                 this.dataReference.ref('schoolData/' + this.usersSchool + '/classData/').child(prevTeacher).remove();
                 this.dataReference.ref('schoolData/' + this.usersSchool + '/teachers').child(prevTeacher).remove();
             }
+        */
     }
 
     if (newTeacherName == "") {
+        //nothing to change here
+    } 
 
-    }
     else {
-      this.dataReference.ref('schoolData/' + this.usersSchool + '/classData').once('value', (snapshot) => {
-        if (snapshot.hasChild(newTeacherName)) {
-          this.dataReference.ref('schoolData/' + this.usersSchool + '/classData/' + newTeacherName).child('/period' + periodNumber).update({ [this.currentUser.uid]: this.firstName + " " + this.lastName });
-          
         
-        }
-        else {
-          this.dataReference.ref('schoolData/' + this.usersSchool).child('/teachers').update({ [newTeacherName]: 'true' });
-          this.dataReference.ref('schoolData/' + this.usersSchool).child('/classData').update({ [newTeacherName]: { period1: 'true', period2: 'true', period3: 'true', period4: 'true', period5: 'true', period6: 'true', period7: 'true', period8: 'true', period9: 'true', period10: 'true', students: 1 } });
-          this.dataReference.ref('schoolData/' + this.usersSchool + '/classData/' + newTeacherName).child('/period' + periodNumber).update({ [this.currentUser.uid]: this.firstName + " " + this.lastName });
-        }
-
-        var databaseRef2 = firebase.database().ref('schoolData/' + this.usersSchool + '/classData' + newTeacherName).child('students');
+        //has new teacher
+        
+      this.dataReference.ref('schoolData/' + this.usersSchool + '/classData').once('value', (snapshot) => {
+          if (snapshot.hasChild(newTeacherName)) {
+           
+              //has the teacher already
+              
+            this.dataReference.ref('schoolData/' + this.usersSchool + '/classData/' + newTeacherName).child('/period' + periodNumber).update({
+                [this.currentUser.uid]: this.firstName + " " + this.lastName
+            });
+        
+            //add 1 to student count
+        
+            /*
+            var databaseRef2 = firebase.database().ref('schoolData/' + this.usersSchool + '/classData' + newTeacherName).child('students');
 
         databaseRef2.transaction(function(students) {
             console.log("TRANSACTION 2 -> students = " + students);
@@ -480,90 +403,120 @@ firebase.initializeApp({
           }
           return students;
         });
+            */
+        
+          } 
 
->>>>>>> Stashed changes
-        });
+          else {
+            
+              //adding a teacher not in the database
+              
+            this.dataReference.ref('schoolData/' + this.usersSchool).child('/teachers').update({
+                [newTeacherName]: 'true'
+            });
+            
+            this.dataReference.ref('schoolData/' + this.usersSchool).child('/classData').update({
+                [newTeacherName]: {
+                  period1: 'true',
+                  period2: 'true',
+                  period3: 'true',
+                  period4: 'true',
+                  period5: 'true',
+                  period6: 'true',
+                  period7: 'true',
+                  period8: 'true',
+                  period9: 'true',
+                  period10: 'true',
+                    students: 1
+                }
+              });
+
+            this.dataReference.ref('schoolData/' + this.usersSchool + '/classData/' + newTeacherName).child('/period' + periodNumber).update({
+                [this.currentUser.uid]: this.firstName + " " + this.lastName
+              });
+          }
+
+        }); //close snapshot
+    } //close else
+
+    //set in user's profile
+        switch (periodNumber) {
+          case 1:
+            this.period1 = newTeacherName;
+            return this
+              .userProfile
+              .child(this.currentUser.uid)
+              .update({period1: newTeacherName});
+
+          case 2:
+            this.period2 = newTeacherName;
+            return this
+              .userProfile
+              .child(this.currentUser.uid)
+              .update({period2: newTeacherName});
+
+          case 3:
+            this.period3 = newTeacherName;
+            return this
+              .userProfile
+              .child(this.currentUser.uid)
+              .update({period3: newTeacherName});
+
+          case 4:
+            this.period4 = newTeacherName;
+            return this
+              .userProfile
+              .child(this.currentUser.uid)
+              .update({period4: newTeacherName});
+
+          case 5:
+            this.period5 = newTeacherName;
+            return this
+              .userProfile
+              .child(this.currentUser.uid)
+              .update({period5: newTeacherName});
+
+          case 6:
+            this.period6 = newTeacherName;
+            return this
+              .userProfile
+              .child(this.currentUser.uid)
+              .update({period6: newTeacherName});
+
+          case 7:
+            this.period7 = newTeacherName;
+            return this
+              .userProfile
+              .child(this.currentUser.uid)
+              .update({period7: newTeacherName});
+
+          case 8:
+            this.period8 = newTeacherName;
+            return this
+              .userProfile
+              .child(this.currentUser.uid)
+              .update({period8: newTeacherName});
+          case 9:
+            this.period9 = newTeacherName;
+            return this
+              .userProfile
+              .child(this.currentUser.uid)
+              .update({period9: newTeacherName});
+          case 10:
+            this.period10 = newTeacherName;
+            return this
+              .userProfile
+              .child(this.currentUser.uid)
+              .update({period10: newTeacherName});
+        }
 
     }
 
-    switch (periodNumber) {
-      case 1:
-        this.period1 = newTeacherName;
-        return this
-          .userProfile
-          .child(this.currentUser.uid)
-          .update({period1: newTeacherName});
 
-      case 2:
-        this.period2 = newTeacherName;
-        return this
-          .userProfile
-          .child(this.currentUser.uid)
-          .update({period2: newTeacherName});
-
-      case 3:
-        this.period3 = newTeacherName;
-        return this
-          .userProfile
-          .child(this.currentUser.uid)
-          .update({period3: newTeacherName});
-
-      case 4:
-        this.period4 = newTeacherName;
-        return this
-          .userProfile
-          .child(this.currentUser.uid)
-          .update({period4: newTeacherName});
-
-      case 5:
-        this.period5 = newTeacherName;
-        return this
-          .userProfile
-          .child(this.currentUser.uid)
-          .update({period5: newTeacherName});
-
-      case 6:
-        this.period6 = newTeacherName;
-        return this
-          .userProfile
-          .child(this.currentUser.uid)
-          .update({period6: newTeacherName});
-
-      case 7:
-        this.period7 = newTeacherName;
-        return this
-          .userProfile
-          .child(this.currentUser.uid)
-          .update({period7: newTeacherName});
-
-      case 8:
-        this.period8 = newTeacherName;
-        return this
-          .userProfile
-          .child(this.currentUser.uid)
-          .update({period8: newTeacherName});
-      case 9:
-        this.period9 = newTeacherName;
-        return this
-          .userProfile
-          .child(this.currentUser.uid)
-          .update({period9: newTeacherName});
-      case 10:
-        this.period10 = newTeacherName;
-        return this
-          .userProfile
-          .child(this.currentUser.uid)
-          .update({period10: newTeacherName});
-    }
-
-  }
 
   deleteUser() {
     try {
-      this
-        .userProfile
-        .child(this.currentUser.uid)
-        .remove();
+      this.userProfile.child(this.currentUser.uid).remove();
     } catch (e) {
       console.log(e);
     }

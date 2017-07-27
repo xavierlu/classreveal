@@ -50,12 +50,12 @@ export class SettingsPage {
     let alert = this
       .alertCtrl
       .create({
-        message: 'You sure?',
+        message: 'Are you sure you want to delete your account?',
         buttons: [
           {
             text: 'Cancel'
           }, {
-            text: 'OK',
+            text: 'Yes',
             handler: data => {
               for (var i = 1; i <= 10; i++) {
                 this
