@@ -7,11 +7,17 @@
 </ion-header>
 
 <ion-content>
+<<<<<<< Updated upstream
   <br/>
   <ion-item>
     <h2>Teacher: {{teacher}}</h2>
   </ion-item>
 
+=======
+    <br/>
+    <ion-item><h1>Teacher: {{teacher.replace("_"," ")}}</h1></ion-item>
+    
+>>>>>>> Stashed changes
   <ion-list>
     <button ion-item *ngFor="let name of names" (click)="presentClassmateInfo(name.uid)">
         <text-avatar [text]="name.fullName" [color]="name.color" item-left></text-avatar>

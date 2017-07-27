@@ -21,6 +21,7 @@ export class ProfileData {
   public firstName = "";
   public lastName = "";
 
+<<<<<<< Updated upstream
   public editedPeriods = [];
 
   constructor() {
@@ -33,6 +34,20 @@ export class ProfileData {
 
     // this.currentUser = firebase.auth().currentUser;
     firebase.initializeApp({
+=======
+    
+public editedPeriods = [];
+
+  constructor() {
+      
+      this.editedPeriods = [];
+      for(var i = 0; i < 10; i++) {
+          this.editedPeriods.push(0);
+      }
+      
+   // this.currentUser = firebase.auth().currentUser;
+firebase.initializeApp({
+>>>>>>> Stashed changes
       apiKey: "AIzaSyArtrcZzDp_OEquRaiwxPQ9K--Wx0fw0nU",
       authDomain: "classreveal-3146f.firebaseapp.com",
       databaseURL: "https://classreveal-3146f.firebaseio.com",
@@ -87,9 +102,20 @@ export class ProfileData {
     window.localStorage.setItem('current-user', JSON.stringify(data));
   }
 */
+<<<<<<< Updated upstream
 
   updateUser()
   {
+=======
+    
+    updateUser()
+    {
+        this.editedPeriods = [];
+      for(var i = 0; i < 10; i++) {
+          this.editedPeriods.push(0);
+      }
+        
+>>>>>>> Stashed changes
     console.log("in updateUSer / profdata");
     this.currentUser = firebase
       .auth()
@@ -278,9 +304,15 @@ export class ProfileData {
       });
   }
 
+<<<<<<< Updated upstream
   updateSchool(newSchoolName : string) : firebase.Promise < any > {
     if(this.isEmoji(newSchoolName)) {
       throw new Error("slippery excuse me please me");
+=======
+  updateSchool(newSchoolName: string): firebase.Promise<any> {
+    if (this.isEmoji(newSchoolName)) {
+      throw new Error("slippery excuse me please");
+>>>>>>> Stashed changes
     }
     this
       .dataReference
@@ -316,6 +348,7 @@ export class ProfileData {
 
   addToSchools(newSchoolName : string) {}
 
+<<<<<<< Updated upstream
   updateTeacher(newTeacherName : string, periodNumber : number, prevTeacher : string) : firebase.Promise < any > {
     if(prevTeacher !== "") {
       this
@@ -370,6 +403,85 @@ export class ProfileData {
                 [this.currentUser.uid]: this.firstName + " " + this.lastName
               });
           }
+=======
+  }
+
+  updateTeacher(newTeacherName: string, periodNumber: number, prevTeacher: string): firebase.Promise<any> {
+    
+    console.log("prevTeacher = " + prevTeacher);
+    console.log("newTeacher = " + newTeacherName);
+
+    if (prevTeacher !== "") {
+      this.dataReference.ref('schoolData/' + this.usersSchool + '/classData/' + prevTeacher + '/period' + periodNumber).child(this.currentUser.uid).remove();
+        
+        
+      var databaseRef = firebase.database().ref('schoolData/' + this.usersSchool + '/classData' + prevTeacher).child('students');
+      var removeTeacherNeeded = false;
+        var noStudent = false;
+            databaseRef.transaction(function(students) {
+            console.log("TRANSACTION IF PREV TEACHER -> students: " + students);
+              
+              if(students == null)
+              {
+                  noStudent = true;
+                  return;
+                
+              }
+                
+              else if (students || 0) {
+                students = students - 1;
+              }
+              if(students < 1)
+                {
+                    removeTeacherNeeded = true;
+                }
+              return students;
+            });
+        
+            if(noStudent)
+            {
+                this.dataReference.ref('schoolData/' + this.usersSchool + '/classData').child(prevTeacher).update({students : 0});
+            }
+        
+            if(removeTeacherNeeded)
+            {
+                this.dataReference.ref('schoolData/' + this.usersSchool + '/classData/').child(prevTeacher).remove();
+                this.dataReference.ref('schoolData/' + this.usersSchool + '/teachers').child(prevTeacher).remove();
+            }
+    }
+
+    if (newTeacherName == "") {
+
+    }
+    else {
+      this.dataReference.ref('schoolData/' + this.usersSchool + '/classData').once('value', (snapshot) => {
+        if (snapshot.hasChild(newTeacherName)) {
+          this.dataReference.ref('schoolData/' + this.usersSchool + '/classData/' + newTeacherName).child('/period' + periodNumber).update({ [this.currentUser.uid]: this.firstName + " " + this.lastName });
+          
+        
+        }
+        else {
+          this.dataReference.ref('schoolData/' + this.usersSchool).child('/teachers').update({ [newTeacherName]: 'true' });
+          this.dataReference.ref('schoolData/' + this.usersSchool).child('/classData').update({ [newTeacherName]: { period1: 'true', period2: 'true', period3: 'true', period4: 'true', period5: 'true', period6: 'true', period7: 'true', period8: 'true', period9: 'true', period10: 'true', students: 1 } });
+          this.dataReference.ref('schoolData/' + this.usersSchool + '/classData/' + newTeacherName).child('/period' + periodNumber).update({ [this.currentUser.uid]: this.firstName + " " + this.lastName });
+        }
+
+        var databaseRef2 = firebase.database().ref('schoolData/' + this.usersSchool + '/classData' + newTeacherName).child('students');
+
+        databaseRef2.transaction(function(students) {
+            console.log("TRANSACTION 2 -> students = " + students);
+            if(students == null)
+            {
+                this.dataReference.ref('schoolData/' + this.usersSchool + '/classData').child(newTeacherName).update({students : 1});
+            }
+            
+          if (students || 0) {
+            students = students + 1;
+          }
+          return students;
+        });
+
+>>>>>>> Stashed changes
         });
 
     }
