@@ -58,19 +58,11 @@ export class SettingsPage {
             text: 'Yes',
             handler: data => {
               for (var i = 1; i <= 10; i++) {
-                this
-                  .profileData
-                  .updateTeacher("", i, String(this.profileData.getPeriod(+ i)));
+                this.profileData.updateTeacher("", i, String(this.profileData.getPeriod(+ i)));
               }
-              this
-                .profileData
-                .deleteUser();
-              this
-                .authData
-                .deleteUser();
-              this
-                .navCtrl
-                .setRoot(LoginPage);
+              this.profileData.deleteUser();
+              this.authData.deleteUser();
+              this.navCtrl.setRoot(LoginPage);
             }
           }
         ]

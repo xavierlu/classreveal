@@ -213,22 +213,16 @@ public editedPeriods = [];
     console.log(this.currentUser.uid);
     console.log("firebase: " + firebase.auth().currentUser.uid);
     //  this.updateInfo();
-    this.currentUser = firebase
-      .auth()
-      .currentUser;
-    return this
-      .userProfile
-      .child(firebase.auth().currentUser.uid);
+    this.currentUser = firebase.auth().currentUser;
+    
+    return this.userProfile.child(firebase.auth().currentUser.uid);
   }
 
   updateName(firstName : string, lastName : string) : firebase.Promise < any > {
     if(this.isEmoji(firstName) || this.isEmoji(lastName)) {
       throw new Error("slippery excuse me please me");
     }
-    return this
-      .userProfile
-      .child(this.currentUser.uid)
-      .update({firstName: firstName, lastName: lastName});
+    return this.userProfile.child(this.currentUser.uid).update({firstName: firstName, lastName: lastName});
   }
 
   updateGrade(gradeNumber : number) : firebase.Promise < any > {
@@ -278,20 +272,31 @@ public editedPeriods = [];
     if (this.isEmoji(newSchoolName)) {
       throw new Error("slippery excuse me please");
     }
-    this.dataReference.ref().child('schoolNames/').update({[newSchoolName]: 'true'});
-
-    this.dataReference.ref('schoolData/' + newSchoolName).once('value', (snapshot) => {
-        if (!snapshot.exists()) {
-          this.dataReference.ref().child('schoolData/').update({
-              [newSchoolName]: {
-                classData: 'true',
-                teachers: 'true'
-              }
-            });
+      
+    if(!(this.usersSchool === newSchoolName))
+    {
+        //the newSchool is dif, so update everything
+    console.log("CHANGED TO NEW SCHOOL");
+        for (var i = 1; i <= 10; i++) {
+            this.updateTeacher("", i, String(this.getPeriod(+ i)));
         }
-      });
+        
+        this.dataReference.ref().child('schoolNames/').update({[newSchoolName]: 'true'});
 
-    this.usersSchool = newSchoolName;
+        this.dataReference.ref('schoolData/' + newSchoolName).once('value', (snapshot) => {
+            if (!snapshot.exists()) {
+                //if school is new to database
+              this.dataReference.ref().child('schoolData/').update({
+                  [newSchoolName]: {
+                    classData: 'true',
+                    teachers: 'true'
+                  }
+                });
+            }
+          });
+
+        this.usersSchool = newSchoolName;
+    }
 
     return this.userProfile.child(this.currentUser.uid).update({schoolName: newSchoolName});
   }
