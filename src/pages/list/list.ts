@@ -70,22 +70,7 @@ export class ListPage {
       .pop();
   }
 
-<<<<<<< Updated upstream
-  chooseTeacher(teacherName : string) {
 
-    let alert = this
-      .alertCtrl
-      .create({
-        message: 'Choose ' + teacherName.replace("_", " ") + ' ?',
-        buttons: [
-          {
-            text: 'No'
-          }, {
-            text: 'Yes',
-            handler: data1 => {
-              var data = JSON.parse(window.localStorage.getItem('current-modifying-peroid'));
-
-=======
   chooseTeacher(teacherName: string) {
       
     teacherName = teacherName.replace("_", " ");
@@ -101,7 +86,6 @@ export class ListPage {
           handler: data1 => {
              var data = JSON.parse(window.localStorage.getItem('current-modifying-peroid'));
     
->>>>>>> Stashed changes
               teacherName = teacherName.replace(" ", "_");
               if (teacherName === "" || teacherName.split("_").length < 2) {
                 let alert = this
