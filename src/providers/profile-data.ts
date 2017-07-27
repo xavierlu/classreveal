@@ -21,21 +21,7 @@ export class ProfileData {
   public firstName = "";
   public lastName = "";
 
-<<<<<<< Updated upstream
-  public editedPeriods = [];
 
-  constructor() {
-
-    for (var i = 0; i < 10; i++) {
-      this
-        .editedPeriods
-        .push(0);
-    }
-
-    // this.currentUser = firebase.auth().currentUser;
-    firebase.initializeApp({
-=======
-    
 public editedPeriods = [];
 
   constructor() {
@@ -46,8 +32,7 @@ public editedPeriods = [];
       }
       
    // this.currentUser = firebase.auth().currentUser;
-firebase.initializeApp({
->>>>>>> Stashed changes
+    firebase.initializeApp({
       apiKey: "AIzaSyArtrcZzDp_OEquRaiwxPQ9K--Wx0fw0nU",
       authDomain: "classreveal-3146f.firebaseapp.com",
       databaseURL: "https://classreveal-3146f.firebaseio.com",
@@ -58,13 +43,12 @@ firebase.initializeApp({
 
     console.log("profData constructor: ");
 
-    this.userProfile = firebase
-      .database()
-      .ref('/userProfile');
+    this.userProfile = firebase.database().ref('/userProfile');
     this.dataReference = firebase.database();
     if (this.currentUser != null) {
       this.updateInfo();
     }
+      
   }
 
   canEdit(num : number) : boolean {
@@ -102,29 +86,23 @@ firebase.initializeApp({
     window.localStorage.setItem('current-user', JSON.stringify(data));
   }
 */
-<<<<<<< Updated upstream
 
-  updateUser()
-  {
-=======
-    
     updateUser()
     {
         this.editedPeriods = [];
-      for(var i = 0; i < 10; i++) {
-          this.editedPeriods.push(0);
-      }
-        
->>>>>>> Stashed changes
-    console.log("in updateUSer / profdata");
-    this.currentUser = firebase
-      .auth()
-      .currentUser;
-    if (this.currentUser != null) {
-      this.updateInfo();
+          for(var i = 0; i < 10; i++) {
+              this.editedPeriods.push(0);
+          }
+
+        console.log("in updateUSer / profdata");
+        this.currentUser = firebase
+          .auth()
+          .currentUser;
+        if (this.currentUser != null) {
+          this.updateInfo();
+        }
+        console.log("this.currentUser = " + this.currentUser);
     }
-    console.log("this.currentUser = " + this.currentUser);
-  }
 
   getUsersSchool() : String {return this.usersSchool;}
 
