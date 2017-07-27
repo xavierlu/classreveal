@@ -64,7 +64,7 @@ export class SchoolListPage {
 
   chooseSchool(schoolName: string) {
 
-    if (schoolName === "") {
+    if (schoolName === "" || this.isEmoji(schoolName)) {
       let alert = this.alertCtrl.create({
         title: 'Please enter your school name or go back.',
         buttons: [
@@ -76,8 +76,37 @@ export class SchoolListPage {
       alert.present();
     }
     else {
-      this.profileData.updateSchool(schoolName.replace(" ", "_"));
-      this.navCtrl.pop();
+        
+      let alert = this.alertCtrl.create({
+          message: 'Choose ' + schoolName + ' ?',
+          buttons: [
+            {
+              text: 'No',
+            },
+            {
+              text: 'Yes',
+              handler: data1 => {
+                alert.dismiss();
+                 this.profileData.updateSchool(schoolName.replace(" ", "_"));
+                 this.navCtrl.pop();
+              }
+            }
+            ]
+          });
+        alert.present();  
+      
     }
+  }
+    
+    isEmoji(str : string) {
+    var ranges = [
+      '\ud83c[\udf00-\udfff]', // U+1F300 to U+1F3FF
+      '\ud83d[\udc00-\udeff]', // U+1F400 to U+1F6FF
+      '\ud83d[\ude80-\udeff]', // U+1F680 to U+1F6FF
+      '[$-/:-?{-~!"^_`\[\]]',
+      '[\u2600-\u27ff]',
+      '[1-9]'
+    ];
+    return str.match(ranges.join('|'));
   }
 }

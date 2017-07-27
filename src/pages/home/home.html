@@ -9,295 +9,321 @@
 <ion-content padding>
 
   <ion-list>
-    <div ion-item *ngIf="userProfile?.period1">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <h2>Period 1</h2>
-          </ion-col>
-          <ion-col>
-            <h2 color="primary" text-right>{{userProfile?.period1.replace("_"," ")}}</h2>
-          </ion-col>
-        </ion-row>
+      
 
-        <ion-row>
-          <ion-col col-12>
-            <button col-12 ion-button round color="period1" (click)="viewClass(1)">View Class</button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-12>
-            <button col-6 ion-button round outline small color="dark" icon-start (click)="editTeacher(1, userProfile?.period1.replace('_',' '))">
-          <ion-icon name='settings'></ion-icon>
-        </button>
-            <button col-6 ion-button round outline small icon-start color="dark" (click)="removeTeacher(1)">
-          <ion-icon name='trash'></ion-icon>
-        </button></ion-col>
-        </ion-row>
-      </ion-grid>
+      
+      
+      
+    <ion-item-sliding>
+        
+        <div ion-item *ngIf="userProfile?.period1">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <h2>Period 1</h2>
+              </ion-col>
+              <ion-col>
+                <h2 color="primary" text-right>{{userProfile?.period1.replace("_"," ")}}</h2>
+              </ion-col>
+            </ion-row>
 
-    </div>
+            <ion-row>
+              <ion-col col-12>
+                <button col-12 ion-button round color="period1" (click)="viewClass(1)">View Class</button>
+              </ion-col>
+            </ion-row>
+            
+          </ion-grid>
+        </div>
+        
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="removeTeacher(1)">
+            <ion-icon name="trash"></ion-icon>
+            Delete
+          </button>
+        </ion-item-options>
+        
+    </ion-item-sliding>
 
-    <div ion-item *ngIf="userProfile?.period2">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <h2>Period 2</h2>
-          </ion-col>
-          <ion-col>
-            <h2 color="primary" text-right>{{userProfile?.period2.replace("_"," ")}}</h2>
-          </ion-col>
-        </ion-row>
+    <ion-item-sliding>
+        
+        <div ion-item *ngIf="userProfile?.period2">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <h2>Period 2</h2>
+              </ion-col>
+              <ion-col>
+                <h2 color="primary" text-right>{{userProfile?.period2.replace("_"," ")}}</h2>
+              </ion-col>
+            </ion-row>
 
-        <ion-row>
-          <ion-col col-12>
-            <button col-12 ion-button round color="period2" (click)="viewClass(2)">View Class</button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-12>
-            <button col-6 ion-button round outline small color="dark" icon-start (click)="editTeacher(2, userProfile?.period2.replace('_',' '))">
-          <ion-icon name='settings'></ion-icon>
-        </button>
-            <button col-6 ion-button round outline small icon-start color="dark" (click)="removeTeacher(2)">
-          <ion-icon name='trash'></ion-icon>
-        </button></ion-col>
-        </ion-row>
-      </ion-grid>
+            <ion-row>
+              <ion-col col-12>
+                <button col-12 ion-button round color="period2" (click)="viewClass(2)">View Class</button>
+              </ion-col>
+            </ion-row>
+            
+          </ion-grid>
+        </div>
+        
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="removeTeacher(2)">
+            <ion-icon name="trash"></ion-icon>
+            Delete
+          </button>
+        </ion-item-options>
+        
+    </ion-item-sliding>
+      
+    <ion-item-sliding>
+        
+        <div ion-item *ngIf="userProfile?.period3">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <h2>Period 3</h2>
+              </ion-col>
+              <ion-col>
+                <h2 color="primary" text-right>{{userProfile?.period3.replace("_"," ")}}</h2>
+              </ion-col>
+            </ion-row>
 
-    </div>
+            <ion-row>
+              <ion-col col-12>
+                <button col-12 ion-button round color="period3" (click)="viewClass(3)">View Class</button>
+              </ion-col>
+            </ion-row>
+            
+          </ion-grid>
+        </div>
+        
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="removeTeacher(3)">
+            <ion-icon name="trash"></ion-icon>
+            Delete
+          </button>
+        </ion-item-options>
+        
+    </ion-item-sliding>
+      
+    <ion-item-sliding>
+        
+        <div ion-item *ngIf="userProfile?.period4">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <h2>Period 4</h2>
+              </ion-col>
+              <ion-col>
+                <h2 color="primary" text-right>{{userProfile?.period4.replace("_"," ")}}</h2>
+              </ion-col>
+            </ion-row>
 
-    <div ion-item *ngIf="userProfile?.period3">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <h2>Period 3</h2>
-          </ion-col>
-          <ion-col>
-            <h2 color="primary" text-right>{{userProfile?.period3.replace("_"," ")}}</h2>
-          </ion-col>
-        </ion-row>
+            <ion-row>
+              <ion-col col-12>
+                <button col-12 ion-button round color="period4" (click)="viewClass(4)">View Class</button>
+              </ion-col>
+            </ion-row>
+            
+          </ion-grid>
+        </div>
+        
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="removeTeacher(4)">
+            <ion-icon name="trash"></ion-icon>
+            Delete
+          </button>
+        </ion-item-options>
+        
+    </ion-item-sliding>
+      
+    <ion-item-sliding>
+        
+        <div ion-item *ngIf="userProfile?.period5">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <h2>Period 5</h2>
+              </ion-col>
+              <ion-col>
+                <h2 color="primary" text-right>{{userProfile?.period5.replace("_"," ")}}</h2>
+              </ion-col>
+            </ion-row>
 
-        <ion-row>
-          <ion-col col-12>
-            <button col-12 ion-button round color="period3" (click)="viewClass(3)">View Class</button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-12>
-            <button col-6 ion-button round outline small color="dark" icon-start (click)="editTeacher(3, userProfile?.period3.replace('_',' '))">
-          <ion-icon name='settings'></ion-icon>
-        </button>
-            <button col-6 ion-button round outline small icon-start color="dark" (click)="removeTeacher(3)">
-          <ion-icon name='trash'></ion-icon>
-        </button></ion-col>
-        </ion-row>
-      </ion-grid>
+            <ion-row>
+              <ion-col col-12>
+                <button col-12 ion-button round color="period5" (click)="viewClass(5)">View Class</button>
+              </ion-col>
+            </ion-row>
+            
+          </ion-grid>
+        </div>
+        
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="removeTeacher(5)">
+            <ion-icon name="trash"></ion-icon>
+            Delete
+          </button>
+        </ion-item-options>
+        
+    </ion-item-sliding>
+      
+    <ion-item-sliding>
+        
+        <div ion-item *ngIf="userProfile?.period6">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <h2>Period 6</h2>
+              </ion-col>
+              <ion-col>
+                <h2 color="primary" text-right>{{userProfile?.period6.replace("_"," ")}}</h2>
+              </ion-col>
+            </ion-row>
 
-    </div>
+            <ion-row>
+              <ion-col col-12>
+                <button col-12 ion-button round color="period6" (click)="viewClass(6)">View Class</button>
+              </ion-col>
+            </ion-row>
+            
+          </ion-grid>
+        </div>
+        
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="removeTeacher(6)">
+            <ion-icon name="trash"></ion-icon>
+            Delete
+          </button>
+        </ion-item-options>
+        
+    </ion-item-sliding>
+      
+    <ion-item-sliding>
+        
+        <div ion-item *ngIf="userProfile?.period7">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <h2>Period 7</h2>
+              </ion-col>
+              <ion-col>
+                <h2 color="primary" text-right>{{userProfile?.period7.replace("_"," ")}}</h2>
+              </ion-col>
+            </ion-row>
 
-    <div ion-item *ngIf="userProfile?.period4">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <h2>Period 4</h2>
-          </ion-col>
-          <ion-col>
-            <h2 color="primary" text-right>{{userProfile?.period4.replace("_"," ")}}</h2>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-12>
-            <button col-12 ion-button round color="period4" (click)="viewClass(4)">View Class</button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-12>
-            <button col-6 ion-button round outline small color="dark" icon-start (click)="editTeacher(4, userProfile?.period4.replace('_',' '))">
-          <ion-icon name='settings'></ion-icon>
-        </button>
-            <button col-6 ion-button round outline small icon-start color="dark" (click)="removeTeacher(4)">
-          <ion-icon name='trash'></ion-icon>
-        </button></ion-col>
-        </ion-row>
-      </ion-grid>
+            <ion-row>
+              <ion-col col-12>
+                <button col-12 ion-button round color="period7" (click)="viewClass(7)">View Class</button>
+              </ion-col>
+            </ion-row>
+            
+          </ion-grid>
+        </div>
+        
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="removeTeacher(7)">
+            <ion-icon name="trash"></ion-icon>
+            Delete
+          </button>
+        </ion-item-options>
+        
+    </ion-item-sliding>
+      
+    <ion-item-sliding>
+        
+        <div ion-item *ngIf="userProfile?.period8">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <h2>Period 8</h2>
+              </ion-col>
+              <ion-col>
+                <h2 color="primary" text-right>{{userProfile?.period8.replace("_"," ")}}</h2>
+              </ion-col>
+            </ion-row>
 
-    </div>
+            <ion-row>
+              <ion-col col-12>
+                <button col-12 ion-button round color="period8" (click)="viewClass(8)">View Class</button>
+              </ion-col>
+            </ion-row>
+            
+          </ion-grid>
+        </div>
+        
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="removeTeacher(8)">
+            <ion-icon name="trash"></ion-icon>
+            Delete
+          </button>
+        </ion-item-options>
+        
+    </ion-item-sliding>
+      
+    <ion-item-sliding>
+        
+        <div ion-item *ngIf="userProfile?.period9">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <h2>Period 9</h2>
+              </ion-col>
+              <ion-col>
+                <h2 color="primary" text-right>{{userProfile?.period9.replace("_"," ")}}</h2>
+              </ion-col>
+            </ion-row>
 
-    <div ion-item *ngIf="userProfile?.period5">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <h2>Period 5</h2>
-          </ion-col>
-          <ion-col>
-            <h2 color="primary" text-right>{{userProfile?.period5.replace("_"," ")}}</h2>
-          </ion-col>
-        </ion-row>
+            <ion-row>
+              <ion-col col-12>
+                <button col-12 ion-button round color="period9" (click)="viewClass(9)">View Class</button>
+              </ion-col>
+            </ion-row>
+            
+          </ion-grid>
+        </div>
+        
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="removeTeacher(9)">
+            <ion-icon name="trash"></ion-icon>
+            Delete
+          </button>
+        </ion-item-options>
+        
+    </ion-item-sliding>
+      
+    <ion-item-sliding>
+        
+        <div ion-item *ngIf="userProfile?.period10">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <h2>Period 10</h2>
+              </ion-col>
+              <ion-col>
+                <h2 color="primary" text-right>{{userProfile?.period10.replace("_"," ")}}</h2>
+              </ion-col>
+            </ion-row>
 
-        <ion-row>
-          <ion-col col-12>
-            <button col-12 ion-button round color="period5" (click)="viewClass(5)">View Class</button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-12>
-            <button col-6 ion-button round outline small color="dark" icon-start (click)="editTeacher(5, userProfile?.period5.replace('_',' '))">
-          <ion-icon name='settings'></ion-icon>
-        </button>
-            <button col-6 ion-button round outline small icon-start color="dark" (click)="removeTeacher(5)">
-          <ion-icon name='trash'></ion-icon>
-        </button></ion-col>
-        </ion-row>
-      </ion-grid>
-
-    </div>
-
-    <div ion-item *ngIf="userProfile?.period6">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <h2>Period 6</h2>
-          </ion-col>
-          <ion-col>
-            <h2 color="primary" text-right>{{userProfile?.period6.replace("_"," ")}}</h2>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col col-12>
-            <button col-12 ion-button round color="period6" (click)="viewClass(6)">View Class</button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-12>
-            <button col-6 ion-button round outline small color="dark" icon-start (click)="editTeacher(6, userProfile?.period6.replace('_',' '))">
-          <ion-icon name='settings'></ion-icon>
-        </button>
-            <button col-6 ion-button round outline small icon-start color="dark" (click)="removeTeacher(6)">
-          <ion-icon name='trash'></ion-icon>
-        </button></ion-col>
-        </ion-row>
-      </ion-grid>
-
-    </div>
-
-    <div ion-item *ngIf="userProfile?.period7">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <h2>Period 7</h2>
-          </ion-col>
-          <ion-col>
-            <h2 color="primary" text-right>{{userProfile?.period7.replace("_"," ")}}</h2>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col col-12>
-            <button col-12 ion-button round color="period7" (click)="viewClass(7)">View Class</button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-12>
-            <button col-6 ion-button round outline small color="dark" icon-start (click)="editTeacher(7, userProfile?.period7.replace('_',' '))">
-          <ion-icon name='settings'></ion-icon>
-        </button>
-            <button col-6 ion-button round outline small icon-start color="dark" (click)="removeTeacher(7)">
-          <ion-icon name='trash'></ion-icon>
-        </button></ion-col>
-        </ion-row>
-      </ion-grid>
-
-    </div>
-
-    <div ion-item *ngIf="userProfile?.period8">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <h2>Period 8</h2>
-          </ion-col>
-          <ion-col>
-            <h2 color="primary" text-right>{{userProfile?.period8.replace("_"," ")}}</h2>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col col-12>
-            <button col-12 ion-button round color="period8" (click)="viewClass(8)">View Class</button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-12>
-            <button col-6 ion-button round outline small color="dark" icon-start (click)="editTeacher(8, userProfile?.period8.replace('_',' '))">
-          <ion-icon name='settings'></ion-icon>
-        </button>
-            <button col-6 ion-button round outline small icon-start color="dark" (click)="removeTeacher(8)">
-          <ion-icon name='trash'></ion-icon>
-        </button></ion-col>
-        </ion-row>
-      </ion-grid>
-
-    </div>
-
-    <div ion-item *ngIf="userProfile?.period9">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <h2>Period 9</h2>
-          </ion-col>
-          <ion-col>
-            <h2 color="primary" text-right>{{userProfile?.period9.replace("_"," ")}}</h2>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col col-12>
-            <button col-12 ion-button round color="period9" (click)="viewClass(9)">View Class</button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-12>
-            <button col-6 ion-button round outline small color="dark" icon-start (click)="editTeacher(9, userProfile?.period9.replace('_',' '))">
-          <ion-icon name='settings'></ion-icon>
-        </button>
-            <button col-6 ion-button round outline small icon-start color="dark" (click)="removeTeacher(9)">
-          <ion-icon name='trash'></ion-icon>
-        </button></ion-col>
-        </ion-row>
-      </ion-grid>
-
-    </div>
-
-    <div ion-item *ngIf="userProfile?.period10">
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <h2>Period 10</h2>
-          </ion-col>
-          <ion-col>
-            <h2 color="primary" text-right>{{userProfile?.period10.replace("_"," ")}}</h2>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col col-12>
-            <button col-12 ion-button round color="period10" (click)="viewClass(10)">View Class</button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-12>
-            <button col-6 ion-button round outline small color="dark" icon-start (click)="editTeacher(10, userProfile?.period10.replace('_',' '))">
-          <ion-icon name='settings'></ion-icon>
-        </button>
-            <button col-6 ion-button round outline small icon-start color="dark" (click)="removeTeacher(10)">
-          <ion-icon name='trash'></ion-icon>
-        </button></ion-col>
-        </ion-row>
-      </ion-grid>
-
-    </div>
-
+            <ion-row>
+              <ion-col col-12>
+                <button col-12 ion-button round color="period10" (click)="viewClass(10)">View Class</button>
+              </ion-col>
+            </ion-row>
+            
+          </ion-grid>
+        </div>
+        
+        <ion-item-options side="right">
+          <button ion-button color="danger" (click)="removeTeacher(10)">
+            <ion-icon name="trash"></ion-icon>
+            Delete
+          </button>
+        </ion-item-options>
+        
+    </ion-item-sliding>
+      
     <br>
 
     <button ion-button ion-icon block outline (click)="addClass()">

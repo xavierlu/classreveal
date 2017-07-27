@@ -79,6 +79,8 @@ export class AuthData {
       console.log("logging out " + firebase.auth().currentUser.uid);
     }
 
+    this.profileData.clearInfo();
+      
     return firebase.auth().signOut().then(function () {
         console.log('Signed Out');
         }, function (error) {

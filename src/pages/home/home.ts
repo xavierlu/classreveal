@@ -42,10 +42,7 @@ export class HomePage {
 
   ionViewWillEnter() {
 
-    this
-      .profileData
-      .getUserProfile()
-      .on('value', (data) => {
+    this.profileData.getUserProfile().on('value', (data) => {
         this.userProfile = data.val();
         if (this.profileData.getUsersSchool() === '') {
           let alert = this
@@ -56,6 +53,9 @@ export class HomePage {
                 {
                   text: 'Settings',
                   handler: data => {
+                      
+                     alert.dismiss();
+                      
                     this
                       .navCtrl
                       .parent

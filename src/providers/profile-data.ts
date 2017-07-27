@@ -208,6 +208,23 @@ public editedPeriods = [];
         }
       });
   }
+    
+    clearInfo()
+    {
+         this.usersSchool = "";
+          this.period1 = "";
+        this.period2 = "";
+          this.period3 = "";
+          this.period4 = "";
+          this.period5 = "";
+          this.period6 = "";
+          this.period7 = "";
+          this.period8 = "";
+          this.period9 = "";
+          this.period10 = "";
+          this.firstName = "";
+          this.lastName = "";
+    }
 
   getUserProfile() : firebase.database.Reference {
     console.log(this.currentUser.uid);
@@ -218,11 +235,13 @@ public editedPeriods = [];
     return this.userProfile.child(firebase.auth().currentUser.uid);
   }
 
-  updateName(firstName : string, lastName : string) : firebase.Promise < any > {
-    if(this.isEmoji(firstName) || this.isEmoji(lastName)) {
-      throw new Error("slippery excuse me please me");
+  updateName(firstName1 : string, lastName1 : string) : firebase.Promise < any > {
+    if(this.isEmoji(firstName1) || this.isEmoji(lastName1)) {
+      throw new Error("Not a valid name.");
     }
-    return this.userProfile.child(this.currentUser.uid).update({firstName: firstName, lastName: lastName});
+    this.firstName = firstName1;
+      this.lastName = lastName1;
+    return this.userProfile.child(this.currentUser.uid).update({firstName: firstName1, lastName: lastName1});
   }
 
   updateGrade(gradeNumber : number) : firebase.Promise < any > {
@@ -276,7 +295,8 @@ public editedPeriods = [];
     if(!(this.usersSchool === newSchoolName))
     {
         //the newSchool is dif, so update everything
-    console.log("CHANGED TO NEW SCHOOL");
+        console.log("CHANGED TO NEW SCHOOL");
+        this.usersSchool = newSchoolName;
         for (var i = 1; i <= 10; i++) {
             this.updateTeacher("", i, String(this.getPeriod(+ i)));
         }
@@ -295,7 +315,7 @@ public editedPeriods = [];
             }
           });
 
-        this.usersSchool = newSchoolName;
+        
     }
 
     return this.userProfile.child(this.currentUser.uid).update({schoolName: newSchoolName});
