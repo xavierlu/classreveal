@@ -21,10 +21,10 @@ export class EditProfile {
 
   }
 
-    donePressed()
-    {
+  donePressed()
+  {
     this.navCtrl.pop();
-    }
+  }
     
   ionViewDidEnter() {
     this.profileData.getUserProfile().on('value', (data) => {
@@ -129,55 +129,67 @@ export class EditProfile {
   }
 
   updateEmail() {
-    let alert = this.alertCtrl.create({
-      title: 'Update email',
-      inputs: [
-        {
-          name: 'newEmail',
-          placeholder: 'Your new email',
-        },
-        {
-          name: 'password',
-          placeholder: 'Your password',
-          type: 'password'
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-        },
-        {
-          text: 'Save',
-          handler: data => {
-            this.profileData.updateEmail(data.newEmail, data.password).then(error => {
-              let alert2 = this.alertCtrl.create({
-                message: "Error",
-                buttons: [
-                  {
-                    text: "OK",
-                    role: 'cancel'
-                  }
-                ]
+    try{
+      let alert = this.alertCtrl.create({
+        title: 'Update email',
+        inputs: [
+          {
+            name: 'newEmail',
+            placeholder: 'Your new email',
+          },
+          {
+            name: 'password',
+            placeholder: 'Your password',
+            type: 'password'
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+          },
+          {
+            text: 'Save',
+            handler: data => {
+              this.profileData.updateEmail(data.newEmail, data.password).then(data => {
+                let alert2 = this.alertCtrl.create({
+                  message: "Success",
+                  buttons: [
+                    {
+                      text: "OK",
+                      role: 'cancel'
+                    }
+                  ]
+                });
+                alert2.present();
+              }, error => {
+                let alert2 = this.alertCtrl.create({
+                  message: error.message,
+                  buttons: [
+                    {
+                      text: "OK",
+                      role: 'cancel'
+                    }
+                  ]
+                });
+                alert2.present();
               });
-              alert2.present();
-            }, authData => {
-              let alert2 = this.alertCtrl.create({
-                message: "Successfully updated",
-                buttons: [
-                  {
-                    text: "OK",
-                    role: 'cancel'
-                  }
-                ]
-              });
-              alert2.present();
             }
-            );
           }
-        }
-      ]
-    });
-    alert.present();
+        ]
+      });
+      alert.present();
+    }catch(e){
+      let alert2 = this.alertCtrl.create({
+        message: e.message,
+        buttons: [
+          {
+            text: "OK",
+            role: 'cancel'
+          }
+        ]
+      });
+      alert2.present();
+    }
   }
 
   updatePassword() {
@@ -202,20 +214,21 @@ export class EditProfile {
         {
           text: 'Save',
           handler: data => {
-            this.profileData.updatePassword(data.newPassword, data.oldPassword).then(error => {
+            try{
+              this.profileData.updatePassword(data.oldPassword, data.newPassword).then(data => {
+                let alert2 = this.alertCtrl.create({
+                  message: "Successfully updated",
+                  buttons: [
+                    {
+                      text: "OK",
+                      role: 'cancel'
+                    }
+                  ]
+                });
+                alert2.present();
+            }, error => {
               let alert2 = this.alertCtrl.create({
-                message: "Error",
-                buttons: [
-                  {
-                    text: "OK",
-                    role: 'cancel'
-                  }
-                ]
-              });
-              alert2.present();
-            }, authData => {
-              let alert2 = this.alertCtrl.create({
-                message: "Successfully updated",
+                message: error.message,
                 buttons: [
                   {
                     text: "OK",
@@ -225,6 +238,18 @@ export class EditProfile {
               });
               alert2.present();
             });
+            }catch(e){
+              let alert2 = this.alertCtrl.create({
+                message: e.message,
+                buttons: [
+                  {
+                    text: "OK",
+                    role: 'cancel'
+                  }
+                ]
+              });
+              alert2.present();
+            }
           }
         }
       ]

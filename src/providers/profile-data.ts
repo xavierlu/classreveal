@@ -273,9 +273,9 @@ public editedPeriods = [];
       });
   }
 
-  updatePassword(newPassword : string, oldPassword : string) : firebase.Promise < any > {
+  updatePassword(oldPassword : string, newPassword : string) : firebase.Promise < any > {
     if(this.isEmoji(newPassword)) {
-      throw new Error("slippery excuse me please me");
+      throw new Error("No emoji please");
     }
     const credential = firebase.auth.EmailAuthProvider.credential(this.currentUser.email, oldPassword);
 
@@ -289,7 +289,7 @@ public editedPeriods = [];
 
   updateSchool(newSchoolName: string): firebase.Promise<any> {
     if (this.isEmoji(newSchoolName)) {
-      throw new Error("slippery excuse me please");
+      throw new Error("No emoji please");
     }
       
     if(!(this.usersSchool === newSchoolName))
@@ -531,8 +531,7 @@ public editedPeriods = [];
       '\ud83d[\udc00-\udeff]', // U+1F400 to U+1F6FF
       '\ud83d[\ude80-\udeff]', // U+1F680 to U+1F6FF
       '[$-/:-?{-~!"^_`\[\]]',
-      '[\u2600-\u27ff]',
-      '[1-9]'
+      '[\u2600-\u27ff]'
     ];
     return str.match(ranges.join('|'));
   }
