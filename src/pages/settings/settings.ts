@@ -1,5 +1,5 @@
 import {NavController, AlertController, ActionSheetController} from 'ionic-angular';
-import {Component} from '@angular/core';
+import {Component, ApplicationRef} from '@angular/core';
 import {ProfileData} from '../../providers/profile-data';
 import {AuthData} from '../../providers/auth-data';
 import {LoginPage} from '../login/login';
@@ -14,24 +14,46 @@ export class SettingsPage {
   public userProfile : any;
   //  public birthDate: string;
   loading : any;
+    
+    public schoolName = "hafjkh";
+    private firstName = "";
+    public lastName = "";
+    public email = "";
+    public instagram = "";
+    public snapchat = "";
+    public twitter = "";
+    public obj = {schoolName: "", firstName: "", lastName: "", email: "", instagram: "", snapchat: "", twitter: ""};
 
-  constructor(public navCtrl : NavController, public profileData : ProfileData, public authData : AuthData, public alertCtrl : AlertController, public actionSheetCtrl : ActionSheetController) {}
+
+  constructor(public navCtrl : NavController, public profileData : ProfileData, public authData : AuthData, public alertCtrl : AlertController, public actionSheetCtrl : ActionSheetController, public ar: ApplicationRef) {
+      
+    console.log("settings constructor");
+  }
 
   editPressed()
   {
-    this
-      .navCtrl
-      .push(EditProfile);
+      //send data to edit page
+      
+    this.navCtrl.push(EditProfile);
   }
 
-  ionViewDidEnter() {
-    this
-      .profileData
-      .getUserProfile()
-      .on('value', (data) => {
-        this.userProfile = data.val();
-        //   this.birthDate = this.userProfile.birthDate;
-      });
+  ionViewWillEnter() {
+     
+      var data = JSON.parse(window.localStorage.getItem('current-user-data'));
+      
+      this.obj.schoolName = data.school;
+      this.obj.firstName = data.firstName;
+      this.obj.lastName = data.lastName;
+      this.obj.email = data.email;
+      this.obj.instagram = data.instagram;
+      this.obj.twitter = data.twitter;
+      this.obj.snapchat = data.snapchat;
+      
+      console.log("SETTINGS: " + this.firstName);
+    console.log(data);
+    console.log(this.obj);
+       
+    this.ar.tick();
   }
 
   logOut() {

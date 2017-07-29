@@ -78,7 +78,7 @@ export class SchoolListPage {
     else {
         
       let alert = this.alertCtrl.create({
-          message: 'Choose ' + schoolName + ' ?',
+          message: 'Choose ' + schoolName.replace("_"," ") + ' ?',
           buttons: [
             {
               text: 'No',

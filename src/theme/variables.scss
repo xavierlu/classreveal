@@ -30,18 +30,32 @@ $colors: (
   light:      #f4f4f4,
   dark:       #222,
     orangeYel: #ffe20c,
-    period1: #ffb74d,
-    period2: #47CBFF,
-    period3: #32db64,
-    period4: #FF5733, 
-    period5: #F35DF3,
-    period6: #C9F35D,
-    period7: #FFC300,
-    period8: #C252FF, 
-    period9: #900C3F,
-    period10: #52E4FF
+    editPage: #edd417,
+    period1: #fabf9e,
+period2: #faa387,
+period3: #fcd194,
+period4: #fad185,
+period5: #f0d6a8,
+period6: #faa878,
+period7: #fa873d,
+period8: #f57000,
+period9: #d16103,
+period10: #9e4d0a
 );
 
+$text-input-md-highlight-color: #999;
+$text-input-md-show-success-highlight:      false;
+$text-input-md-show-error-highlight:        false;
+
+$text-input-md-show-focus-highlight: false;
+/// @prop - Color of the input highlight when valid
+$text-input-highlight-color-valid:       #999 !default;
+
+/// @prop - Color of the input highlight when invalid
+$text-input-highlight-color-invalid:     #999 !default;
+
+/// @prop - Color of the input placeholder
+$text-input-placeholder-color:           #999 !default;
 
 // App iOS Variables
 // --------------------------------------------------

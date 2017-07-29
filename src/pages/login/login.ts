@@ -43,7 +43,10 @@ export class LoginPage {
     } else {
       this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password).then(authData => {
         this.loading.dismiss().then(() => {
+            
+            this.authData.updateUserProf();
           this.nav.setRoot(TabsPage);
+            
         });
       }, error => {
         this.loading.dismiss().then(() => {

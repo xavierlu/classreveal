@@ -14,9 +14,9 @@
       
       
       
-    <ion-item-sliding>
+    <ion-item-sliding [hidden]="!userProfile?.period1">
         
-        <div ion-item *ngIf="userProfile?.period1">
+        <div ion-item>
           <ion-grid>
             <ion-row>
               <ion-col>
@@ -45,9 +45,9 @@
         
     </ion-item-sliding>
 
-    <ion-item-sliding>
+    <ion-item-sliding [hidden]="!userProfile?.period2">
         
-        <div ion-item *ngIf="userProfile?.period2">
+        <div ion-item>
           <ion-grid>
             <ion-row>
               <ion-col>
@@ -76,9 +76,9 @@
         
     </ion-item-sliding>
       
-    <ion-item-sliding>
+    <ion-item-sliding [hidden]="!userProfile?.period3">
         
-        <div ion-item *ngIf="userProfile?.period3">
+        <div ion-item>
           <ion-grid>
             <ion-row>
               <ion-col>
@@ -107,9 +107,9 @@
         
     </ion-item-sliding>
       
-    <ion-item-sliding>
+    <ion-item-sliding [hidden]="!userProfile?.period4">
         
-        <div ion-item *ngIf="userProfile?.period4">
+        <div ion-item>
           <ion-grid>
             <ion-row>
               <ion-col>
@@ -138,9 +138,9 @@
         
     </ion-item-sliding>
       
-    <ion-item-sliding>
+    <ion-item-sliding [hidden]="!userProfile?.period5">
         
-        <div ion-item *ngIf="userProfile?.period5">
+        <div ion-item>
           <ion-grid>
             <ion-row>
               <ion-col>
@@ -169,9 +169,9 @@
         
     </ion-item-sliding>
       
-    <ion-item-sliding>
+    <ion-item-sliding [hidden]="!userProfile?.period6">
         
-        <div ion-item *ngIf="userProfile?.period6">
+        <div ion-item>
           <ion-grid>
             <ion-row>
               <ion-col>
@@ -200,9 +200,9 @@
         
     </ion-item-sliding>
       
-    <ion-item-sliding>
+    <ion-item-sliding [hidden]="!userProfile?.period7">
         
-        <div ion-item *ngIf="userProfile?.period7">
+        <div ion-item>
           <ion-grid>
             <ion-row>
               <ion-col>
@@ -231,9 +231,9 @@
         
     </ion-item-sliding>
       
-    <ion-item-sliding>
+    <ion-item-sliding [hidden]="!userProfile?.period8">
         
-        <div ion-item *ngIf="userProfile?.period8">
+        <div ion-item>
           <ion-grid>
             <ion-row>
               <ion-col>
@@ -262,9 +262,9 @@
         
     </ion-item-sliding>
       
-    <ion-item-sliding>
+    <ion-item-sliding [hidden]="!userProfile?.period9">
         
-        <div ion-item *ngIf="userProfile?.period9">
+        <div ion-item>
           <ion-grid>
             <ion-row>
               <ion-col>
@@ -293,9 +293,9 @@
         
     </ion-item-sliding>
       
-    <ion-item-sliding>
+    <ion-item-sliding [hidden]="!userProfile?.period10">
         
-        <div ion-item *ngIf="userProfile?.period10">
+        <div ion-item >
           <ion-grid>
             <ion-row>
               <ion-col>
@@ -326,7 +326,7 @@
       
     <br>
 
-    <button ion-button ion-icon block outline (click)="addClass()">
+    <button  ion-button ion-icon block outline (click)="addClass()">
       Add Class
     </button>
 

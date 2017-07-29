@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, ApplicationRef } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
@@ -32,18 +32,20 @@ export class MyApp {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
           console.log("authChange: user found: " + firebase.auth().currentUser.uid);
-        var data = {
-          thisUser: firebase.auth().currentUser
-        };
-        window.localStorage.setItem('current-user', JSON.stringify(data));
-          console.log("data packaged: thisUser ");
-    console.log(data.thisUser);
+            var data = {
+              thisUser: firebase.auth().currentUser
+            };
+            window.localStorage.setItem('current-user', JSON.stringify(data));
+              console.log("data packaged: thisUser ");
+        console.log(data.thisUser);
         
-    this.profData.updateUser();
+          this.profData.updateUser();
           
         this.rootPage = TabsPage;
-      } else {
-          console.log("authChange: user not found: " + firebase.auth().currentUser);
+          
+        } 
+        else {
+          console.log("authChange: user NOT found: " + firebase.auth().currentUser);
           
           firebase.auth().signOut().then(function() {
           console.log('Signed Out');
@@ -51,7 +53,7 @@ export class MyApp {
         }, function(error) {
           console.error('Sign Out Error', error);
         });
-
+    this.profData.clearInfo();
         this.rootPage = LoginPage;
       }
     });

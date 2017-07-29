@@ -20,7 +20,11 @@ export class ProfileData {
   public period10 = "";
   public firstName = "";
   public lastName = "";
-
+  public twitter = "";
+    public instagram = "";
+    public snapchat = "";
+    public email = "";
+    public grade = 1;
 
 public editedPeriods = [];
 
@@ -31,23 +35,25 @@ public editedPeriods = [];
           this.editedPeriods.push(0);
       }
       
-   // this.currentUser = firebase.auth().currentUser;
-    firebase.initializeApp({
-      apiKey: "AIzaSyArtrcZzDp_OEquRaiwxPQ9K--Wx0fw0nU",
-      authDomain: "classreveal-3146f.firebaseapp.com",
-      databaseURL: "https://classreveal-3146f.firebaseio.com",
-      projectId: "classreveal-3146f",
-      storageBucket: "classreveal-3146f.appspot.com",
-      messagingSenderId: "691736012118"
-    });
+       // this.currentUser = firebase.auth().currentUser;
+        firebase.initializeApp({
+          apiKey: "AIzaSyArtrcZzDp_OEquRaiwxPQ9K--Wx0fw0nU",
+          authDomain: "classreveal-3146f.firebaseapp.com",
+          databaseURL: "https://classreveal-3146f.firebaseio.com",
+          projectId: "classreveal-3146f",
+          storageBucket: "classreveal-3146f.appspot.com",
+          messagingSenderId: "691736012118"
+        });
 
-    console.log("profData constructor: ");
+        console.log("profData constructor: ");
 
-    this.userProfile = firebase.database().ref('/userProfile');
-    this.dataReference = firebase.database();
-    if (this.currentUser != null) {
-      this.updateInfo();
-    }
+        this.userProfile = firebase.database().ref('/userProfile');
+      
+        this.dataReference = firebase.database();
+      
+        if (this.currentUser != null) {
+          this.updateInfo();
+        }
       
   }
 
@@ -59,8 +65,11 @@ public editedPeriods = [];
     this.editedPeriods[num - 1] = 1;
   }
 
-  /*
+  
   loadLocalStorage() {
+      
+    console.log("LOCAL STORAGE");
+      
     var data = {
       school: this.usersSchool,
       per1: this.period1,
@@ -72,20 +81,18 @@ public editedPeriods = [];
       per7: this.period7,
       per8: this.period8,
       per9: this.period9,
-      per10: this.period10
+      per10: this.period10,
+        twitter: this.twitter,
+        instagram: this.instagram,
+        snapchat: this.snapchat,
+        firstName: this.firstName,
+        lastName: this.lastName, 
+        email: this.email
     };
+    console.log(data);
     window.localStorage.setItem('current-user-data', JSON.stringify(data));
   }
 
-  setUser(user: any) {
-    this.currentUser = user;
-    //this.updateInfo();
-    var data = {
-      thisUser: user
-    };
-    window.localStorage.setItem('current-user', JSON.stringify(data));
-  }
-*/
 
     updateUser()
     {
@@ -95,9 +102,7 @@ public editedPeriods = [];
           }
 
         console.log("in updateUSer / profdata");
-        this.currentUser = firebase
-          .auth()
-          .currentUser;
+        this.currentUser = firebase.auth().currentUser;
         if (this.currentUser != null) {
           this.updateInfo();
         }
@@ -136,6 +141,8 @@ public editedPeriods = [];
   }
 
   updateInfo() {
+      this.currentUser = firebase.auth().currentUser;
+    console.log("UPDATE INFO");
     this
       .userProfile
       .child(this.currentUser.uid)
@@ -206,11 +213,33 @@ public editedPeriods = [];
             .val()
             .lastName;
         }
+        if (snapshot.hasChild('snapchat')) {
+          this.snapchat = snapshot
+            .val()
+            .snapchat;
+        }
+          if (snapshot.hasChild('instagram')) {
+          this.instagram = snapshot
+            .val()
+            .instagram;
+        }
+          if (snapshot.hasChild('twitter')) {
+          this.twitter = snapshot
+            .val()
+            .twitter;
+        } 
+        if(snapshot.hasChild('email')) {
+            this.email = snapshot.val().email;
+        }
+          this.loadLocalStorage();
       });
+      
+    
   }
     
     clearInfo()
     {
+    console.log("CLEAR INFO");
          this.usersSchool = "";
           this.period1 = "";
         this.period2 = "";
@@ -224,6 +253,11 @@ public editedPeriods = [];
           this.period10 = "";
           this.firstName = "";
           this.lastName = "";
+        this.snapchat = "";
+        this.instagram = "";
+        this.twitter = "";
+        this.email = "";
+    this.loadLocalStorage();
     }
 
   getUserProfile() : firebase.database.Reference {
@@ -235,16 +269,43 @@ public editedPeriods = [];
     return this.userProfile.child(firebase.auth().currentUser.uid);
   }
 
+    updateSnapchat(snap: string) : firebase.Promise < any >
+    {
+        this.snapchat = snap;
+        this.loadLocalStorage();
+        
+            return this.userProfile.child(this.currentUser.uid).update({snapchat: snap});
+        
+    }
+    
+    
+    updateTwitter(snap: string) : firebase.Promise < any >
+    {
+        this.twitter = snap;
+        this.loadLocalStorage();
+            return this.userProfile.child(this.currentUser.uid).update({twitter: snap});
+    }
+    
+    updateInstagram(snap: string) : firebase.Promise < any >
+    {
+        this.instagram = snap;
+        this.loadLocalStorage();
+            return this.userProfile.child(this.currentUser.uid).update({instagram: snap});
+    }
+    
   updateName(firstName1 : string, lastName1 : string) : firebase.Promise < any > {
     if(this.isEmoji(firstName1) || this.isEmoji(lastName1)) {
       throw new Error("Not a valid name.");
     }
     this.firstName = firstName1;
       this.lastName = lastName1;
+      this.loadLocalStorage();
     return this.userProfile.child(this.currentUser.uid).update({firstName: firstName1, lastName: lastName1});
   }
 
   updateGrade(gradeNumber : number) : firebase.Promise < any > {
+      this.grade = gradeNumber;
+      this.loadLocalStorage();
     return this
       .userProfile
       .child(this.currentUser.uid)
@@ -257,6 +318,9 @@ public editedPeriods = [];
       .EmailAuthProvider
       .credential(this.currentUser.email, password);
 
+      this.email = newEmail;
+      this.loadLocalStorage();
+      
     return this
       .currentUser
       .reauthenticate(credential)
@@ -273,9 +337,9 @@ public editedPeriods = [];
       });
   }
 
-  updatePassword(newPassword : string, oldPassword : string) : firebase.Promise < any > {
+  updatePassword(oldPassword : string, newPassword : string) : firebase.Promise < any > {
     if(this.isEmoji(newPassword)) {
-      throw new Error("slippery excuse me please me");
+      throw new Error("No emoji please");
     }
     const credential = firebase.auth.EmailAuthProvider.credential(this.currentUser.email, oldPassword);
 
@@ -289,7 +353,7 @@ public editedPeriods = [];
 
   updateSchool(newSchoolName: string): firebase.Promise<any> {
     if (this.isEmoji(newSchoolName)) {
-      throw new Error("slippery excuse me please");
+      throw new Error("No emoji please");
     }
       
     if(!(this.usersSchool === newSchoolName))
@@ -297,6 +361,8 @@ public editedPeriods = [];
         //the newSchool is dif, so update everything
         console.log("CHANGED TO NEW SCHOOL");
         this.usersSchool = newSchoolName;
+        this.loadLocalStorage();
+        
         for (var i = 1; i <= 10; i++) {
             this.updateTeacher("", i, String(this.getPeriod(+ i)));
         }
@@ -315,8 +381,7 @@ public editedPeriods = [];
             }
           });
 
-        
-    }
+        }
 
     return this.userProfile.child(this.currentUser.uid).update({schoolName: newSchoolName});
   }
@@ -446,6 +511,7 @@ public editedPeriods = [];
         switch (periodNumber) {
           case 1:
             this.period1 = newTeacherName;
+              this.loadLocalStorage();
             return this
               .userProfile
               .child(this.currentUser.uid)
@@ -453,6 +519,7 @@ public editedPeriods = [];
 
           case 2:
             this.period2 = newTeacherName;
+              this.loadLocalStorage();
             return this
               .userProfile
               .child(this.currentUser.uid)
@@ -460,6 +527,7 @@ public editedPeriods = [];
 
           case 3:
             this.period3 = newTeacherName;
+              this.loadLocalStorage();
             return this
               .userProfile
               .child(this.currentUser.uid)
@@ -467,6 +535,7 @@ public editedPeriods = [];
 
           case 4:
             this.period4 = newTeacherName;
+              this.loadLocalStorage();
             return this
               .userProfile
               .child(this.currentUser.uid)
@@ -474,6 +543,7 @@ public editedPeriods = [];
 
           case 5:
             this.period5 = newTeacherName;
+              this.loadLocalStorage();
             return this
               .userProfile
               .child(this.currentUser.uid)
@@ -481,6 +551,7 @@ public editedPeriods = [];
 
           case 6:
             this.period6 = newTeacherName;
+              this.loadLocalStorage();
             return this
               .userProfile
               .child(this.currentUser.uid)
@@ -488,6 +559,7 @@ public editedPeriods = [];
 
           case 7:
             this.period7 = newTeacherName;
+              this.loadLocalStorage();
             return this
               .userProfile
               .child(this.currentUser.uid)
@@ -495,23 +567,27 @@ public editedPeriods = [];
 
           case 8:
             this.period8 = newTeacherName;
+              this.loadLocalStorage();
             return this
               .userProfile
               .child(this.currentUser.uid)
               .update({period8: newTeacherName});
           case 9:
             this.period9 = newTeacherName;
+              this.loadLocalStorage();
             return this
               .userProfile
               .child(this.currentUser.uid)
               .update({period9: newTeacherName});
           case 10:
             this.period10 = newTeacherName;
+              this.loadLocalStorage();
             return this
               .userProfile
               .child(this.currentUser.uid)
               .update({period10: newTeacherName});
         }
+
 
     }
 
@@ -531,8 +607,7 @@ public editedPeriods = [];
       '\ud83d[\udc00-\udeff]', // U+1F400 to U+1F6FF
       '\ud83d[\ude80-\udeff]', // U+1F680 to U+1F6FF
       '[$-/:-?{-~!"^_`\[\]]',
-      '[\u2600-\u27ff]',
-      '[1-9]'
+      '[\u2600-\u27ff]'
     ];
     return str.match(ranges.join('|'));
   }
