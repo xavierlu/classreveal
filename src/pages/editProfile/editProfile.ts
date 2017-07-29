@@ -199,7 +199,6 @@ public lastName = "";
 
   updateEmail() {
 
-
     try{
       let alert = this.alertCtrl.create({
         title: 'Update login email',
