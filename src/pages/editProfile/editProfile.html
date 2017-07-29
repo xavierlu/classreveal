@@ -7,11 +7,12 @@
 <ion-header>
   <ion-navbar color='orangeYel'>
     <ion-title>Edit</ion-title>
-    <ion-buttons end>
-      <!--  <button ion-button icon-only (click)="donePressed()">
-          done
+
+      <ion-buttons right>
+       <button ion-button icon-only (click)="donePressed()">
+          save
         </button>
-      -->
+    
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -21,88 +22,70 @@
         <text-avatar-profile *ngIf="userProfile?.firstName" [text]="userProfile?.firstName" [color]="userProfile?.firstName.color"></text-avatar-profile>
     -->
 
-  <ion-list>
+  
     <ion-list-header>
       Personal Information
     </ion-list-header>
+      
+  <ion-list>
+    <ion-item>
+    <ion-label color="editPage" fixed>First Name</ion-label>
+    <ion-input [(ngModel)]="firstName" type="firstName" placeholder="First name"></ion-input>
+  </ion-item>
+      
+      <ion-item>
+    <ion-label color="editPage" fixed>Last Name </ion-label>
+    <ion-input [(ngModel)]="lastName" type="lastName" placeholder="Last name"></ion-input>
+  </ion-item>
+      
+    </ion-list>
+    
+    <br>
+    
+    
+    
+    <ion-list>
+    <ion-list-header>
+        Social Media
+    </ion-list-header>
+    
+    <ion-item>
+    <ion-label color="editPage" fixed><ion-icon name="logo-instagram"></ion-icon> Instagram</ion-label>
+    <ion-input [(ngModel)]="instagram" type="text" placeholder="Instagram name"></ion-input>
+  </ion-item>
 
-    <ion-item (click)="updateName()">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6>
-            <p color="orangeYel">Name</p>
-          </ion-col>
-          <ion-col *ngIf="userProfile?.firstName || userProfile?.lastName">
-            {{userProfile?.firstName}} {{userProfile?.lastName}}
-          </ion-col>
-          <ion-col class="placeholder-profile" *ngIf="!userProfile?.firstName">
-            <span>
-              Tap here to edit.
-            </span>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
+      <ion-item>
+    <ion-label color="editPage" fixed><ion-icon name="logo-snapchat"></ion-icon>     Snapchat</ion-label>
+    <ion-input [(ngModel)]="snapchat" type="snapchat" placeholder="Snapchat name"></ion-input>
+  </ion-item>
+      
+      <ion-item>
+    <ion-label color="editPage" fixed><ion-icon name="logo-twitter"></ion-icon>     Twitter</ion-label>
+    <ion-input [(ngModel)]="twitter" type="twitter" placeholder="Twitter handle"></ion-input>
+  </ion-item>
+      
 
-    <ion-item (click)="updateGrade()">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6>
-            <p color="orangeYel">Grade Level</p>
-          </ion-col>
-          <ion-col *ngIf="userProfile?.grade">
-            {{userProfile?.grade}}
-          </ion-col>
-          <ion-col class="placeholder-profile" *ngIf="!userProfile?.grade">
-            <span>
-              Tap to change
-            </span>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
+    </ion-list>
+    
+    <br>
 
-  </ion-list>
   <ion-list>
 
     <ion-list-header>
-      Account Information - note that you can only change your school 3 times.
+      Account Information
     </ion-list-header>
 
     <ion-item (click)="updateEmail()">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6>
-            <p color="orangeYel">Email</p>
-          </ion-col>
-          <ion-col col-6 *ngIf="userProfile?.email">
-            {{userProfile?.email}}
-          </ion-col>
-          <ion-col class="placeholder-profile" *ngIf="!userProfile?.email">
-            <span>
-              Tap here to edit.
-            </span>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+      <ion-label color="editPage" fixed>Email</ion-label>
+    <ion-input disabled="true" value="{{email}}"></ion-input>
     </ion-item>
 
     <ion-item (click)="updateSchool()">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6>
-            <p color="orangeYel">School</p>
-          </ion-col>
-          <ion-col col-6 *ngIf="userProfile?.schoolName">
-            {{userProfile?.schoolName.replace("_"," ")}}
-          </ion-col>
-          <ion-col class="placeholder-profile" *ngIf="!userProfile?.schoolName">
-            <span>
-              Tap here to edit.
-            </span>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+      <ion-label color="editPage" fixed>School</ion-label>
+    <ion-input disabled="true" value="{{schoolName.replace('_',' ')}}"></ion-input>
     </ion-item>
+
+    <button col-12 ion-button round color="orangeYel" (click)="updatePassword()">Change Password</button>
+
   </ion-list>
 </ion-content>

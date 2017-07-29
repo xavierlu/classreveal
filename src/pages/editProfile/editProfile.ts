@@ -1,10 +1,13 @@
 import { NavController, AlertController, ActionSheetController } from 'ionic-angular';
-import { Component } from '@angular/core';
+import { Component, ApplicationRef } from '@angular/core';
 import { ProfileData } from '../../providers/profile-data';
 import { AuthData } from '../../providers/auth-data';
 import { LoginPage } from '../login/login';
 import { ListPage } from '../list/list';
 import { SchoolListPage } from '../schoolList/schoolList';
+
+import { SettingsPage } from '../settings/settings';
+
 
 @Component({
   selector: 'page-editProfile',
@@ -14,23 +17,89 @@ export class EditProfile {
   public userProfile: any;
   //  public birthDate: string;
   loading: any;
-
+public schoolName = "";
+    public firstName = "";
+public lastName = "";
+    public email = "";
+    public OLDschoolName = "";
+    public OLDfirstName = "";
+    public OLDlastName = "";
+    public OLDemail = "";
+    public instagram = "";
+    public snapchat = "";
+     public OLDinstagram = "";
+    public OLDsnapchat = "";
+    public twitter = "";
+    public OLDtwitter = "";
+    
   constructor(public navCtrl: NavController, public profileData: ProfileData,
-    public authData: AuthData, public alertCtrl: AlertController, public actionSheetCtrl: ActionSheetController) {
+    public authData: AuthData, public alertCtrl: AlertController, public actionSheetCtrl: ActionSheetController, public ar: ApplicationRef) {
 
+    console.log("edit profile constructor");
 
   }
 
+
+
     donePressed()
     {
-    this.navCtrl.pop();
+        
+        //update everything
+        
+        if(!(this.OLDfirstName === this.firstName) || !(this.OLDlastName === this.lastName))
+        {
+            console.log("name changed... lets update it");
+            
+            this.profileData.updateName(this.firstName, this.lastName)
+        }
+        if(!(this.OLDsnapchat === this.snapchat))
+        {
+            console.log("snap changed... lets update it");
+            
+            this.profileData.updateSnapchat(this.snapchat);
+        }
+        if(!(this.OLDtwitter === this.twitter))
+        {
+            console.log("twitter changed... lets update it");
+            
+            this.profileData.updateTwitter(this.twitter);
+        }
+        if(!(this.OLDinstagram === this.instagram))
+        {
+            console.log("insta changed... lets update it");
+            
+            this.profileData.updateInstagram(this.instagram);
+        }
+        
+        
+        this.navCtrl.pop(SettingsPage);
     }
+
+
     
-  ionViewDidEnter() {
-    this.profileData.getUserProfile().on('value', (data) => {
-      this.userProfile = data.val();
-      //   this.birthDate = this.userProfile.birthDate;
-    });
+   
+  ionViewWillEnter() {
+      
+      var data = JSON.parse(window.localStorage.getItem('current-user-data'));
+      
+      this.schoolName = data.school;
+      this.firstName = data.firstName;
+      this.lastName = data.lastName;
+      this.email = data.email;
+      this.OLDschoolName = data.school;
+      this.OLDfirstName = data.firstName;
+      this.OLDlastName = data.lastName;
+      this.OLDemail = data.email;
+      this.instagram = data.instagram;
+      this.OLDinstagram = data.instagram;
+      this.twitter = data.twitter;
+      this.OLDtwitter = data.twitter;
+      this.snapchat = data.snapchat;
+      this.OLDsnapchat = data.snapchat;
+      
+    console.log("EDIT PROFILE " + this.firstName);
+      
+      this.ar.tick();
   }
 
   logOut() {
@@ -129,55 +198,70 @@ export class EditProfile {
   }
 
   updateEmail() {
-    let alert = this.alertCtrl.create({
-      title: 'Update email',
-      inputs: [
-        {
-          name: 'newEmail',
-          placeholder: 'Your new email',
-        },
-        {
-          name: 'password',
-          placeholder: 'Your password',
-          type: 'password'
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-        },
-        {
-          text: 'Save',
-          handler: data => {
-            this.profileData.updateEmail(data.newEmail, data.password).then(error => {
-              let alert2 = this.alertCtrl.create({
-                message: "Error",
-                buttons: [
-                  {
-                    text: "OK",
-                    role: 'cancel'
-                  }
-                ]
+
+
+    try{
+      let alert = this.alertCtrl.create({
+        title: 'Update login email',
+
+        inputs: [
+          {
+            name: 'newEmail',
+            placeholder: 'Your new email',
+          },
+          {
+            name: 'password',
+            placeholder: 'Your password',
+            type: 'password'
+          },
+        ],
+        buttons: [
+          {
+            text: 'Cancel',
+          },
+          {
+            text: 'Save',
+            handler: data => {
+              this.profileData.updateEmail(data.newEmail, data.password).then(data => {
+                let alert2 = this.alertCtrl.create({
+                  message: "Success",
+                  buttons: [
+                    {
+                      text: "OK",
+                      role: 'cancel'
+                    }
+                  ]
+                });
+                alert2.present();
+              }, error => {
+                let alert2 = this.alertCtrl.create({
+                  message: error.message,
+                  buttons: [
+                    {
+                      text: "OK",
+                      role: 'cancel'
+                    }
+                  ]
+                });
+                alert2.present();
               });
-              alert2.present();
-            }, authData => {
-              let alert2 = this.alertCtrl.create({
-                message: "Successfully updated",
-                buttons: [
-                  {
-                    text: "OK",
-                    role: 'cancel'
-                  }
-                ]
-              });
-              alert2.present();
             }
-            );
           }
-        }
-      ]
-    });
-    alert.present();
+        ]
+      });
+      alert.present();
+    }catch(e){
+      let alert2 = this.alertCtrl.create({
+        message: e.message,
+        buttons: [
+          {
+            text: "OK",
+            role: 'cancel'
+          }
+        ]
+      });
+      alert2.present();
+    }
   }
 
   updatePassword() {
@@ -202,20 +286,21 @@ export class EditProfile {
         {
           text: 'Save',
           handler: data => {
-            this.profileData.updatePassword(data.newPassword, data.oldPassword).then(error => {
+            try{
+              this.profileData.updatePassword(data.oldPassword, data.newPassword).then(data => {
+                let alert2 = this.alertCtrl.create({
+                  message: "Successfully updated",
+                  buttons: [
+                    {
+                      text: "OK",
+                      role: 'cancel'
+                    }
+                  ]
+                });
+                alert2.present();
+            }, error => {
               let alert2 = this.alertCtrl.create({
-                message: "Error",
-                buttons: [
-                  {
-                    text: "OK",
-                    role: 'cancel'
-                  }
-                ]
-              });
-              alert2.present();
-            }, authData => {
-              let alert2 = this.alertCtrl.create({
-                message: "Successfully updated",
+                message: error.message,
                 buttons: [
                   {
                     text: "OK",
@@ -225,6 +310,18 @@ export class EditProfile {
               });
               alert2.present();
             });
+            }catch(e){
+              let alert2 = this.alertCtrl.create({
+                message: e.message,
+                buttons: [
+                  {
+                    text: "OK",
+                    role: 'cancel'
+                  }
+                ]
+              });
+              alert2.present();
+            }
           }
         }
       ]
@@ -232,29 +329,7 @@ export class EditProfile {
     alert.present();
   }
 
-  updateTeacher(periodNumber: number) {
-    var data = {
-      period: periodNumber,
-      prevTeacher: this.profileData.getPeriod(periodNumber)
-    };
-    console.log("School - " + this.profileData.getUsersSchool());
-    if (this.profileData.getUsersSchool() === '') {
-      let alert = this.alertCtrl.create({
-        title: 'Please enter your school name',
-        buttons: [
-          {
-            text: 'Ok',
-          }
-        ]
-      });
-      alert.present();
-    }
-    else {
-      window.localStorage.setItem('current-modifying-peroid', JSON.stringify(data));
-      this.navCtrl.push(ListPage);
-    }
-
-  }
+  
 
   updateSchool() {
     this.navCtrl.push(SchoolListPage);

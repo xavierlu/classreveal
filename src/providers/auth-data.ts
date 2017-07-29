@@ -18,27 +18,26 @@ export class AuthData {
       console.log("login user");
       console.log(firebase.auth().currentUser.uid);
     }
-    this
-      .profileData
-      .updateUser();
+    
     console.log(email + " " + password);
+    
     return firebase
       .auth()
       .signInWithEmailAndPassword(email, password);
+     // this.profileData.updateUser();
 
   }
+    
+    updateUserProf()
+    {
+    console.log("auth - updateuser");
+        this.profileData.updateUser();
+    }
 
-  /**
-   * [signupUser description]
-   * This function will take the user's email and password and create a new account on the Firebase app, once it does
-   * it's going to log the user in and create a node on userProfile/uid with the user's email address, you can use
-   * that node to store the profile information.
-   * @param  {string} email    [User's email address]
-   * @param  {string} password [User's password]
-   */
+  
   signupUser(email : string, password : string, firstname : string, lastname : string) : firebase.Promise < any > {
     if(firebase.auth().currentUser == null) {
-      console.log("current user is null!");
+        console.log("SIGN UP USER: current user is null!");
     } else {
       console.log(firebase.auth().currentUser.uid);
     }
