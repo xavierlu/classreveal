@@ -8,9 +8,14 @@
 
 <ion-content>
 
-    <br/>
-    <ion-item><h1>Teacher: {{teacher.replace("_"," ")}}</h1></ion-item>
-    
+  <br/>
+  <ion-item>
+    <h1>Teacher: {{teacher.replace("_"," ")}}</h1>
+  </ion-item>
+
+  <div *ngIf="isLoading" class="spinner-container">
+    <ion-spinner name="dots"></ion-spinner>
+  </div>
 
   <ion-list>
     <button ion-item *ngFor="let name of names" (click)="presentClassmateInfo(name.uid)">

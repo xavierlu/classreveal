@@ -19,12 +19,13 @@
   <ion-card>
 
     <ion-card-content>
-      Search for your teacher! Please enter the first AND last name of your teacher. This will make sure two teacher with the same last name will have different classes.
+      Search for your teacher! Please enter the first AND last name of your teacher. This will make sure two teacher with the same
+      last name will have different classes.
     </ion-card-content>
 
   </ion-card>
 
-  <div *ngIf="searching" class="spinner-container">
+  <div *ngIf="searching || isLoading" class="spinner-container">
     <ion-spinner name="dots"></ion-spinner>
   </div>
 

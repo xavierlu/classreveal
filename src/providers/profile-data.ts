@@ -294,6 +294,7 @@ public editedPeriods = [];
     }
     
   updateName(firstName1 : string, lastName1 : string) : firebase.Promise < any > {
+    console.log(this.isEmoji(firstName1) + " " + firstName1);
     if(this.isEmoji(firstName1) || this.isEmoji(lastName1)) {
       throw new Error("Not a valid name.");
     }
