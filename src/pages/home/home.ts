@@ -11,6 +11,7 @@ import firebase from "firebase";
 export class HomePage {
   public userProfile: any;
   public inEditMode = false;
+  private isLoading: boolean = false;
 
   // @ViewChild("1") sketchElement: ElementRef;
 
@@ -46,6 +47,7 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
+    this.isLoading = true;
     this.profileData.getUserProfile().on("value", data => {
       this.userProfile = data.val();
 
@@ -77,6 +79,7 @@ export class HomePage {
         });
         alert.present();
       }
+      this.isLoading = false;
     });
   }
 

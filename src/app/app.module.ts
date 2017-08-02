@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule, ApplicationRef } from "@angular/core";
 import { IonicApp, IonicErrorHandler, IonicModule } from "ionic-angular";
 import { IonicStorageModule } from "@ionic/storage";
 import { SplashScreen } from "@ionic-native/splash-screen";
+import { Network } from "@ionic-native/network";
 import { StatusBar } from "@ionic-native/status-bar";
 import { AngularFireModule } from "angularfire2";
 
@@ -88,7 +89,7 @@ export const firebaseConfig = {
     SchoolData,
     StatusBar,
     SocialSharing,
-    SplashScreen,
+    Network,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
