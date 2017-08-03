@@ -26,6 +26,7 @@
     "@ionic-native/wheel-selector": "^3.12.1",
     "@ionic/storage": "2.0.1",
     "angularfire2": "^2.0.0-beta.8",
+    "cordova-ios": "^4.4.0",
     "cordova-plugin-console": "1.0.5",
     "cordova-plugin-device": "1.1.4",
     "cordova-plugin-splashscreen": "~4.0.1",
@@ -67,6 +68,9 @@
       "cordova-plugin-statusbar": {},
       "cordova-plugin-whitelist": {},
       "ionic-plugin-keyboard": {}
-    }
+    },
+    "platforms": [
+      "ios"
+    ]
   }
 }

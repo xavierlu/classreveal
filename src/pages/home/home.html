@@ -12,6 +12,7 @@
     <div *ngIf="isLoading" class="spinner-container">
       <ion-spinner name="dots"></ion-spinner>
     </div>
+      
     <ion-item-sliding [hidden]="!userProfile?.period1">
 
       <ion-item-options side="left">
@@ -28,7 +29,7 @@
               <h2>Period 1</h2>
             </ion-col>
             <ion-col>
-              <h2 color="primary" text-right>{{userProfile?.period1.replace("_"," ")}}</h2>
+              <h2 text-right>{{userProfile?.period1.replace("_"," ")}}</h2>
             </ion-col>
           </ion-row>
 

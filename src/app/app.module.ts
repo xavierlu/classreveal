@@ -25,6 +25,8 @@ import { ListStudent } from "../pages/list-student/list-student";
 
 import { EditProfile } from "../pages/editProfile/editProfile";
 
+import { ViewPerson } from "../pages/viewPerson/viewPerson";
+
 import { SchoolListPage } from "../pages/schoolList/schoolList";
 import { TextAvatarDirective } from "../directives/text-avatar/text-avatar";
 
@@ -53,7 +55,8 @@ export const firebaseConfig = {
     ListStudent,
     SchoolListPage,
     TextAvatarDirective,
-    EditProfile
+    EditProfile,
+      ViewPerson
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,8 @@ export const firebaseConfig = {
     ListPage,
     ListStudent,
     SchoolListPage,
-    EditProfile
+    EditProfile,
+      ViewPerson
   ],
   providers: [
     StatusBar,

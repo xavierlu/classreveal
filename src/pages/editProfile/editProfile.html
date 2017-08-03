@@ -50,17 +50,17 @@
     </ion-list-header>
     
     <ion-item>
-    <ion-label color="editPage" fixed><ion-icon name="logo-instagram"></ion-icon> Instagram</ion-label>
+    <ion-label color="instagram" fixed><ion-icon name="logo-instagram"></ion-icon> Instagram</ion-label>
     <ion-input [(ngModel)]="instagram" type="text" placeholder="Instagram name"></ion-input>
   </ion-item>
 
       <ion-item>
-    <ion-label color="editPage" fixed><ion-icon name="logo-snapchat"></ion-icon>     Snapchat</ion-label>
+    <ion-label color="snapchat" fixed><ion-icon name="logo-snapchat"></ion-icon>     Snapchat</ion-label>
     <ion-input [(ngModel)]="snapchat" type="snapchat" placeholder="Snapchat name"></ion-input>
   </ion-item>
       
       <ion-item>
-    <ion-label color="editPage" fixed><ion-icon name="logo-twitter"></ion-icon>     Twitter</ion-label>
+    <ion-label color="twitter" fixed><ion-icon name="logo-twitter"></ion-icon>     Twitter</ion-label>
     <ion-input [(ngModel)]="twitter" type="twitter" placeholder="Twitter handle"></ion-input>
   </ion-item>
       
@@ -72,7 +72,7 @@
   <ion-list>
 
     <ion-list-header>
-      Account Information
+      Account Information - click to edit
     </ion-list-header>
 
     <ion-item (click)="updateEmail()">

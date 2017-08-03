@@ -77,7 +77,8 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-
+    this.presentLoading();
+        
       this.storage.get("introShown").then(result => {
         if (result) {
           this.rootPage = TabsPage;

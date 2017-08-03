@@ -5,6 +5,7 @@ import { Observable } from "rxjs/Rx";
 import { ProfileData } from "../../providers/profile-data";
 import firebase from "firebase";
 
+import { ViewPerson } from "../viewPerson/viewPerson";
 import { SocialSharing } from "@ionic-native/social-sharing";
 
 /**
@@ -25,7 +26,7 @@ export class ListStudent {
   private periodNum = 0;
   private message = "";
   private url = "";
-  private isLoading: boolean = false;
+  private isLoading: boolean = true;
 
   constructor(
     public navCtrl: NavController,
@@ -193,4 +194,16 @@ export class ListStudent {
     console.log("URL:");
     console.log(this.url);
   }
+    
+    
+    presentClassmateInfo(uid: string)
+    {
+        var data = {
+            id: uid
+        };
+        console.log(data);
+        window.localStorage.setItem("classmates-user-id", JSON.stringify(data));
+        
+        this.navCtrl.push(ViewPerson);
+    }
 }

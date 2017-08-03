@@ -7,6 +7,8 @@ import { ConnectivityService } from "../../providers/ConnectivityService";
 import { ListPage } from "../list/list";
 import firebase from "firebase";
 
+import {AuthData} from '../../providers/auth-data';
+
 @Component({ selector: "page-home", templateUrl: "home.html" })
 export class HomePage {
   public userProfile: any;
@@ -41,9 +43,16 @@ export class HomePage {
     public navCtrl: NavController,
     angFire: AngularFire,
     public profileData: ProfileData,
-    public connectivityService: ConnectivityService
+    public connectivityService: ConnectivityService,
+      public authData : AuthData
   ) {
     console.log("home page constructor");
+      
+          if(firebase.auth().currentUser == null)
+          {
+            console.log("logging out");
+              
+          }
   }
 
   ionViewWillEnter() {
@@ -56,14 +65,14 @@ export class HomePage {
           title: "Please check your network connection",
           buttons: [
             {
-              text: "Fine"
+              text: "Ok"
             }
           ]
         });
         alert.present();
       }
 
-      if (this.profileData.getUsersSchool() === "") {
+      if (this.userProfile.schoolName == "") {
         let alert = this.alertCtrl.create({
           title: "Please enter your school name in Settings",
           buttons: [
@@ -79,8 +88,10 @@ export class HomePage {
         });
         alert.present();
       }
+    console.log("HERE");
       this.isLoading = false;
     });
+      this.isLoading = false;
   }
 
   addClass() {
