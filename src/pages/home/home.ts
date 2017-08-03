@@ -197,7 +197,7 @@ export class HomePage {
           if (!this.profileData.canEdit(periodNumber)) {
             let alert = this.alertCtrl.create({
               title:
-                "Stop stalking your crush. You may only change your class once per session.",
+                "Stop stalking your crush. You may only change your class once per day.",
               buttons: [
                 {
                   text: "Fine I won't stalk"
@@ -225,7 +225,7 @@ export class HomePage {
       console.log("in can edit");
       let alertToConfirm = this.alertCtrl.create({
         title:
-          "Do you want to change this teacher? You may only do so once per session.",
+          "Do you want to change this teacher? You may only do so once per day.",
         buttons: [
           {
             text: "Yes",
@@ -268,7 +268,7 @@ export class HomePage {
     } else {
       let alert = this.alertCtrl.create({
         title:
-          "Stop stalking your crush. You may only change your class once per session.",
+          "Stop stalking your crush. You may only change your class once per day.",
         buttons: [
           {
             text: "Fine I won't stalk"
