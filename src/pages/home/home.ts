@@ -8,7 +8,7 @@ import { ListPage } from "../list/list";
 import firebase from "firebase";
 
 import { LoginPage } from "../login/login";
-import {AuthData} from '../../providers/auth-data';
+import { AuthData } from "../../providers/auth-data";
 
 @Component({ selector: "page-home", templateUrl: "home.html" })
 export class HomePage {
@@ -45,16 +45,16 @@ export class HomePage {
     angFire: AngularFire,
     public profileData: ProfileData,
     public connectivityService: ConnectivityService,
-      public authData : AuthData
+    public authData: AuthData
   ) {
     console.log("home page constructor");
-      
-          if(firebase.auth().currentUser == null)
-          {
-            console.log("logging out");
-            this.authData.logoutUser();
-            this.navCtrl.setRoot(LoginPage);
-          }
+
+    if (firebase.auth().currentUser == null) {
+      console.log("logging out");
+      this.authData.logoutUser().then(() => {
+        this.navCtrl.setRoot(LoginPage);
+      });
+    }
   }
 
   ionViewWillEnter() {
@@ -90,10 +90,10 @@ export class HomePage {
         });
         alert.present();
       }
-    console.log("HERE");
+      console.log("HERE");
       this.isLoading = false;
     });
-      this.isLoading = false;
+    this.isLoading = false;
   }
 
   addClass() {
