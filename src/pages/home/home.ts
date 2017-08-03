@@ -7,6 +7,7 @@ import { ConnectivityService } from "../../providers/ConnectivityService";
 import { ListPage } from "../list/list";
 import firebase from "firebase";
 
+import { LoginPage } from "../login/login";
 import {AuthData} from '../../providers/auth-data';
 
 @Component({ selector: "page-home", templateUrl: "home.html" })
@@ -51,7 +52,8 @@ export class HomePage {
           if(firebase.auth().currentUser == null)
           {
             console.log("logging out");
-              
+            this.authData.logoutUser();
+            this.navCtrl.setRoot(LoginPage);
           }
   }
 

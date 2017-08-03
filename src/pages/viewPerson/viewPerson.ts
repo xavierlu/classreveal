@@ -1,4 +1,4 @@
-import {NavController, AlertController, ActionSheetController} from 'ionic-angular';
+import {NavController, AlertController, ActionSheetController, LoadingController} from 'ionic-angular';
 import {Component, ApplicationRef} from '@angular/core';
 import firebase from "firebase";
 import {TextAvatarDirective} from '../../directives/text-avatar/text-avatar';
@@ -28,8 +28,9 @@ public data: any;
   public snapchat = "";
 
 
-  constructor(public navCtrl : NavController, public ar: ApplicationRef) {
-      
+  constructor(public navCtrl : NavController, public ar: ApplicationRef, public loadingCtrl: LoadingController) {
+      this.loading = this.loadingCtrl.create();
+      this.loading.present();
     console.log("view classmate constructor");
   }
 
@@ -135,23 +136,13 @@ firebase.database().ref('/userProfile').child(userID).once("value", snapshot => 
             this.classesShared.push({teacherName: this.period10, periodNumber: '0'});
         }
 
-      
-      console.log("VIEW CLASSMATE COMPARISON");
-    console.log(this.classesShared);
+      this.loading.dismiss()
     
     
     
     });
   }
-    
- 
 
-  
-
-checkPeriods() {
-    
-    
-}
 
     
 }

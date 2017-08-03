@@ -24,7 +24,7 @@ export class ListStudent {
   public names = new Array();
   public teacher = "";
   private periodNum = 0;
-  private message = "";
+  public message = "";
   private url = "";
   private isLoading: boolean = true;
 
@@ -116,83 +116,26 @@ export class ListStudent {
   }
 
   shareClass() {
-    if (this.plt.is("ios")) {
-      // This will only print when on iOS
-      console.log("I am an iOS device!");
-
-      firebase
-        .database()
-        .ref("/shareURLs/")
-        .once("value")
-        .then(function(snapshot) {
-          console.log("IOS");
-          //   this.url = "";
-          //console.log(this.url);
-          var ur = snapshot.child("ios").val();
-          console.log(ur);
-          this.message =
-            this.message +
-            "Wanna see who is in your classes? Download Class Reveal: " +
-            this.url;
-          this.socialSharing.share(
-            this.message,
-            "Class Reveal rocks!",
-            null,
-            ur
-          );
-        });
-    } else if (this.plt.is("android")) {
-      // This will only print when on iOS
-      console.log("I am an android device!");
-
-      firebase
-        .database()
-        .ref("/shareURLs/")
-        .once("value")
-        .then(function(snapshot) {
-          console.log("ANDROID");
-          //   this.url = "";
-          //console.log(this.url);
-          var ur = snapshot.child("android").val();
-          console.log(ur);
-          this.message =
-            this.message +
-            "Wanna see who is in your classes? Download Class Reveal: " +
-            this.url;
-          this.socialSharing.share(
-            this.message,
-            "Class Reveal rocks!",
-            null,
-            ur
-          );
-        });
-    } else {
-      console.log("I am another device!");
-
-      firebase
-        .database()
-        .ref("/shareURLs/")
-        .once("value")
-        .then(function(snapshot) {
-          console.log("OTHER");
-          //   this.url = "";
-          //console.log(this.url);
+      
+      var m = this.message;
+      var socSharing = this.socialSharing;
+      
+      firebase.database().ref("/shareURLs/").once("value").then(function(snapshot) {
+          
           var ur = snapshot.child("other").val();
           console.log(ur);
-          this.message =
-            this.message +
-            "Wanna see who is in your classes? Download Class Reveal: " +
-            this.url;
-          this.socialSharing.share(
-            this.message,
-            "Class Reveal rocks!",
-            null,
-            ur
-          );
+          console.log(m);
+       // console.log(this.message);
+        
+          m = m + "Wanna see who is in your classes? Download Class Reveal: " + ur;
+            socSharing.shareWithOptions({
+                  message: m
+            }).then(() => {
+                console.log('Shared!');
+              }).catch((err) => {
+                console.log('Oops, something went wrong:', err);
+              });
         });
-    }
-    console.log("URL:");
-    console.log(this.url);
   }
     
     
