@@ -97,8 +97,8 @@ export class ListPage {
             var data = JSON.parse(
               window.localStorage.getItem("current-modifying-peroid")
             );
-
-            teacherName = teacherName.replace(" ", "_");
+            
+              teacherName = teacherName.trim().replace(" ", "_");
             if (teacherName === "" || teacherName.split("_").length < 2) {
               let alert = this.alertCtrl.create({
                 title: "Please enter your teacher's full name or go back.",
@@ -110,12 +110,14 @@ export class ListPage {
               });
               alert.present();
             } else {
+                if(data.prevTeacher !== teacherName)
+                {
               this.profileData.edited(data.period);
               this.profileData.updateTeacher(
                 teacherName,
                 data.period,
                 data.prevTeacher
-              );
+                ); }
               this.navCtrl.pop();
             }
           }

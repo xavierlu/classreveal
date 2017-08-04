@@ -6,7 +6,8 @@ import { SchoolData } from "../../providers/school-data";
 import "rxjs/add/operator/debounceTime";
 import { AngularFire } from "angularfire2";
 import { Observable } from "rxjs/Rx";
-
+import firebase from "firebase";
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the school list page.
  * There is a search bar at the top.
@@ -28,7 +29,8 @@ export class SchoolListPage {
     public profileData: ProfileData,
     public dataService: SchoolData,
     public angFire: AngularFire,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+private storage: Storage
   ) {
     this.searchControl = new FormControl();
 
@@ -75,7 +77,8 @@ export class SchoolListPage {
       alert.present();
     } else {
       let alert = this.alertCtrl.create({
-        message: "Choose " + schoolName.replace("_", " ") + " ?",
+        title: "Choose " + schoolName.replace("_", " ") + " ?",
+          message: "NOTE: You may not change your school later.",
         buttons: [
           {
             text: "No"
@@ -85,6 +88,7 @@ export class SchoolListPage {
             handler: data1 => {
               alert.dismiss();
               this.profileData.updateSchool(schoolName.replace(" ", "_"));
+                this.storage.set("canChangeSchool" + firebase.auth().currentUser.uid, false);
               this.navCtrl.pop();
             }
           }

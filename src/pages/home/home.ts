@@ -7,6 +7,7 @@ import { ConnectivityService } from "../../providers/ConnectivityService";
 import { ListPage } from "../list/list";
 import firebase from "firebase";
 
+import { Storage } from '@ionic/storage';
 import { LoginPage } from "../login/login";
 import { AuthData } from "../../providers/auth-data";
 
@@ -45,7 +46,8 @@ export class HomePage {
     angFire: AngularFire,
     public profileData: ProfileData,
     public connectivityService: ConnectivityService,
-    public authData: AuthData
+public authData: AuthData,
+private storage: Storage
   ) {
     console.log("home page constructor");
 
@@ -54,7 +56,7 @@ export class HomePage {
       this.authData.logoutUser().then(() => {
         this.navCtrl.setRoot(LoginPage);
       });
-    }
+    } 
   }
 
   ionViewWillEnter() {
@@ -207,24 +209,72 @@ export class HomePage {
           });
           alert.present();
         } else {
-          if (!this.profileData.canEdit(periodNumber)) {
-            let alert = this.alertCtrl.create({
-              title:
-                "Stop stalking your crush. You may only change your class once per day.",
-              buttons: [
-                {
-                  text: "Fine I won't stalk"
-                }
-              ]
-            });
-            alert.present();
-          } else {
-            window.localStorage.setItem(
-              "current-modifying-peroid",
-              JSON.stringify(data)
-            );
-            this.navCtrl.push(ListPage);
-          }
+            
+            
+            this.storage.get("period-" + periodNumber + firebase.auth().currentUser.uid).then((val) => {
+                console.log("val " + val);
+                if(val == null || val == undefined || (Math.round(new Date().getTime() / 1000) - val) / 86400 >= 1){
+                        //return true;
+
+                        let alertToConfirm = this.alertCtrl.create({
+                            title:
+                              "Do you want to change this teacher? You may only do so once per day.",
+                            buttons: [
+                              {
+                                text: "Yes",
+                                handler: data1 => {
+                                  var data = {
+                                    period: +periodNumber,
+                                    prevTeacher: this.profileData.getPeriod(+periodNumber)
+                                  };
+                                  if (this.profileData.getUsersSchool() === "") {
+                                    let alert = this.alertCtrl.create({
+                                      title: "Please enter your school name in settings",
+                                      buttons: [
+                                        {
+                                          text: "Settings",
+                                          handler: data => {
+                                            this.navCtrl.parent.select(1);
+                                          }
+                                        }
+                                      ]
+                                    });
+
+                                    console.log("edited period" + periodNumber);
+                                    alert.present();
+                                  } else {
+                                    //   this.profileData.edited(periodNumber);
+                                    window.localStorage.setItem(
+                                      "current-modifying-peroid",
+                                      JSON.stringify(data)
+                                    );
+                                    this.navCtrl.push(ListPage);
+                                  }
+                                }
+                              },
+                              {
+                                text: "No"
+                              }
+                            ]
+                          });
+                          alertToConfirm.present();
+
+                    }
+                      else{
+                          let alert = this.alertCtrl.create({
+                              title: "Sorry...",
+                            message:
+                              "Due to student and teacher privacy, you may only change your class once per day.",
+                            buttons: [
+                              {
+                                text: "Ok"
+                              }
+                            ]
+                          });
+                          alert.present();
+                      }
+              });
+
         }
       }
     });
@@ -232,64 +282,74 @@ export class HomePage {
   }
 
   editTeacher(periodNumber: number) {
-    console.log("EDIT TEACHER - " + this.profileData.canEdit(periodNumber));
+    console.log("EDIT TEACHER");
 
-    if (this.profileData.canEdit(periodNumber)) {
-      console.log("in can edit");
-      let alertToConfirm = this.alertCtrl.create({
-        title:
-          "Do you want to change this teacher? You may only do so once per day.",
-        buttons: [
-          {
-            text: "Yes",
-            handler: data1 => {
-              var data = {
-                period: +periodNumber,
-                prevTeacher: this.profileData.getPeriod(+periodNumber)
-              };
-              if (this.profileData.getUsersSchool() === "") {
-                let alert = this.alertCtrl.create({
-                  title: "Please enter your school name in settings",
-                  buttons: [
-                    {
-                      text: "Settings",
-                      handler: data => {
-                        this.navCtrl.parent.select(1);
+      
+        this.storage.get("period-" + periodNumber + firebase.auth().currentUser.uid).then((val) => {
+        console.log("val " + val);
+        if(val == null || val == undefined || (Math.round(new Date().getTime() / 1000) - val) / 86400 >= 1){
+                //return true;
+                
+                let alertToConfirm = this.alertCtrl.create({
+                    title:
+                      "Do you want to change this teacher? You may only do so once per day.",
+                    buttons: [
+                      {
+                        text: "Yes",
+                        handler: data1 => {
+                          var data = {
+                            period: +periodNumber,
+                            prevTeacher: this.profileData.getPeriod(+periodNumber)
+                          };
+                          if (this.profileData.getUsersSchool() === "") {
+                            let alert = this.alertCtrl.create({
+                              title: "Please enter your school name in settings",
+                              buttons: [
+                                {
+                                  text: "Settings",
+                                  handler: data => {
+                                    this.navCtrl.parent.select(1);
+                                  }
+                                }
+                              ]
+                            });
+
+                            console.log("edited period" + periodNumber);
+                            alert.present();
+                          } else {
+                            //   this.profileData.edited(periodNumber);
+                            window.localStorage.setItem(
+                              "current-modifying-peroid",
+                              JSON.stringify(data)
+                            );
+                            this.navCtrl.push(ListPage);
+                          }
+                        }
+                      },
+                      {
+                        text: "No"
                       }
-                    }
-                  ]
-                });
-
-                console.log("edited period" + periodNumber);
-                alert.present();
-              } else {
-                //   this.profileData.edited(periodNumber);
-                window.localStorage.setItem(
-                  "current-modifying-peroid",
-                  JSON.stringify(data)
-                );
-                this.navCtrl.push(ListPage);
-              }
+                    ]
+                  });
+                  alertToConfirm.present();
+                
             }
-          },
-          {
-            text: "No"
-          }
-        ]
+              else{
+                  let alert = this.alertCtrl.create({
+                      title: "Sorry...",
+                    message:
+                      "Due to student and teacher privacy, you may only change your class once per day.",
+                    buttons: [
+                      {
+                        text: "Ok"
+                      }
+                    ]
+                  });
+                  alert.present();
+              }
       });
-      alertToConfirm.present();
-    } else {
-      let alert = this.alertCtrl.create({
-        title:
-          "Stop stalking your crush. You may only change your class once per day.",
-        buttons: [
-          {
-            text: "Fine I won't stalk"
-          }
-        ]
-      });
-      alert.present();
-    }
+      
+      
   }
 
   removeTeacher(periodNumber: number) {
@@ -297,7 +357,8 @@ export class HomePage {
       window.localStorage.getItem("current-modifying-peroid")
     );
     let alert = this.alertCtrl.create({
-      message: "Unenroll Period" + periodNumber + " ?",
+      title: "Unenroll Period " + periodNumber + " ?",
+        message: "Are you sure? Remember you may only change your class once a day.",
       buttons: [
         {
           text: "Cancel"

@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import firebase from "firebase";
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class ProfileData {
@@ -26,7 +27,7 @@ export class ProfileData {
   public email = "";
   public grade = 1;
 
-  constructor() {
+  constructor(private storage: Storage) {
     // this.currentUser = firebase.auth().currentUser;
     firebase.initializeApp({
       apiKey: "AIzaSyArtrcZzDp_OEquRaiwxPQ9K--Wx0fw0nU",
@@ -49,23 +50,40 @@ export class ProfileData {
   }
 
   canEdit(num: number): boolean {
-    var data = JSON.parse(window.localStorage.getItem("period-" + num));
-    try {
-      return (
-        (Math.round(new Date().getTime() / 1000) - data.timestamp) / 86400 >= 1
-      );
-    } catch (e) {
-      return true;
+      
+    try{
+        this.storage.get("period-" + num + this.currentUser.uid).then((val) => {
+        console.log("val " + val);
+            if(val == null || val == undefined){
+                return true;
+            }
+            console.log((Math.round(new Date().getTime() / 1000) - val) / 86400);
+           try {
+          return (
+            (Math.round(new Date().getTime() / 1000) - val) / 86400 >= 1
+          );
+        } catch (e) {
+          return true;
+        }
+      });
+      }
+    catch(e) {
+        return false;
     }
+
   }
 
   edited(num: number) {
     var data = {
       timestamp: Math.round(new Date().getTime() / 1000)
     };
-    window.localStorage.setItem("period-" + num, JSON.stringify(data));
+      
+      this.storage.set("period-" + num + this.currentUser.uid, data.timestamp);
+      
   }
 
+
+    
   loadLocalStorage() {
     console.log("LOCAL STORAGE");
 

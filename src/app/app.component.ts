@@ -42,12 +42,6 @@ export class MyApp {
         console.log(
           "authChange: user found: " + firebase.auth().currentUser.uid
         );
-        var data = {
-          thisUser: firebase.auth().currentUser
-        };
-        window.localStorage.setItem("current-user", JSON.stringify(data));
-        console.log("data packaged: thisUser ");
-        console.log(data.thisUser);
 
         this.profData.updateUser();
 

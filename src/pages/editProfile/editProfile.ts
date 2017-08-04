@@ -11,6 +11,9 @@ import { ListPage } from "../list/list";
 import { SchoolListPage } from "../schoolList/schoolList";
 import { ConnectivityService } from "../../providers/ConnectivityService";
 import { SettingsPage } from "../settings/settings";
+import firebase from "firebase";
+
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: "page-editProfile",
@@ -42,7 +45,8 @@ export class EditProfile {
     public alertCtrl: AlertController,
     public actionSheetCtrl: ActionSheetController,
     public ar: ApplicationRef,
-    public connectivityService: ConnectivityService
+    public connectivityService: ConnectivityService,
+private storage: Storage
   ) {
     console.log("edit profile constructor");
   }
@@ -358,6 +362,48 @@ export class EditProfile {
   }
 
   updateSchool() {
-    this.navCtrl.push(SchoolListPage);
+      
+    //console.log(this.profileData.canChangeSchool());
+      
+      
+        this.storage.get("canChangeSchool" + firebase.auth().currentUser.uid).then((val) => {
+            console.log("val " + val);
+            if(val == null || val == true){
+                //return true;
+                let alert = this.alertCtrl.create({
+              title: "Change school?",
+                  message: "NOTE: You may only change your school once due to privacy.",
+              buttons: [
+                {
+                  text: "Cancel"
+                },
+                {
+                  text: "Continue",
+                  handler: data => {
+
+                        this.navCtrl.push(SchoolListPage);
+                    }
+                }
+              ]
+            });
+            alert.present();
+                
+                
+            }
+            else{
+                let alert = this.alertCtrl.create({
+              title: "Cannot change school",
+                  message: "Due to privacy, you may not change your school. Please delete your account and select the correct school.",
+              buttons: [
+                {
+                  text: "Ok"
+                }
+              ]
+            });
+            alert.present();
+            }
+        });
+      
+      
   }
 }
