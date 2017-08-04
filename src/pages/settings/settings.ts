@@ -78,6 +78,11 @@ export class SettingsPage {
        
     this.ar.tick();
   }
+    
+ionViewDidEnter() {
+    
+    this.ar.tick();
+}
 
   logOut() {
     this
