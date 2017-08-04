@@ -7,6 +7,7 @@ import { ConnectivityService } from "../../providers/ConnectivityService";
 import { ListPage } from "../list/list";
 import firebase from "firebase";
 
+import { SocialSharing } from "@ionic-native/social-sharing";
 import { Storage } from '@ionic/storage';
 import { LoginPage } from "../login/login";
 import { AuthData } from "../../providers/auth-data";
@@ -47,7 +48,8 @@ export class HomePage {
     public profileData: ProfileData,
     public connectivityService: ConnectivityService,
 public authData: AuthData,
-private storage: Storage
+private storage: Storage,
+    private socialSharing: SocialSharing
   ) {
     console.log("home page constructor");
 
@@ -58,6 +60,32 @@ private storage: Storage
       });
     } 
   }
+    
+    //NOT DONE YET
+    shareWithFriends()
+    {
+      var socSharing = this.socialSharing;
+    var m = "Check out my schedule: \n"; 
+        
+            if(this.userProfile.period1 !== null)
+            {
+                m = m + "1 - ";
+            }
+        
+        firebase.database().ref("/shareURLs/").once("value").then(function(snapshot) {
+          
+          var ur = snapshot.child("other").val();
+          console.log(ur);
+        
+            socSharing.shareWithOptions({
+                  message: "Are you in any of my classes? Check Class Reveal to see. Download now at " + ur,
+            }).then(() => {
+                console.log('Shared!');
+              }).catch((err) => {
+                console.log('Oops, something went wrong:', err);
+              });
+        });
+    }
 
   ionViewWillEnter() {
     this.isLoading = true;

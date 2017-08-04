@@ -6,7 +6,8 @@ import {LoginPage} from '../login/login';
 import {ListPage} from '../list/list';
 import {SchoolListPage} from '../schoolList/schoolList';
 import {EditProfile} from '../editProfile/editProfile';
-
+import firebase from "firebase";
+import { SocialSharing } from "@ionic-native/social-sharing";
 import {TextAvatarProfileDirective} from '../../directives/text-avatar-profile/text-avatar-profile';
 
 @Component({selector: 'page-settings', templateUrl: 'settings.html'})
@@ -25,11 +26,33 @@ export class SettingsPage {
     public obj = {schoolName: "", firstName: "", lastName: "", email: "", instagram: "", snapchat: "", twitter: ""};
 
 
-  constructor(public navCtrl : NavController, public profileData : ProfileData, public authData : AuthData, public alertCtrl : AlertController, public actionSheetCtrl : ActionSheetController, public ar: ApplicationRef) {
+  constructor(public navCtrl : NavController, public profileData : ProfileData, public authData : AuthData, public alertCtrl : AlertController, public actionSheetCtrl : ActionSheetController, public ar: ApplicationRef,
+    private socialSharing: SocialSharing) {
       
     console.log("settings constructor");
   }
 
+
+    shareWithFriends()
+    {
+      var socSharing = this.socialSharing;
+        
+        firebase.database().ref("/shareURLs/").once("value").then(function(snapshot) {
+          
+          var ur = snapshot.child("other").val();
+          console.log(ur);
+        
+            socSharing.shareWithOptions({
+                  message: "Are you in any of my classes? Check Class Reveal to see. Download now at " + ur,
+            }).then(() => {
+                console.log('Shared!');
+              }).catch((err) => {
+                console.log('Oops, something went wrong:', err);
+              });
+        });
+    }
+    
+    
   editPressed()
   {
       //send data to edit page
