@@ -58,7 +58,7 @@ private storage: Storage
         title: "Please check your network connection",
         buttons: [
           {
-            text: "Fine"
+            text: "OK"
           }
         ]
       });
@@ -372,7 +372,7 @@ private storage: Storage
                 //return true;
                 let alert = this.alertCtrl.create({
               title: "Change school?",
-                  message: "NOTE: You may only change your school once due to privacy.",
+                  message: "NOTE: You may only change your school once, so choose correctly!",
               buttons: [
                 {
                   text: "Cancel"
@@ -393,7 +393,7 @@ private storage: Storage
             else{
                 let alert = this.alertCtrl.create({
               title: "Cannot change school",
-                  message: "Due to privacy, you may not change your school. Please delete your account and select the correct school.",
+                  message: "You may not change your school. Please delete your account and select the correct school.",
               buttons: [
                 {
                   text: "Ok"

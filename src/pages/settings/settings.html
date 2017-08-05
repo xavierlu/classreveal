@@ -48,8 +48,11 @@
           <ion-col col-6>
             <p ion-text color="instagram"><ion-icon name="logo-instagram"></ion-icon>  Instagram</p>
           </ion-col>
-          <ion-col >
+          <ion-col *ngIf="!(obj.instagram=='')">
             {{obj.instagram}}
+          </ion-col>
+            <ion-col ion-text color="placeholder" *ngIf="(obj.instagram=='')">
+            none
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -61,8 +64,11 @@
           <ion-col col-6>
             <p ion-text color="snapchat"><ion-icon name="logo-snapchat"></ion-icon>  Snapchat</p>
           </ion-col>
-          <ion-col >
+          <ion-col *ngIf="!(obj.snapchat=='')">
             {{obj.snapchat}}
+          </ion-col>
+            <ion-col ion-text color="placeholder" *ngIf="(obj.snapchat=='')">
+            none
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -74,8 +80,11 @@
           <ion-col col-6>
             <p ion-text color="twitter"><ion-icon name="logo-twitter"></ion-icon>  Twitter</p>
           </ion-col>
-          <ion-col >
+          <ion-col *ngIf="!(obj.twitter=='')">
             {{obj.twitter}}
+          </ion-col>
+            <ion-col ion-text color="placeholder" *ngIf="(obj.twitter=='')">
+            none
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -109,8 +118,11 @@
           <ion-col col-6>
             <p ion-text color="settingsPage">School</p>
           </ion-col>
-          <ion-col col-6 >
+          <ion-col col-6 *ngIf="!(obj.schoolName=='')" >
             {{obj.schoolName.replace("_"," ")}}
+          </ion-col>
+            <ion-col ion-text color="placeholder" col-6 *ngIf="obj.schoolName==''" >
+            none
           </ion-col>
         </ion-row>
       </ion-grid>

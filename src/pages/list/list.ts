@@ -155,7 +155,7 @@ export class ListPage {
               input.teacherFirstName.split(" ").length > 1 ||
               input.teacherLastName.split(" ").length > 1 ||
               this.isEmoji(input.teacherFirstName) ||
-              this.isEmoji(input.teacherLastName)
+              this.isEmoji(input.teacherLastName) || input.teacherFirstName.indexOf("fuck") >= 0 || input.teacherFirstName.indexOf("ass") >= 0 || input.teacherFirstName.indexOf("bitch") >= 0 || input.teacherFirstName.indexOf("pussy") >= 0 || input.teacherLastName.indexOf("fuck") >= 0 || input.teacherLastName.indexOf("ass") >= 0 || input.teacherLastName.indexOf("bitch") >= 0 || input.teacherLastName.indexOf("pussy") >= 0 || (input.teacherLastName + " ").indexOf("dick ") >= 0 || (input.teacherFirstName + " ").indexOf("dick ") >= 0
             ) {
               let alert2 = this.alertCtrl.create({
                 message: "Dude stop",

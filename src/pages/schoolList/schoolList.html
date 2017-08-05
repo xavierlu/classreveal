@@ -18,8 +18,14 @@
 
   <ion-card>
 
+      <ion-card-header>
+    Note:
+  </ion-card-header>
+      
     <ion-card-content>
-      Search for your school! Please note your school name may be abbreviated. ONLY ADD YOUR SCHOOL IF IT DOESNT EXIST ALREADY! Or else your classmates will NOT show up in your classes.
+      Your school name may be abbreviated.
+      ONLY ADD YOUR SCHOOL IF IT DOESNT EXIST ALREADY! 
+      Or else your classmates will NOT show up in your classes.
     </ion-card-content>
 
   </ion-card>
@@ -33,9 +39,9 @@
     <ion-item *ngFor="let school of schools | async" (click)="chooseSchool(school.$key)">
       {{school.$key.replace("_"," ")}}
     </ion-item>
-    <ion-item text-wrap (click)="chooseSchool(this.searchTerm)">
+    <ion-item text-wrap (click)="addSchool()">
       <ion-icon name="warning"></ion-icon>
-      Can't find your school? Add it! {{this.searchTerm}}
+      Can't find your school? Add it!
     </ion-item>
 
     <ion-item>

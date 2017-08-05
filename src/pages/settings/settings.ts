@@ -96,13 +96,14 @@ export class SettingsPage {
     console.log(data);
     console.log(this.obj);
 
-    this.ar.tick();
+    // this.ar.tick();
+
   }
 
-  // ionViewDidEnter() {
+   ionViewDidEnter() {
 
-  //     this.ar.tick();
-  // }
+       this.ar.tick();
+   }
 
   logOut() {
     this.authData.logoutUser().then(() => {

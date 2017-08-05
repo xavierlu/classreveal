@@ -64,10 +64,38 @@ export class HomePage {
   //NOT DONE YET
   shareWithFriends() {
     var socSharing = this.socialSharing;
-    var m = "Check out my schedule: \n";
+    var m = "Check out my school schedule: \n";
 
-    if (this.userProfile.period1 !== null) {
-      m = m + "1 - ";
+    if (this.userProfile.period1 !== "") {
+        m = m + "1 - " + this.userProfile.period1.replace("_", " ") + "\n";
+    }
+      if (this.userProfile.period2 !== "") {
+        m = m + "2 - " + this.userProfile.period2.replace("_", " ") + "\n";
+    }
+      if (this.userProfile.period3 !== "") {
+        m = m + "3 - " + this.userProfile.period3.replace("_", " ") + "\n";
+    }
+      if (this.userProfile.period4 !== "") {
+        m = m + "4 - " + this.userProfile.period4.replace("_", " ") + "\n";
+    }
+      if (this.userProfile.period5 !== "") {
+    //console.log(this.userProfile.period5 + "- 5");
+        m = m + "5 - " + this.userProfile.period5.replace("_", " ") + "\n";
+    }
+      if (this.userProfile.period6 !== "") {
+        m = m + "6 - " + this.userProfile.period6.replace("_", " ") + "\n";
+    }
+      if (this.userProfile.period7 !== "") {
+        m = m + "7 - " + this.userProfile.period7.replace("_", " ") + "\n";
+    }
+      if (this.userProfile.period8 !== "") {
+        m = m + "8 - " + this.userProfile.period8.replace("_", " ") + "\n";
+    }
+      if (this.userProfile.period9 !== "") {
+        m = m + "9 - " + this.userProfile.period9.replace("_", " ") + "\n";
+    }
+      if (this.userProfile.period10 !== "") {
+        m = m + "10 - " + this.userProfile.period10.replace("_", " ") + "\n";
     }
 
     firebase
@@ -77,11 +105,12 @@ export class HomePage {
       .then(function(snapshot) {
         var ur = snapshot.child("other").val();
         console.log(ur);
-
+          
+        console.log(m);
         socSharing
           .shareWithOptions({
             message:
-              "Are you in any of my classes? Check Class Reveal to see. Download now at " +
+            m + "Are you in any of my classes? Check Class Reveal to see. Download now at " +
               ur
           })
           .then(() => {
@@ -256,8 +285,11 @@ export class HomePage {
 
                 let alertToConfirm = this.alertCtrl.create({
                   title:
-                    "Do you want to change this teacher? You may only do so once per day.",
+                    "Do you want to add period " + periodNumber + "? You may only do so once per day.",
                   buttons: [
+                    {
+                      text: "No"
+                    },
                     {
                       text: "Yes",
                       handler: data1 => {
@@ -289,9 +321,6 @@ export class HomePage {
                           this.navCtrl.push(ListPage);
                         }
                       }
-                    },
-                    {
-                      text: "No"
                     }
                   ]
                 });
@@ -300,7 +329,7 @@ export class HomePage {
                 let alert = this.alertCtrl.create({
                   title: "Sorry...",
                   message:
-                    "Due to student and teacher privacy, you may only change your class once per day.",
+                    "You may only change each period once per day.",
                   buttons: [
                     {
                       text: "Ok"
@@ -335,6 +364,9 @@ export class HomePage {
               "Do you want to change this teacher? You may only do so once per day.",
             buttons: [
               {
+                text: "No"
+              },
+              {
                 text: "Yes",
                 handler: data1 => {
                   var data = {
@@ -365,9 +397,6 @@ export class HomePage {
                     this.navCtrl.push(ListPage);
                   }
                 }
-              },
-              {
-                text: "No"
               }
             ]
           });
@@ -376,7 +405,7 @@ export class HomePage {
           let alert = this.alertCtrl.create({
             title: "Sorry...",
             message:
-              "Due to student and teacher privacy, you may only change your class once per day.",
+              "You may only change each period once per day.",
             buttons: [
               {
                 text: "Ok"
@@ -395,13 +424,13 @@ export class HomePage {
     let alert = this.alertCtrl.create({
       title: "Unenroll Period " + periodNumber + " ?",
       message:
-        "Are you sure? Remember you may only change your class once a day.",
+        "Are you sure? Remember you may only change each period once a day.",
       buttons: [
         {
           text: "Cancel"
         },
         {
-          text: "OK",
+          text: "Unenroll",
           handler: data => {
             this.profileData.updateTeacher(
               "",

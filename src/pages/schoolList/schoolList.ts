@@ -97,6 +97,62 @@ private storage: Storage
       alert.present();
     }
   }
+    
+    addSchool()
+    {
+        let alert = this.alertCtrl.create({
+      title: "Add school",
+      inputs: [
+        {
+          name: "schoolNameEntered",
+          placeholder: "School name"
+        }
+      ],
+      buttons: [
+        {
+          text: "Cancel"
+        },
+        {
+          text: "Save",
+          handler: input => {
+            if (
+              input.schoolNameEntered.trim().length < 4 ||
+    this.isEmoji(input.schoolNameEntered) || input.schoolNameEntered.indexOf("fuck") >= 0 || input.schoolNameEntered.indexOf("ass") >= 0 || input.schoolNameEntered.indexOf("bitch") >= 0 || input.schoolNameEntered.indexOf("pussy") >= 0
+            ) {
+              let alert2 = this.alertCtrl.create({
+                message: "Dude stop",
+                buttons: [
+                  {
+                    text: "OK",
+                    role: "cancel"
+                  }
+                ]
+              });
+              alert2.present();
+            } else {
+               
+              this.profileData
+                  .updateSchool(input.schoolNameEntered.replace(" ", "_"))
+                .catch(error => {
+                  let alert2 = this.alertCtrl.create({
+                    message: error.message,
+                    buttons: [
+                      {
+                        text: "OK",
+                        role: "cancel"
+                      }
+                    ]
+                  });
+                  alert2.present();
+                });
+              this.navCtrl.pop();
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
+    }
 
   isEmoji(str: string) {
     var ranges = [

@@ -43,8 +43,11 @@
           <ion-col col-6>
             <p ion-text color="instagram"><ion-icon name="logo-instagram"></ion-icon>  Instagram</p>
           </ion-col>
-          <ion-col >
+          <ion-col *ngIf="!(instagram=='')">
             {{instagram}}
+          </ion-col>
+            <ion-col ion-text color="placeholder" *ngIf="(instagram=='')">
+            none
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -56,8 +59,11 @@
           <ion-col col-6>
             <p ion-text color="snapchat"><ion-icon name="logo-snapchat"></ion-icon>  Snapchat</p>
           </ion-col>
-          <ion-col >
+          <ion-col *ngIf="!(snapchat=='')">
             {{snapchat}}
+          </ion-col>
+            <ion-col ion-text color="placeholder" *ngIf="(snapchat=='')">
+            none
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -69,8 +75,11 @@
           <ion-col col-6>
             <p ion-text color="twitter"><ion-icon name="logo-twitter"></ion-icon>  Twitter</p>
           </ion-col>
-          <ion-col >
+          <ion-col *ngIf="!(twitter=='')">
             {{twitter}}
+          </ion-col>
+            <ion-col ion-text color="placeholder" *ngIf="(twitter=='')">
+            none
           </ion-col>
         </ion-row>
       </ion-grid>
