@@ -64,26 +64,23 @@ export class MyApp {
       }
     });
 
-    //   this.presentLoading();
+    // this.presentLoading();
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-      // this.presentLoading();
-      /*
+      this.presentLoading();
+
       this.storage.get("introShown").then(result => {
-        if (result) {
-          this.rootPage = TabsPage;
-        } else {
+        if (!result) {
           this.rootPage = IntroPage;
           this.storage.set("introShown", true);
         }
-
         this.loader.dismiss();
-      });*/
-      // this.loader.dismiss();
+      });
+      this.loader.dismiss();
     });
   }
 

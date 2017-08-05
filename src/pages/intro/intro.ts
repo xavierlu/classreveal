@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { LoginPage } from '../login/login';
+import { Component } from "@angular/core";
+import { NavController } from "ionic-angular";
+import { LoginPage } from "../login/login";
 /**
  * Generated class for the IntroPage page.
  *
@@ -8,13 +8,11 @@ import { LoginPage } from '../login/login';
  * on Ionic pages and navigation.
  */
 @Component({
-  selector: 'page-intro',
-  templateUrl: 'intro.html',
+  selector: "page-intro",
+  templateUrl: "intro.html"
 })
 export class IntroPage {
-  constructor(public navCtrl: NavController) {
-
-  }
+  constructor(public navCtrl: NavController) {}
 
   goToHome() {
     this.navCtrl.pop();
@@ -23,19 +21,21 @@ export class IntroPage {
 
   slides = [
     {
-      title: "Welcome to the Docs!",
-      description: "The <b>Ionic Component Documentation</b> showcases a number of useful components that are included out of the box with Ionic.",
-      image: "assets/pics/img-1.png",
+      title: "Welcome to Class Reveal!",
+      description: "<b>Class Reveal</b>blah blah blah blah.",
+      image: "assets/pics/img-1.png"
     },
     {
-      title: "What is Ionic?",
-      description: "<b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies like HTML, CSS, and JavaScript.",
-      image: "assets/pics/img-2.png",
+      title: "Secure",
+      description:
+        "Class Reveal is secure bc we used <b>Google Firebase</b> blah blah blah blah blah",
+      image: "assets/pics/img-5.png"
     },
     {
       title: "What is Ionic Cloud?",
-      description: "The <b>Ionic Cloud</b> is a cloud platform for managing and scaling Ionic apps with integrated services like push notifications, native builds, user auth, and live updating.",
-      image: "assets/pics/img-3.png",
+      description:
+        "The <b>Ionic Cloud</b> is a cloud platform for managing and scaling Ionic apps with integrated services like push notifications, native builds, user auth, and live updating.",
+      image: "assets/pics/img-3.png"
     }
   ];
 }
