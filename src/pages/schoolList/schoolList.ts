@@ -145,6 +145,8 @@ private storage: Storage
                   });
                   alert2.present();
                 });
+                
+                this.storage.set("canChangeSchool" + firebase.auth().currentUser.uid, false);
               this.navCtrl.pop();
             }
           }

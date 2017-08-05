@@ -17,6 +17,8 @@ export class HomePage {
   public userProfile: any;
   public inEditMode = false;
   private isLoading: boolean = false;
+    private isAdmin = false;
+private prepopulate = false;
 
   // @ViewChild("1") sketchElement: ElementRef;
 
@@ -59,6 +61,8 @@ export class HomePage {
     //     this.navCtrl.setRoot(LoginPage);
     //   });
     // }
+      
+      
   }
 
   //NOT DONE YET
@@ -123,6 +127,9 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
+      
+      
+      
     this.isLoading = true;
     this.profileData.getUserProfile().on("value", data => {
       this.userProfile = data.val();
@@ -159,6 +166,12 @@ export class HomePage {
       this.isLoading = false;
     });
     this.isLoading = false;
+      
+      if(this.profileData.isAdmin())
+          {
+              this.isAdmin = true;
+          }
+  //  console.log("ADMIN? - " +this.isAdmin);
   }
 
   addClass() {
@@ -469,4 +482,17 @@ export class HomePage {
     }
     return h;
   }
+    
+    
+    clearStorage()
+    {
+        this.storage.clear();
+    }
+    
+    toggleChanged()
+    {
+        console.log("toggle changed - " + this.prepopulate);
+        
+        this.profileData.inPrepopulateMode(this.prepopulate);
+    }
 }

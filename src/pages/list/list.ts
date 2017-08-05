@@ -112,12 +112,13 @@ export class ListPage {
             } else {
                 if(data.prevTeacher !== teacherName)
                 {
-              this.profileData.edited(data.period);
-              this.profileData.updateTeacher(
-                teacherName,
-                data.period,
-                data.prevTeacher
-                ); }
+                  this.profileData.edited(data.period);
+                  this.profileData.updateTeacher(
+                    teacherName,
+                    data.period,
+                    data.prevTeacher
+                    ); 
+                }
               this.navCtrl.pop();
             }
           }
@@ -152,8 +153,8 @@ export class ListPage {
           text: "Save",
           handler: input => {
             if (
-              input.teacherFirstName.split(" ").length > 1 ||
-              input.teacherLastName.split(" ").length > 1 ||
+                input.teacherFirstName.trim().split(" ").length > 1 ||
+                input.teacherLastName.trim().split(" ").length > 1 ||
               this.isEmoji(input.teacherFirstName) ||
               this.isEmoji(input.teacherLastName) || input.teacherFirstName.indexOf("fuck") >= 0 || input.teacherFirstName.indexOf("ass") >= 0 || input.teacherFirstName.indexOf("bitch") >= 0 || input.teacherFirstName.indexOf("pussy") >= 0 || input.teacherLastName.indexOf("fuck") >= 0 || input.teacherLastName.indexOf("ass") >= 0 || input.teacherLastName.indexOf("bitch") >= 0 || input.teacherLastName.indexOf("pussy") >= 0 || (input.teacherLastName + " ").indexOf("dick ") >= 0 || (input.teacherFirstName + " ").indexOf("dick ") >= 0
             ) {
@@ -168,13 +169,10 @@ export class ListPage {
               });
               alert2.present();
             } else {
-              var temp =
-                this.capitalizeFirstLetter(input.teacherFirstName) +
-                "_" +
-                this.capitalizeFirstLetter(input.teacherLastName);
-              this.profileData
-                .updateTeacher(temp, data.period, data.prevTeacher)
-                .catch(error => {
+              var temp = this.capitalizeFirstLetter(input.teacherFirstName.trim()) +"_" +this.capitalizeFirstLetter(input.teacherLastName.trim());
+              
+                
+              this.profileData.updateTeacher(temp, data.period, data.prevTeacher).catch(error => {
                   let alert2 = this.alertCtrl.create({
                     message: error.message,
                     buttons: [
@@ -186,6 +184,7 @@ export class ListPage {
                   });
                   alert2.present();
                 });
+                this.profileData.edited(data.period);
               this.navCtrl.pop();
             }
           }

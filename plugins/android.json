@@ -13,6 +13,9 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.ionicframework.classreveal927750"
         },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.ionicframework.classreveal927750"
+        },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.ionicframework.classreveal927750"
         },
@@ -23,9 +26,6 @@
             "PACKAGE_NAME": "com.ionicframework.classreveal927750"
         },
         "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.ionicframework.classreveal927750"
-        },
-        "cordova-plugin-network-information": {
             "PACKAGE_NAME": "com.ionicframework.classreveal927750"
         }
     },

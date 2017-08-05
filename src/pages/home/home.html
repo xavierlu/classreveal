@@ -373,7 +373,24 @@
     </button>
       
       
-    <button ion-button block outline color="period10" (click)="shareWithFriends()">Share My Schedule</button>
+    <button ion-button block outline color="danger" (click)="shareWithFriends()">Share My Schedule</button>
+      
+      <br>
+      
+      <ion-list *ngIf="isAdmin">
+    <ion-list-header>
+      Admin Features
+    </ion-list-header>
+      
+      
+        <ion-item>
+            <ion-label>Pre-populate?</ion-label>
+            <ion-toggle [(ngModel)]="prepopulate"  (ionChange)="toggleChanged()"></ion-toggle>
+        </ion-item>
+          
+       <button ion-button block outline color="period10" (click)="clearStorage()">CLEAR STORAGE - TESTS</button>
 
+    </ion-list>
+          
   </ion-list>
 </ion-content>
