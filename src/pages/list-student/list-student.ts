@@ -93,7 +93,7 @@ export class ListStudent {
               "For " + snapshot.key + " name: " + firstName + " " + lastName
             );
 
-            this.message = this.message + firstName + " " + lastName + " \n";
+            this.message = this.message + firstName + " \n";
 
             console.log("MESSAGE: " + this.message);
 
