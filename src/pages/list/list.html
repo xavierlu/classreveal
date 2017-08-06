@@ -17,11 +17,11 @@
   <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
 
   <ion-card>
-      
+
     <ion-card-header>
-    Note:
-  </ion-card-header>
-      
+      Note:
+    </ion-card-header>
+
     <ion-card-content>
       Search for your teacher! Please enter the first AND last name of your teacher. This will make sure two teacher with the same
       last name will have different classes.
@@ -35,7 +35,7 @@
 
   <ion-list>
     <ion-item *ngFor="let teacher of teachers | async" (click)="chooseTeacher(teacher.$key)">
-      {{teacher.$key.replace("_"," ")}}
+      {{teacher.$key.replace('_', ' ')}}
     </ion-item>
     <ion-item (click)="addTeacher()">
       <ion-icon name="person-add"></ion-icon>

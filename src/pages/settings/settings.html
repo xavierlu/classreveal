@@ -27,7 +27,7 @@
           <ion-col col-6>
             <p ion-text color="settingsPage">Name</p>
           </ion-col>
-          <ion-col >
+          <ion-col>
             {{obj.firstName}} {{obj.lastName}}
           </ion-col>
         </ion-row>
@@ -36,8 +36,8 @@
 
 
   </ion-list>
-    
-    <ion-list>
+
+  <ion-list>
     <ion-list-header>
       Social Media
     </ion-list-header>
@@ -46,44 +46,47 @@
       <ion-grid>
         <ion-row>
           <ion-col col-6>
-            <p ion-text color="instagram"><ion-icon name="logo-instagram"></ion-icon>  Instagram</p>
+            <p ion-text color="instagram">
+              <ion-icon name="logo-instagram"></ion-icon> Instagram</p>
           </ion-col>
           <ion-col *ngIf="!(obj.instagram=='')">
             {{obj.instagram}}
           </ion-col>
-            <ion-col ion-text color="placeholder" *ngIf="(obj.instagram=='')">
+          <ion-col ion-text color="placeholder" *ngIf="(obj.instagram=='')">
             none
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
 
-        <ion-item>
+    <ion-item>
       <ion-grid>
         <ion-row>
           <ion-col col-6>
-            <p ion-text color="snapchat"><ion-icon name="logo-snapchat"></ion-icon>  Snapchat</p>
+            <p ion-text color="snapchat">
+              <ion-icon name="logo-snapchat"></ion-icon> Snapchat</p>
           </ion-col>
           <ion-col *ngIf="!(obj.snapchat=='')">
             {{obj.snapchat}}
           </ion-col>
-            <ion-col ion-text color="placeholder" *ngIf="(obj.snapchat=='')">
+          <ion-col ion-text color="placeholder" *ngIf="(obj.snapchat=='')">
             none
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
-        
-        <ion-item>
+
+    <ion-item>
       <ion-grid>
         <ion-row>
           <ion-col col-6>
-            <p ion-text color="twitter"><ion-icon name="logo-twitter"></ion-icon>  Twitter</p>
+            <p ion-text color="twitter">
+              <ion-icon name="logo-twitter"></ion-icon> Twitter</p>
           </ion-col>
           <ion-col *ngIf="!(obj.twitter=='')">
             {{obj.twitter}}
           </ion-col>
-            <ion-col ion-text color="placeholder" *ngIf="(obj.twitter=='')">
+          <ion-col ion-text color="placeholder" *ngIf="(obj.twitter=='')">
             none
           </ion-col>
         </ion-row>
@@ -91,8 +94,8 @@
     </ion-item>
 
   </ion-list>
-    
-    
+
+
   <ion-list>
 
     <ion-list-header>
@@ -105,7 +108,7 @@
           <ion-col col-6>
             <p ion-text color="settingsPage">Email</p>
           </ion-col>
-          <ion-col col-6 >
+          <ion-col col-6>
             {{obj.email}}
           </ion-col>
         </ion-row>
@@ -118,10 +121,12 @@
           <ion-col col-6>
             <p ion-text color="settingsPage">School</p>
           </ion-col>
-          <ion-col col-6 *ngIf="!(obj.schoolName=='')" >
-            {{obj.schoolName.replace("_"," ")}}
+          <ion-col col-6 *ngIf="!(obj.schoolName=='')">
+            {{obj.schoolName.replace("_", " ").replace("_", " ").replace("_", " ").replace("_", " ").replace("_", " ").replace("_", "
+            ").replace("_", " ").replace("_", " ").replace("_", " ").replace("_", " ").replace("_", " ").replace("_", " ").replace("_",
+            " ")}}
           </ion-col>
-            <ion-col ion-text color="placeholder" col-6 *ngIf="obj.schoolName==''" >
+          <ion-col ion-text color="placeholder" col-6 *ngIf="obj.schoolName==''">
             none
           </ion-col>
         </ion-row>
@@ -135,8 +140,8 @@
   <button col-12 ion-button round color="orangeYel" (click)="logOut()">Logout</button>
 
   <button col-12 ion-button round color="danger" (click)="deleteUser()">Delete Account</button>
-    
-    
+
+
   <button col-12 ion-button round color="twitter" (click)="shareWithFriends()">Share With Friends</button>
 
 </ion-content>

@@ -7,7 +7,7 @@ import "rxjs/add/operator/debounceTime";
 import { AngularFire } from "angularfire2";
 import { Observable } from "rxjs/Rx";
 import firebase from "firebase";
-import { Storage } from '@ionic/storage';
+import { Storage } from "@ionic/storage";
 /**
  * Generated class for the school list page.
  * There is a search bar at the top.
@@ -30,7 +30,7 @@ export class SchoolListPage {
     public dataService: SchoolData,
     public angFire: AngularFire,
     public alertCtrl: AlertController,
-private storage: Storage
+    private storage: Storage
   ) {
     this.searchControl = new FormControl();
 
@@ -59,7 +59,7 @@ private storage: Storage
           school =>
             school.$key
               .toLowerCase()
-              .indexOf(this.searchTerm.replace(" ", "_").toLowerCase()) > -1
+              .indexOf(this.searchTerm.replace(/ /g, "_").toLowerCase()) > -1
         )
       );
   }
@@ -77,8 +77,8 @@ private storage: Storage
       alert.present();
     } else {
       let alert = this.alertCtrl.create({
-        title: "Choose " + schoolName.replace("_", " ") + " ?",
-          message: "NOTE: You may not change your school later.",
+        title: "Choose " + schoolName.replace(/_/g, " ") + " ?",
+        message: "NOTE: You may not change your school later.",
         buttons: [
           {
             text: "No"
@@ -87,8 +87,11 @@ private storage: Storage
             text: "Yes",
             handler: data1 => {
               alert.dismiss();
-              this.profileData.updateSchool(schoolName.replace(" ", "_"));
-                this.storage.set("canChangeSchool" + firebase.auth().currentUser.uid, false);
+              this.profileData.updateSchool(schoolName.replace(/ /g, "_"));
+              this.storage.set(
+                "canChangeSchool" + firebase.auth().currentUser.uid,
+                false
+              );
               this.navCtrl.pop();
             }
           }
@@ -97,10 +100,9 @@ private storage: Storage
       alert.present();
     }
   }
-    
-    addSchool()
-    {
-        let alert = this.alertCtrl.create({
+
+  addSchool() {
+    let alert = this.alertCtrl.create({
       title: "Add school",
       inputs: [
         {
@@ -117,7 +119,9 @@ private storage: Storage
           handler: input => {
             if (
               input.schoolNameEntered.trim().length < 4 ||
-    this.isEmoji(input.schoolNameEntered) || input.schoolNameEntered.indexOf("fuck") >= 0 || input.schoolNameEntered.indexOf("ass") >= 0 || input.schoolNameEntered.indexOf("bitch") >= 0 || input.schoolNameEntered.indexOf("pussy") >= 0
+              this.isEmoji(input.schoolNameEntered) ||
+              this.profileData.containsBadword(input.teacherFirstName) ||
+              this.profileData.containsBadword(input.teacherLastName)
             ) {
               let alert2 = this.alertCtrl.create({
                 message: "Dude stop",
@@ -130,9 +134,8 @@ private storage: Storage
               });
               alert2.present();
             } else {
-               
               this.profileData
-                  .updateSchool(input.schoolNameEntered.replace(" ", "_"))
+                .updateSchool(input.schoolNameEntered.replace(/ /g, "_"))
                 .catch(error => {
                   let alert2 = this.alertCtrl.create({
                     message: error.message,
@@ -145,8 +148,11 @@ private storage: Storage
                   });
                   alert2.present();
                 });
-                
-                this.storage.set("canChangeSchool" + firebase.auth().currentUser.uid, false);
+
+              this.storage.set(
+                "canChangeSchool" + firebase.auth().currentUser.uid,
+                false
+              );
               this.navCtrl.pop();
             }
           }
@@ -154,17 +160,12 @@ private storage: Storage
       ]
     });
     alert.present();
-    }
+  }
 
   isEmoji(str: string) {
-    var ranges = [
-      "\ud83c[\udf00-\udfff]", // U+1F300 to U+1F3FF
-      "\ud83d[\udc00-\udeff]", // U+1F400 to U+1F6FF
-      "\ud83d[\ude80-\udeff]", // U+1F680 to U+1F6FF
-      '[$-/:-?{-~!"^_`[]]',
-      "[\u2600-\u27ff]",
-      "[1-9]"
-    ];
-    return str.match(ranges.join("|"));
+    if (str.match("[^a-zA-Z ]")) {
+      return true;
+    }
+    return false;
   }
 }

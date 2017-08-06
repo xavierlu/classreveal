@@ -8,11 +8,11 @@
   <ion-navbar color='orangeYel'>
     <ion-title>Edit</ion-title>
 
-      <ion-buttons right>
-       <button ion-button icon-only (click)="donePressed()">
+    <ion-buttons right>
+      <button ion-button icon-only (click)="donePressed()">
           save
         </button>
-    
+
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -22,51 +22,54 @@
         <text-avatar-profile *ngIf="userProfile?.firstName" [text]="userProfile?.firstName" [color]="userProfile?.firstName.color"></text-avatar-profile>
     -->
 
-  
-    <ion-list-header>
-      Personal Information
-    </ion-list-header>
-      
+
+  <ion-list-header>
+    Personal Information
+  </ion-list-header>
+
   <ion-list>
     <ion-item>
-    <ion-label color="editPage" fixed>First Name</ion-label>
-    <ion-input [(ngModel)]="firstName" type="firstName" placeholder="First name"></ion-input>
-  </ion-item>
-      
-      <ion-item>
-    <ion-label color="editPage" fixed>Last Name </ion-label>
-    <ion-input [(ngModel)]="lastName" type="lastName" placeholder="Last name"></ion-input>
-  </ion-item>
-      
-    </ion-list>
-    
-    <br>
-    
-    
-    
-    <ion-list>
-    <ion-list-header>
-        Social Media
-    </ion-list-header>
-    
+      <ion-label color="editPage" fixed>First Name</ion-label>
+      <ion-input [(ngModel)]="firstName" type="firstName" placeholder="First name"></ion-input>
+    </ion-item>
+
     <ion-item>
-    <ion-label color="instagram" fixed><ion-icon name="logo-instagram"></ion-icon> Instagram</ion-label>
-    <ion-input [(ngModel)]="instagram" type="text" placeholder="Instagram name"></ion-input>
-  </ion-item>
+      <ion-label color="editPage" fixed>Last Name </ion-label>
+      <ion-input [(ngModel)]="lastName" type="lastName" placeholder="Last name"></ion-input>
+    </ion-item>
 
-      <ion-item>
-    <ion-label color="snapchat" fixed><ion-icon name="logo-snapchat"></ion-icon>     Snapchat</ion-label>
-    <ion-input [(ngModel)]="snapchat" type="snapchat" placeholder="Snapchat name"></ion-input>
-  </ion-item>
-      
-      <ion-item>
-    <ion-label color="twitter" fixed><ion-icon name="logo-twitter"></ion-icon>     Twitter</ion-label>
-    <ion-input [(ngModel)]="twitter" type="twitter" placeholder="Twitter handle"></ion-input>
-  </ion-item>
-      <ion-item></ion-item>
+  </ion-list>
 
-    </ion-list>
-    
+  <br>
+
+
+
+  <ion-list>
+    <ion-list-header>
+      Social Media
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label color="instagram" fixed>
+        <ion-icon name="logo-instagram"></ion-icon> Instagram</ion-label>
+      <ion-input [(ngModel)]="instagram" type="text" placeholder="Instagram name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="snapchat" fixed>
+        <ion-icon name="logo-snapchat"></ion-icon> Snapchat</ion-label>
+      <ion-input [(ngModel)]="snapchat" type="snapchat" placeholder="Snapchat name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="twitter" fixed>
+        <ion-icon name="logo-twitter"></ion-icon> Twitter</ion-label>
+      <ion-input [(ngModel)]="twitter" type="twitter" placeholder="Twitter handle"></ion-input>
+    </ion-item>
+    <ion-item></ion-item>
+
+  </ion-list>
+
 
 
   <ion-list>
@@ -77,12 +80,12 @@
 
     <ion-item (click)="updateEmail()">
       <ion-label color="editPage" fixed>Email</ion-label>
-    <ion-input disabled="true" value="{{email}}"></ion-input>
+      <ion-input disabled="true" value="{{email}}"></ion-input>
     </ion-item>
 
     <ion-item (click)="updateSchool()">
       <ion-label color="editPage" fixed>School</ion-label>
-    <ion-input disabled="true" value="{{schoolName.replace('_',' ')}}"></ion-input>
+      <ion-input disabled="true" value="{{schoolName}}"></ion-input>
     </ion-item>
 
     <button col-12 ion-button round color="orangeYel" (click)="updatePassword()">Change Password</button>

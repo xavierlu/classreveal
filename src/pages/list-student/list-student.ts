@@ -47,7 +47,7 @@ export class ListStudent {
     console.log("PERIOD - " + periodNumm);
 
     this.teacher = String(
-      this.profileData.getPeriod(periodNumm).replace("_", " ")
+      this.profileData.getPeriod(periodNumm).replace(/_/g, " ")
     );
     this.periodNum = periodNumm;
 
@@ -116,37 +116,41 @@ export class ListStudent {
   }
 
   shareClass() {
-      
-      var m = this.message;
-      var socSharing = this.socialSharing;
-      
-      firebase.database().ref("/shareURLs/").once("value").then(function(snapshot) {
-          
-          var ur = snapshot.child("other").val();
-          console.log(ur);
-          console.log(m);
-       // console.log(this.message);
-        
-          m = m + "Wanna see who is in your classes? Download Class Reveal: " + ur;
-            socSharing.shareWithOptions({
-                  message: m
-            }).then(() => {
-                console.log('Shared!');
-              }).catch((err) => {
-                console.log('Oops, something went wrong:', err);
-              });
-        });
+    var m = this.message;
+    var socSharing = this.socialSharing;
+
+    firebase
+      .database()
+      .ref("/shareURLs/")
+      .once("value")
+      .then(function(snapshot) {
+        var ur = snapshot.child("other").val();
+        console.log(ur);
+        console.log(m);
+        // console.log(this.message);
+
+        m =
+          m + "Wanna see who is in your classes? Download Class Reveal: " + ur;
+        socSharing
+          .shareWithOptions({
+            message: m
+          })
+          .then(() => {
+            console.log("Shared!");
+          })
+          .catch(err => {
+            console.log("Oops, something went wrong:", err);
+          });
+      });
   }
-    
-    
-    presentClassmateInfo(uid: string)
-    {
-        var data = {
-            id: uid
-        };
-        console.log(data);
-        window.localStorage.setItem("classmates-user-id", JSON.stringify(data));
-        
-        this.navCtrl.push(ViewPerson);
-    }
+
+  presentClassmateInfo(uid: string) {
+    var data = {
+      id: uid
+    };
+    console.log(data);
+    window.localStorage.setItem("classmates-user-id", JSON.stringify(data));
+
+    this.navCtrl.push(ViewPerson);
+  }
 }

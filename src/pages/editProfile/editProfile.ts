@@ -13,7 +13,7 @@ import { ConnectivityService } from "../../providers/ConnectivityService";
 import { SettingsPage } from "../settings/settings";
 import firebase from "firebase";
 
-import { Storage } from '@ionic/storage';
+import { Storage } from "@ionic/storage";
 
 @Component({
   selector: "page-editProfile",
@@ -46,7 +46,7 @@ export class EditProfile {
     public actionSheetCtrl: ActionSheetController,
     public ar: ApplicationRef,
     public connectivityService: ConnectivityService,
-private storage: Storage
+    private storage: Storage
   ) {
     console.log("edit profile constructor");
   }
@@ -66,8 +66,10 @@ private storage: Storage
     }
 
     if (
-      !(this.OLDfirstName === this.firstName) ||
-      !(this.OLDlastName === this.lastName)
+      (this.OLDfirstName !== this.firstName ||
+        this.OLDlastName !== this.lastName) &&
+      !this.isEmoji(this.firstName) &&
+      !this.isEmoji(this.lastName)
     ) {
       console.log("name changed... lets update it");
 
@@ -107,11 +109,11 @@ private storage: Storage
 
     var data = JSON.parse(window.localStorage.getItem("current-user-data"));
 
-    this.schoolName = data.school;
+    this.schoolName = data.school.replace(/_/g, " ");
     this.firstName = data.firstName;
     this.lastName = data.lastName;
     this.email = data.email;
-    this.OLDschoolName = data.school;
+    this.OLDschoolName = data.school.replace(/_/g, " ");
     this.OLDfirstName = data.firstName;
     this.OLDlastName = data.lastName;
     this.OLDemail = data.email;
@@ -362,48 +364,51 @@ private storage: Storage
   }
 
   updateSchool() {
-      
     //console.log(this.profileData.canChangeSchool());
-      
-      
-        this.storage.get("canChangeSchool" + firebase.auth().currentUser.uid).then((val) => {
-            console.log("val " + val);
-            if(val == null || val == true){
-                //return true;
-                let alert = this.alertCtrl.create({
-              title: "Change school?",
-                  message: "NOTE: You may only change your school once, so choose correctly!",
-              buttons: [
-                {
-                  text: "Cancel"
-                },
-                {
-                  text: "Continue",
-                  handler: data => {
 
-                        this.navCtrl.push(SchoolListPage);
-                    }
+    this.storage
+      .get("canChangeSchool" + firebase.auth().currentUser.uid)
+      .then(val => {
+        console.log("val " + val);
+        if (val == null || val == true) {
+          //return true;
+          let alert = this.alertCtrl.create({
+            title: "Change school?",
+            message:
+              "NOTE: You may only change your school once, so choose correctly!",
+            buttons: [
+              {
+                text: "Cancel"
+              },
+              {
+                text: "Continue",
+                handler: data => {
+                  this.navCtrl.push(SchoolListPage);
                 }
-              ]
-            });
-            alert.present();
-                
-                
-            }
-            else{
-                let alert = this.alertCtrl.create({
-              title: "Cannot change school",
-                  message: "You may not change your school. Please delete your account and select the correct school.",
-              buttons: [
-                {
-                  text: "Ok"
-                }
-              ]
-            });
-            alert.present();
-            }
-        });
-      
-      
+              }
+            ]
+          });
+          alert.present();
+        } else {
+          let alert = this.alertCtrl.create({
+            title: "Cannot change school",
+            message:
+              "You may not change your school. Please delete your account and select the correct school.",
+            buttons: [
+              {
+                text: "Ok"
+              }
+            ]
+          });
+          alert.present();
+        }
+      });
+  }
+
+  isEmoji(str: string) {
+    if (str.match("[^a-zA-Z ]")) {
+      return true;
+    }
+    return false;
   }
 }
