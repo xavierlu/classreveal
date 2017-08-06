@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import firebase from "firebase";
-import { Storage } from '@ionic/storage';
+import { Storage } from "@ionic/storage";
 
 @Injectable()
 export class ProfileData {
@@ -26,7 +26,7 @@ export class ProfileData {
   public snapchat = "";
   public email = "";
   public grade = 1;
-private studentInitialCount = 1;
+  private studentInitialCount = 1;
   constructor(private storage: Storage) {
     // this.currentUser = firebase.auth().currentUser;
     firebase.initializeApp({
@@ -50,44 +50,42 @@ private studentInitialCount = 1;
   }
 
   canEdit(num: number): boolean {
-      
-    try{
-        this.storage.get("period-" + num + this.currentUser.uid).then((val) => {
+    try {
+      this.storage.get("period-" + num + this.currentUser.uid).then(val => {
         console.log("val " + val);
-            if(val == null || val == undefined){
-                return true;
-            }
-            console.log((Math.round(new Date().getTime() / 1000) - val) / 86400);
-           try {
-          return (
-            (Math.round(new Date().getTime() / 1000) - val) / 86400 >= 1
-          );
+        if (val == null || val == undefined) {
+          return true;
+        }
+        console.log((Math.round(new Date().getTime() / 1000) - val) / 86400);
+        try {
+          return (Math.round(new Date().getTime() / 1000) - val) / 86400 >= 1;
         } catch (e) {
           return true;
         }
       });
-      }
-    catch(e) {
-        return false;
+    } catch (e) {
+      return false;
     }
-
   }
 
   edited(num: number) {
     var data = {
       timestamp: Math.round(new Date().getTime() / 1000)
     };
-      
-      this.storage.set("period-" + num + this.currentUser.uid, data.timestamp);
-      
+
+    this.storage.set("period-" + num + this.currentUser.uid, data.timestamp);
   }
 
-    isAdmin()
-    {
-        return this.email === "elizabeth.petrov@gmail.com" || this.email === "xllgms@gmail.com" || this.email === "sergrl127@gmail.com";
-    }
+  isAdmin() {
+    this.dataReference
+      .ref("admins/" + btoa(this.currentUser.email))
+      .once("value")
+      .then(function(snapshot) {
+        if (snapshot.A.B === undefined || snapshot.A.B === null) return false;
+        return snapshot.A.B;
+      });
+  }
 
-    
   loadLocalStorage() {
     console.log("LOCAL STORAGE");
 
@@ -374,16 +372,16 @@ private studentInitialCount = 1;
       .update({ schoolName: newSchoolName });
   }
 
-
-
-
-  updateTeacher(newTeacherName: string,periodNumber: number,prevTeacher: string): firebase.Promise<any> {
-    
+  updateTeacher(
+    newTeacherName: string,
+    periodNumber: number,
+    prevTeacher: string
+  ): firebase.Promise<any> {
     console.log("prevTeacher = " + prevTeacher);
     console.log("newTeacher = " + newTeacherName);
-  
-                  var schoolOfUser = this.usersSchool;
-            var tempDataref = this.dataReference;
+
+    var schoolOfUser = this.usersSchool;
+    var tempDataref = this.dataReference;
 
     if (prevTeacher !== "") {
       //already has teacher. need to take out of that class
@@ -402,52 +400,56 @@ private studentInitialCount = 1;
 
       //need to check student count here and delete if needed/decrement count
 
-        
-        
-        
-        
-      
-              var databaseRef = firebase.database().ref('schoolData/' + schoolOfUser + '/classData/' + prevTeacher);
+      var databaseRef = firebase
+        .database()
+        .ref("schoolData/" + schoolOfUser + "/classData/" + prevTeacher);
       var removeTeacherNeeded = false;
-        var noStudent = false;
-        
-   // console.log("removeTeacherNeeded0 = " + removeTeacherNeeded);
-            databaseRef.child('students').transaction(function(students) {
-            console.log("TRANSACTION IF PREV TEACHER -> students: " + students);
-                
-                
-              if (students || 0) {
-                students = students - 1;
+      var noStudent = false;
+
+      // console.log("removeTeacherNeeded0 = " + removeTeacherNeeded);
+      databaseRef
+        .child("students")
+        .transaction(function(students) {
+          console.log("TRANSACTION IF PREV TEACHER -> students: " + students);
+
+          if (students || 0) {
+            students = students - 1;
+          }
+
+          return students;
+        })
+        .then(
+          function(val) {
+            // All promises succeeded.
+
+            databaseRef.once("value").then(function(snapshot) {
+              console.log("read students: " + snapshot.val().students);
+              if (snapshot.val().students <= 0) {
+                tempDataref
+                  .ref("schoolData/" + schoolOfUser + "/classData/")
+                  .child(prevTeacher)
+                  .remove();
+                tempDataref
+                  .ref("schoolData/" + schoolOfUser + "/teachers")
+                  .child(prevTeacher)
+                  .remove();
               }
-
-              return students;
-
-            }).then(function(val) {
-              // All promises succeeded.
-                
-                databaseRef.once('value').then(function(snapshot) {
-                    console.log("read students: " + snapshot.val().students);
-                        if(snapshot.val().students <= 0)
-                        {
-                            tempDataref.ref('schoolData/' + schoolOfUser + '/classData/').child(prevTeacher).remove();
-                            tempDataref.ref('schoolData/' + schoolOfUser + '/teachers').child(prevTeacher).remove();
-                        }
-                });
-                
-               if(noStudent)
-                {
-                    console.log("in no students");
-                    tempDataref.ref('schoolData/' + schoolOfUser + '/classData').child(prevTeacher).update({students : 0});
-                }
-   // console.log("removeTeacherNeeded2 = " + removeTeacherNeeded);
-
-                
-            }, function(error) {
-              // Something went wrong.
-              console.error(error);
             });
-        
-        
+
+            if (noStudent) {
+              console.log("in no students");
+              tempDataref
+                .ref("schoolData/" + schoolOfUser + "/classData")
+                .child(prevTeacher)
+                .update({ students: 0 });
+            }
+            // console.log("removeTeacherNeeded2 = " + removeTeacherNeeded);
+          },
+          function(error) {
+            // Something went wrong.
+            console.error(error);
+          }
+        );
     }
 
     if (newTeacherName == "") {
@@ -475,21 +477,25 @@ private studentInitialCount = 1;
 
             //add 1 to student count
 
-            
-            var databaseRef2 = firebase.database().ref('schoolData/' + this.usersSchool + '/classData/' + newTeacherName).child('students');
+            var databaseRef2 = firebase
+              .database()
+              .ref(
+                "schoolData/" +
+                  this.usersSchool +
+                  "/classData/" +
+                  newTeacherName
+              )
+              .child("students");
 
+            databaseRef2.transaction(students => {
+              console.log("TRANSACTION 2 -> students = " + students);
 
-                databaseRef2.transaction(students => {
-                    console.log("TRANSACTION 2 -> students = " + students);
-
-
-                  if (students || 0) {
-                    students = students + 1;
-                  }
-                    console.log("students after add = " + students);
-                  return students;
-                });
-            
+              if (students || 0) {
+                students = students + 1;
+              }
+              console.log("students after add = " + students);
+              return students;
+            });
           } else {
             //adding a teacher not in the database
 
@@ -625,15 +631,11 @@ private studentInitialCount = 1;
     return str.match(ranges.join("|"));
   }
 
-    inPrepopulateMode(prepopulate: boolean)
-    {
-        if(prepopulate)
-        {
-            this.studentInitialCount = 2;
-        }
-        else{
-            this.studentInitialCount = 1;
-        }
+  inPrepopulateMode(prepopulate: boolean) {
+    if (prepopulate) {
+      this.studentInitialCount = 2;
+    } else {
+      this.studentInitialCount = 1;
     }
-
+  }
 }

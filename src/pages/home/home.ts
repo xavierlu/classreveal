@@ -17,8 +17,8 @@ export class HomePage {
   public userProfile: any;
   public inEditMode = false;
   private isLoading: boolean = false;
-    private isAdmin = false;
-private prepopulate = false;
+  private isAdmin = false;
+  private prepopulate = false;
 
   // @ViewChild("1") sketchElement: ElementRef;
 
@@ -61,8 +61,6 @@ private prepopulate = false;
     //     this.navCtrl.setRoot(LoginPage);
     //   });
     // }
-      
-      
   }
 
   //NOT DONE YET
@@ -71,35 +69,35 @@ private prepopulate = false;
     var m = "Check out my school schedule: \n";
 
     if (this.userProfile.period1 !== "") {
-        m = m + "1 - " + this.userProfile.period1.replace("_", " ") + "\n";
+      m = m + "1 - " + this.userProfile.period1.replace("_", " ") + "\n";
     }
-      if (this.userProfile.period2 !== "") {
-        m = m + "2 - " + this.userProfile.period2.replace("_", " ") + "\n";
+    if (this.userProfile.period2 !== "") {
+      m = m + "2 - " + this.userProfile.period2.replace("_", " ") + "\n";
     }
-      if (this.userProfile.period3 !== "") {
-        m = m + "3 - " + this.userProfile.period3.replace("_", " ") + "\n";
+    if (this.userProfile.period3 !== "") {
+      m = m + "3 - " + this.userProfile.period3.replace("_", " ") + "\n";
     }
-      if (this.userProfile.period4 !== "") {
-        m = m + "4 - " + this.userProfile.period4.replace("_", " ") + "\n";
+    if (this.userProfile.period4 !== "") {
+      m = m + "4 - " + this.userProfile.period4.replace("_", " ") + "\n";
     }
-      if (this.userProfile.period5 !== "") {
-    //console.log(this.userProfile.period5 + "- 5");
-        m = m + "5 - " + this.userProfile.period5.replace("_", " ") + "\n";
+    if (this.userProfile.period5 !== "") {
+      //console.log(this.userProfile.period5 + "- 5");
+      m = m + "5 - " + this.userProfile.period5.replace("_", " ") + "\n";
     }
-      if (this.userProfile.period6 !== "") {
-        m = m + "6 - " + this.userProfile.period6.replace("_", " ") + "\n";
+    if (this.userProfile.period6 !== "") {
+      m = m + "6 - " + this.userProfile.period6.replace("_", " ") + "\n";
     }
-      if (this.userProfile.period7 !== "") {
-        m = m + "7 - " + this.userProfile.period7.replace("_", " ") + "\n";
+    if (this.userProfile.period7 !== "") {
+      m = m + "7 - " + this.userProfile.period7.replace("_", " ") + "\n";
     }
-      if (this.userProfile.period8 !== "") {
-        m = m + "8 - " + this.userProfile.period8.replace("_", " ") + "\n";
+    if (this.userProfile.period8 !== "") {
+      m = m + "8 - " + this.userProfile.period8.replace("_", " ") + "\n";
     }
-      if (this.userProfile.period9 !== "") {
-        m = m + "9 - " + this.userProfile.period9.replace("_", " ") + "\n";
+    if (this.userProfile.period9 !== "") {
+      m = m + "9 - " + this.userProfile.period9.replace("_", " ") + "\n";
     }
-      if (this.userProfile.period10 !== "") {
-        m = m + "10 - " + this.userProfile.period10.replace("_", " ") + "\n";
+    if (this.userProfile.period10 !== "") {
+      m = m + "10 - " + this.userProfile.period10.replace("_", " ") + "\n";
     }
 
     firebase
@@ -109,12 +107,13 @@ private prepopulate = false;
       .then(function(snapshot) {
         var ur = snapshot.child("other").val();
         console.log(ur);
-          
+
         console.log(m);
         socSharing
           .shareWithOptions({
             message:
-            m + "Are you in any of my classes? Check Class Reveal to see. Download now at " +
+              m +
+              "Are you in any of my classes? Check Class Reveal to see. Download now at " +
               ur
           })
           .then(() => {
@@ -127,9 +126,6 @@ private prepopulate = false;
   }
 
   ionViewWillEnter() {
-      
-      
-      
     this.isLoading = true;
     this.profileData.getUserProfile().on("value", data => {
       this.userProfile = data.val();
@@ -166,12 +162,8 @@ private prepopulate = false;
       this.isLoading = false;
     });
     this.isLoading = false;
-      
-      if(this.profileData.isAdmin())
-          {
-              this.isAdmin = true;
-          }
-  //  console.log("ADMIN? - " +this.isAdmin);
+    this.isAdmin = this.profileData.isAdmin();
+    //  console.log("ADMIN? - " +this.isAdmin);
   }
 
   addClass() {
@@ -298,7 +290,9 @@ private prepopulate = false;
 
                 let alertToConfirm = this.alertCtrl.create({
                   title:
-                    "Do you want to add period " + periodNumber + "? You may only do so once per day.",
+                    "Do you want to add period " +
+                    periodNumber +
+                    "? You may only do so once per day.",
                   buttons: [
                     {
                       text: "No"
@@ -341,8 +335,7 @@ private prepopulate = false;
               } else {
                 let alert = this.alertCtrl.create({
                   title: "Sorry...",
-                  message:
-                    "You may only change each period once per day.",
+                  message: "You may only change each period once per day.",
                   buttons: [
                     {
                       text: "Ok"
@@ -417,8 +410,7 @@ private prepopulate = false;
         } else {
           let alert = this.alertCtrl.create({
             title: "Sorry...",
-            message:
-              "You may only change each period once per day.",
+            message: "You may only change each period once per day.",
             buttons: [
               {
                 text: "Ok"
@@ -482,17 +474,17 @@ private prepopulate = false;
     }
     return h;
   }
-    
-    
-    clearStorage()
-    {
-        this.storage.clear();
+
+  clearStorage() {
+    if (this.profileData.isAdmin()) {
+      this.storage.clear();
     }
-    
-    toggleChanged()
-    {
-        console.log("toggle changed - " + this.prepopulate);
-        
-        this.profileData.inPrepopulateMode(this.prepopulate);
+  }
+
+  toggleChanged() {
+    if (this.profileData.isAdmin()) {
+      console.log("toggle changed - " + this.prepopulate);
+      this.profileData.inPrepopulateMode(this.prepopulate);
     }
+  }
 }
