@@ -7,8 +7,12 @@ page-login {
   }
 
   p {
-    font-size: 0.8em;
+    font-size: 1em;
     color: #d2d2d2;
+      max-width: 60%;
+      
+    margin-left: auto;
+    margin-right: auto;
   }
 
   ion-label {

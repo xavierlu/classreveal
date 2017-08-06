@@ -22,8 +22,8 @@ export class IntroPage {
   slides = [
     {
       title: "Welcome to Class Reveal!",
-      description: "<b>Class Reveal</b>allows you to see who you share classes with!",
-      image: "assets/pics/img-1.png"
+      description: "<b>Class Reveal</b> allows you to see who you share classes with!",
+      image: "assets/pics/icon.png"
     },
     {
       title: "First thing...",
@@ -34,13 +34,13 @@ export class IntroPage {
       {
       title: "Social media",
       description:
-        "Add your social media profiles to let your classmates contact you!",
+        "Add your <b>social media</b> profiles to let your classmates contact you!",
       image: "assets/pics/user.png"
     },
     {
       title: "Add your classes",
       description:
-        "Add your classes using your teacher's full name",
+        "Add your classes using your teacher's <b>full name</b>",
       image: "assets/pics/teacherApp.png"
     },
       {
@@ -52,13 +52,13 @@ export class IntroPage {
       {
       title: "Have a schedule change?",
       description:
-        "Slide to change your teacher or leave the class",
+        "<b>Slide</b> to change your teacher or leave the class",
       image: "assets/pics/slideToEdit.png"
     },
       {
       title: "See who is in your class",
       description:
-        "Click a class to see your classmates",
+        "Click a class to <b>see your classmates</b>",
       image: "assets/pics/seeClassmates.png"
     }
   ];

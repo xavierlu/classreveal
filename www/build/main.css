@@ -106068,6 +106068,10 @@ page-intro .toolbar-background {
   border-color: transparent;
 }
 
+page-intro ion-slide {
+  background: #fff;
+}
+
 page-intro .slide-zoom {
   height: 100%;
 }
@@ -106078,23 +106082,19 @@ page-intro .slide-title {
 
 page-intro .slide-image {
   max-height: 50%;
-  max-width: 60%;
-  margin: 18px 0;
-}
-
-page-intro b {
-  font-weight: 500;
+  margin: 25px 0;
 }
 
 page-intro p {
   padding: 0 40px;
-  font-size: 14px;
+  font-size: 19px;
   line-height: 1.5;
   color: #60646B;
 }
 
 page-intro b {
-  color: #000000;
+  font-weight: 700;
+  color: #ffe20c;
 }
 
 page-list .spinner-container {
@@ -106144,8 +106144,11 @@ page-login form button {
 }
 
 page-login p {
-  font-size: 0.8em;
+  font-size: 1em;
   color: #d2d2d2;
+  max-width: 60%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 page-login ion-label {

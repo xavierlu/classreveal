@@ -73,6 +73,10 @@ export class MyApp {
       splashScreen.hide();
       this.presentLoading();
 
+        
+       //   this.rootPage = IntroPage;
+        
+        
       this.storage.get("introShown").then(result => {
         if (!result) {
           this.rootPage = IntroPage;
