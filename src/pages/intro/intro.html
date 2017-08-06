@@ -8,7 +8,7 @@
   <ion-slide *ngFor="let slide of slides">
     <ion-toolbar>
       <ion-buttons end>
-          <button ion-text ion-button color="orangeYel" (click)="goToHome()" ><b>Skip</b></button>
+        <button ion-button color="orangeYel" (click)="goToHome()">Skip</button>
       </ion-buttons>
     </ion-toolbar>
     <img [src]="slide.image" class="slide-image" />
@@ -19,8 +19,8 @@
     <ion-toolbar>
     </ion-toolbar>
     <img src="assets/pics/lecture.png" class="slide-image" />
-      <h2 class="slide-title">Ready to see who is <b>in your classes?</b></h2>
-    <button ion-text ion-button large clear icon-end color="orangeYel" (click)="goToHome()">
+    <h2 class="slide-title">Ready to see who is <b>in your classes?</b></h2>
+    <button ion-button large clear icon-end color="orangeYel" (click)="goToHome()">
         <b>Continue&nbsp;</b><ion-icon name="arrow-forward"></ion-icon>
     </button>
   </ion-slide>

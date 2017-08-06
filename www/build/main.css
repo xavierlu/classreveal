@@ -106082,18 +106082,19 @@ page-intro .slide-title {
 
 page-intro .slide-image {
   max-height: 50%;
-  margin: 25px 0;
+  max-width: 60%;
+  margin: 18px 0;
 }
 
 page-intro p {
   padding: 0 40px;
-  font-size: 19px;
+  font-size: 14px;
   line-height: 1.5;
-  color: #60646B;
+  color: #60646b;
 }
 
 page-intro b {
-  font-weight: 700;
+  font-weight: 500;
   color: #ffe20c;
 }
 

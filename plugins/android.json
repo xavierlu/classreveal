@@ -27,6 +27,9 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.classreveal927750"
+        },
+        "cordova-plugin-crypt-file": {
+            "PACKAGE_NAME": "com.ionicframework.classreveal927750"
         }
     },
     "dependent_plugins": {}

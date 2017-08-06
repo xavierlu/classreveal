@@ -22,10 +22,14 @@
         <param name="android-package" value="io.ionic.keyboard.IonicKeyboard" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="DecryptResource">
+        <param name="android-package" value="com.tkyaji.cordova.DecryptResource" />
+        <param name="onload" value="true" />
+    </feature>
     <name>classreveal</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content src="/+++/index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-intent href="http://*/*" />

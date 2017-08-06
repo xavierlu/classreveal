@@ -23,6 +23,8 @@
 		839C591D2F5640F6854A8D4C /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A237D6935EC41DCBCCFE92A /* CDVLogger.m */; };
 		BA2F2493C497464DA1E0ADB8 /* CDVReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 685A916079494B7AB43D47E9 /* CDVReachability.m */; };
 		C538D28531D044DB9A5DB191 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01245EB1A0564940882E78B5 /* CoreTelephony.framework */; };
+		C663E474F3FC4EDAB50314DB /* CDVCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = D121AD4718ED4B98A74D1124 /* CDVCrypt.m */; };
+		734E7C21D17D428C95C0BE63 /* CDVCryptURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D90D46517674D78914A4EAD /* CDVCryptURLProtocol.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,10 @@
 		ED33DF2A687741AEAF9F8254 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = classreveal/config.xml; sourceTree = "<group>"; };
 		FF7D377DFE8840CC96ED5AF3 /* CDVConnection.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVConnection.m; path = "cordova-plugin-network-information/CDVConnection.m"; sourceTree = "<group>"; };
+		D121AD4718ED4B98A74D1124 /* CDVCrypt.m */ = {isa = PBXFileReference; name = "CDVCrypt.m"; path = "cordova-plugin-crypt-file/CDVCrypt.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		8D90D46517674D78914A4EAD /* CDVCryptURLProtocol.m */ = {isa = PBXFileReference; name = "CDVCryptURLProtocol.m"; path = "cordova-plugin-crypt-file/CDVCryptURLProtocol.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		6AE911843B174FA9A27793CC /* CDVCrypt.h */ = {isa = PBXFileReference; name = "CDVCrypt.h"; path = "cordova-plugin-crypt-file/CDVCrypt.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		A0BE9E10C9444827BFE396CC /* CDVCryptURLProtocol.h */ = {isa = PBXFileReference; name = "CDVCryptURLProtocol.h"; path = "cordova-plugin-crypt-file/CDVCryptURLProtocol.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +218,10 @@
 				0E7A95C8907D4A559E88FDA3 /* CDVStatusBar.h */,
 				A2AFE50294FC4657B17EADC4 /* IonicKeyboard.m */,
 				31E8DC35D521474BA4791C32 /* IonicKeyboard.h */,
+				D121AD4718ED4B98A74D1124 /* CDVCrypt.m */,
+				8D90D46517674D78914A4EAD /* CDVCryptURLProtocol.m */,
+				6AE911843B174FA9A27793CC /* CDVCrypt.h */,
+				A0BE9E10C9444827BFE396CC /* CDVCryptURLProtocol.h */,
 			);
 			name = Plugins;
 			path = classreveal/Plugins;
@@ -348,6 +358,8 @@
 				025AE02D470C487A980A124B /* CDVViewController+SplashScreen.m in Sources */,
 				626312FFB8724C7CB1772512 /* CDVStatusBar.m in Sources */,
 				80E20155137E426F9F490056 /* IonicKeyboard.m in Sources */,
+				C663E474F3FC4EDAB50314DB /* CDVCrypt.m in Sources */,
+				734E7C21D17D428C95C0BE63 /* CDVCryptURLProtocol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

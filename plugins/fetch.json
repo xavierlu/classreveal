@@ -54,5 +54,13 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cordova-plugin-crypt-file": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-crypt-file"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }
