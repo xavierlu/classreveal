@@ -17,7 +17,7 @@ export class HomePage {
   public userProfile: any;
   public inEditMode = false;
   private isLoading: boolean = false;
-  private isAdmin = false;
+  private isAdmin: boolean = false;
   private prepopulate = false;
 
   // @ViewChild("1") sketchElement: ElementRef;

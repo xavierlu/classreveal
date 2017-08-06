@@ -76,7 +76,7 @@ export class ProfileData {
     this.storage.set("period-" + num + this.currentUser.uid, data.timestamp);
   }
 
-  isAdmin() {
+  isAdmin(): boolean {
     this.dataReference
       .ref("admins/" + btoa(this.currentUser.email))
       .once("value")
@@ -84,6 +84,7 @@ export class ProfileData {
         if (snapshot.A.B === undefined || snapshot.A.B === null) return false;
         return snapshot.A.B;
       });
+    return false;
   }
 
   loadLocalStorage() {
