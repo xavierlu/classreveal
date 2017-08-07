@@ -338,7 +338,7 @@ export class ProfileData {
     if (!(this.usersSchool === newSchoolName)) {
       //the newSchool is dif, so update everything
       console.log("CHANGED TO NEW SCHOOL");
-      this.usersSchool = newSchoolName;
+        this.usersSchool = newSchoolName.replace(" ", "_");
       this.loadLocalStorage();
 
       for (var i = 1; i <= 10; i++) {
@@ -1024,6 +1024,7 @@ export class ProfileData {
       "xrated",
       "xxx"
     ];
+    console.log(str);
     if (
       substrings.some(function(v) {
         return str.toLowerCase().indexOf(v) >= 0;

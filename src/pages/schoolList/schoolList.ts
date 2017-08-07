@@ -120,8 +120,7 @@ export class SchoolListPage {
             if (
               input.schoolNameEntered.trim().length < 4 ||
               this.isEmoji(input.schoolNameEntered) ||
-              this.profileData.containsBadword(input.teacherFirstName) ||
-              this.profileData.containsBadword(input.teacherLastName)
+              this.profileData.containsBadword(input.schoolNameEntered)
             ) {
               let alert2 = this.alertCtrl.create({
                 message: "Dude stop",
