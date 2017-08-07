@@ -71,13 +71,13 @@ module.exports.metadata =
 // TOP OF METADATA
 {
     "cordova-plugin-console": "1.0.5",
+    "cordova-plugin-crypt-file": "1.3.3",
     "cordova-plugin-device": "1.1.4",
     "cordova-plugin-network-information": "1.2.1",
     "cordova-plugin-splashscreen": "3.1.0",
     "cordova-plugin-statusbar": "2.2.1",
     "cordova-plugin-whitelist": "1.3.1",
-    "ionic-plugin-keyboard": "2.2.1",
-    "cordova-plugin-crypt-file": "1.3.3"
+    "ionic-plugin-keyboard": "2.2.1"
 };
 // BOTTOM OF METADATA
 });

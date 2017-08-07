@@ -13,13 +13,13 @@
 #import <CommonCrypto/CommonDigest.h>
 
 
-static NSString* const kCryptKey = @"";
-static NSString* const kCryptIv = @"";
+static NSString* const kCryptKey = @"zVUUF3iHh2HXRQhA4duPbG4JqNX04jyh";
+static NSString* const kCryptIv = @"sSSofgc+GUIH4V+m";
 
-static int const kIncludeFileLength = 0;
+static int const kIncludeFileLength = 1;
 static int const kExcludeFileLength = 0;
-static NSString* const kIncludeFiles[] = { };
-static NSString* const kExcludeFiles[] = { };
+static NSString* const kIncludeFiles[] = { @"\\.(htm|html|js|css)$" };
+static NSString* const kExcludeFiles[] = {  };
 
 
 @implementation CDVCryptURLProtocol

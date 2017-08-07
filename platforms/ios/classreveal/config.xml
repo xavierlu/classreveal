@@ -18,6 +18,10 @@
     <feature name="Console">
         <param name="ios-package" value="CDVLogger" />
     </feature>
+    <feature name="CDVCrypt">
+        <param name="ios-package" value="CDVCrypt" />
+        <param name="onload" value="true" />
+    </feature>
     <feature name="Device">
         <param name="ios-package" value="CDVDevice" />
     </feature>
@@ -101,8 +105,4 @@
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="FadeSplashScreenDuration" value="300" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
-    <feature name="CDVCrypt">
-        <param name="ios-package" value="CDVCrypt" />
-        <param name="onload" value="true" />
-    </feature>
 </widget>

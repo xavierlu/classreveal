@@ -6,6 +6,8 @@ import { SignupPage } from '../signup/signup';
 import { TabsPage } from '../tabs/tabs';
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import { EmailValidator } from '../../validators/email';
+import { IntroPage } from '../intro/intro';
+
 
 @Component({
   selector: 'page-login',
@@ -31,6 +33,12 @@ export class LoginPage {
     });
   }
 
+    introSlides()
+    {
+        this.nav.pop();
+        this.nav.setRoot(IntroPage);
+    }
+    
   /**
    * If the form is valid it will call the AuthData service to log the user in displaying a loading component while
    * the user waits.

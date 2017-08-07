@@ -57,6 +57,11 @@ export class IntroPage {
       title: "See who is in your class",
       description: "Click a class to <b>see your classmates</b>",
       image: "assets/pics/seeClassmates.png"
+    },
+      {
+      title: "Protect your privacy",
+      description: "Your <b>privacy</b> is our #1 priority. You are only visible to your fellow classmates, not <b>random people on the internet.</b>",
+      image: "assets/pics/shield.png"
     }
   ];
 }
