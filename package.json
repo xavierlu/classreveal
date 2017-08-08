@@ -1,7 +1,7 @@
 {
-    "name": "ionic-hello-world",
-    "author": "Ionic Framework",
-    "homepage": "http://ionicframework.com/",
+    "name": "class reveal",
+    "author": "Class Reveal",
+    "homepage": "http://www.classreveal.com/",
     "private": true,
     "scripts": {
         "clean": "ionic-app-scripts clean",
@@ -64,7 +64,7 @@
         "ionic-plugin-keyboard"
     ],
     "cordovaPlatforms": [],
-    "description": "classreveal: An Ionic project",
+    "description": "Find out your classmates as soon as you get your schedule.",
     "cordova": {
         "plugins": {
             "cordova-plugin-console": {},

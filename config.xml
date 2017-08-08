@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.classreveal927750" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>classreveal</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+<widget id="com.ClassReveal.ClassReveal" version="2.0.2" versionCode="20002" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Class Reveal</name>
+    <description>Find out your classmates as soon as you get your schedule.</description>
+    <author email="xllgms@gmail.com" href="https://www.classreveal.com">Ionic Framework Team</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
@@ -14,12 +14,20 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
-        <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
-        <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
-        <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
-        <icon density="xhdpi" src="resources/android/icon/drawable-xhdpi-icon.png" />
-        <icon density="xxhdpi" src="resources/android/icon/drawable-xxhdpi-icon.png" />
-        <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
+        <icon density="ldpi" src="resources/android/icon/icon-36-ldpi.png" />
+        <icon density="mdpi" src="resources/android/icon/icon-48-mdpi.png" />
+        <icon density="hdpi" src="resources/android/icon/icon-72-hdpi.png" />
+        <icon density="xhdpi" src="resources/android/icon/icon-96-xhdpi.png" />
+        <icon density="xxhdpi" src="resources/android/icon/icon-144-xxhdpi.png" />
+        <icon density="xxxhdpi" src="resources/android/icon/icon-192-xxxhdpi.png" />
+        <splash qualifier="land-hdpi" src="resources/android/splash/screen-hdpi-landscape.png" />
+        <splash qualifier="land-ldpi" src="resources/android/splash/screen-ldpi-landscape.png" />
+        <splash qualifier="land-mdpi" src="resources/android/splash/screen-mdpi-landscape.png" />
+        <splash qualifier="land-xhdpi" src="resources/android/splash/screen-xhdpi-landscape.png" />
+        <splash qualifier="port-hdpi" src="resources/android/splash/screen-hdpi-portrait.png" />
+        <splash qualifier="port-ldpi" src="resources/android/splash/screen-ldpi-portrait.png" />
+        <splash qualifier="port-mdpi" src="resources/android/splash/screen-mdpi-portrait.png" />
+        <splash qualifier="port-xhdpi" src="resources/android/splash/screen-xhdpi-portrait.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />

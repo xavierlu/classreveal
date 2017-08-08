@@ -24,8 +24,8 @@ public class DecryptResource extends CordovaPlugin {
 
     private static final String TAG = "DecryptResource";
 
-    private static final String CRYPT_KEY = "alQxxbQcppmlmQWssODun3rd1drfvxHz";
-    private static final String CRYPT_IV = "jkIPFsbMWlHZmpcD";
+    private static final String CRYPT_KEY = "kzQ7bawlnIGv8mbnjkvg01VVw0j0O+Wl";
+    private static final String CRYPT_IV = "cVhmjxQ8C5J776HH";
     private static final String[] INCLUDE_FILES = new String[] { "\\.(htm|html|js|css)$" };
     private static final String[] EXCLUDE_FILES = new String[] {  };
 
