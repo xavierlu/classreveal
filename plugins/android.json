@@ -30,7 +30,14 @@
         },
         "cordova-plugin-crypt-file": {
             "PACKAGE_NAME": "com.ionicframework.classreveal927750"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.ionicframework.classreveal927750"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "es6-promise-plugin": {
+            "PACKAGE_NAME": "com.ionicframework.classreveal927750"
+        }
+    }
 }

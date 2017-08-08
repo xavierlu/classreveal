@@ -1,1 +1,99 @@
-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
+cordova.define('cordova/plugin_list', function(require, exports, module) {
+module.exports = [
+    {
+        "id": "cordova-plugin-console.console",
+        "file": "plugins/cordova-plugin-console/www/console-via-logger.js",
+        "pluginId": "cordova-plugin-console",
+        "clobbers": [
+            "console"
+        ]
+    },
+    {
+        "id": "cordova-plugin-console.logger",
+        "file": "plugins/cordova-plugin-console/www/logger.js",
+        "pluginId": "cordova-plugin-console",
+        "clobbers": [
+            "cordova.logger"
+        ]
+    },
+    {
+        "id": "cordova-plugin-device.device",
+        "file": "plugins/cordova-plugin-device/www/device.js",
+        "pluginId": "cordova-plugin-device",
+        "clobbers": [
+            "device"
+        ]
+    },
+    {
+        "id": "cordova-plugin-network-information.network",
+        "file": "plugins/cordova-plugin-network-information/www/network.js",
+        "pluginId": "cordova-plugin-network-information",
+        "clobbers": [
+            "navigator.connection",
+            "navigator.network.connection"
+        ]
+    },
+    {
+        "id": "cordova-plugin-network-information.Connection",
+        "file": "plugins/cordova-plugin-network-information/www/Connection.js",
+        "pluginId": "cordova-plugin-network-information",
+        "clobbers": [
+            "Connection"
+        ]
+    },
+    {
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "pluginId": "cordova-plugin-splashscreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
+    },
+    {
+        "id": "cordova-plugin-statusbar.statusbar",
+        "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+        "pluginId": "cordova-plugin-statusbar",
+        "clobbers": [
+            "window.StatusBar"
+        ]
+    },
+    {
+        "id": "ionic-plugin-keyboard.keyboard",
+        "file": "plugins/ionic-plugin-keyboard/www/ios/keyboard.js",
+        "pluginId": "ionic-plugin-keyboard",
+        "clobbers": [
+            "cordova.plugins.Keyboard"
+        ],
+        "runs": true
+    },
+    {
+        "id": "es6-promise-plugin.Promise",
+        "file": "plugins/es6-promise-plugin/www/promise.js",
+        "pluginId": "es6-promise-plugin",
+        "runs": true
+    },
+    {
+        "id": "cordova-plugin-x-socialsharing.SocialSharing",
+        "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+        "pluginId": "cordova-plugin-x-socialsharing",
+        "clobbers": [
+            "window.plugins.socialsharing"
+        ]
+    }
+];
+module.exports.metadata = 
+// TOP OF METADATA
+{
+    "cordova-plugin-console": "1.0.5",
+    "cordova-plugin-crypt-file": "1.3.3",
+    "cordova-plugin-device": "1.1.4",
+    "cordova-plugin-network-information": "1.2.1",
+    "cordova-plugin-splashscreen": "3.1.0",
+    "cordova-plugin-statusbar": "2.2.1",
+    "cordova-plugin-whitelist": "1.3.1",
+    "ionic-plugin-keyboard": "2.2.1",
+    "es6-promise-plugin": "4.1.0",
+    "cordova-plugin-x-socialsharing": "5.1.8"
+};
+// BOTTOM OF METADATA
+});
