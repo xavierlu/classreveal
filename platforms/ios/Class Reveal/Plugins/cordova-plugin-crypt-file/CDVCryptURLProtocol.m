@@ -13,8 +13,8 @@
 #import <CommonCrypto/CommonDigest.h>
 
 
-static NSString* const kCryptKey = @"Qm3o79l3YzFxIGQC7eB8KBLNeEp79M5k";
-static NSString* const kCryptIv = @"F7ZkPdjZz4Sz9hEN";
+static NSString* const kCryptKey = @"3NUqUu3m6EpXEYEUkuZlOHlTOOpf35pT";
+static NSString* const kCryptIv = @"qNcrk0v3tQ23nc/V";
 
 static int const kIncludeFileLength = 1;
 static int const kExcludeFileLength = 0;
