@@ -8,36 +8,36 @@
     },
     "installed_plugins": {
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.ionicframework.classreveal927750"
+            "PACKAGE_NAME": "com.ClassReveal.ClassReveal"
         },
         "cordova-plugin-crypt-file": {
-            "PACKAGE_NAME": "com.ionicframework.classreveal927750"
+            "PACKAGE_NAME": "com.ClassReveal.ClassReveal"
         },
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.ionicframework.classreveal927750"
+            "PACKAGE_NAME": "com.ClassReveal.ClassReveal"
         },
         "cordova-plugin-network-information": {
-            "PACKAGE_NAME": "com.ionicframework.classreveal927750"
+            "PACKAGE_NAME": "com.ClassReveal.ClassReveal"
         },
         "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.ionicframework.classreveal927750"
+            "PACKAGE_NAME": "com.ClassReveal.ClassReveal"
         },
         "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.ionicframework.classreveal927750"
+            "PACKAGE_NAME": "com.ClassReveal.ClassReveal"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.ionicframework.classreveal927750"
-        },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.ionicframework.classreveal927750"
+            "PACKAGE_NAME": "com.ClassReveal.ClassReveal"
         },
         "cordova-plugin-x-socialsharing": {
-            "PACKAGE_NAME": "com.ionicframework.classreveal927750"
+            "PACKAGE_NAME": "com.ClassReveal.ClassReveal"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.ClassReveal.ClassReveal"
         }
     },
     "dependent_plugins": {
         "es6-promise-plugin": {
-            "PACKAGE_NAME": "com.ionicframework.classreveal927750"
+            "PACKAGE_NAME": "com.ClassReveal.ClassReveal"
         }
     }
 }

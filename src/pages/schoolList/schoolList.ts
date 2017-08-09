@@ -51,7 +51,6 @@ export class SchoolListPage {
   }
 
   setFilteredItems() {
-    console.log("yes");
     this.schools = this.angFire.database
       .list("schoolNames")
       .map(schools =>
@@ -162,7 +161,7 @@ export class SchoolListPage {
   }
 
   isEmoji(str: string) {
-    if (str.match("[^a-zA-Z ]")) {
+    if (str.match("[^a-zA-Z_ ]")) {
       return true;
     }
     return false;
