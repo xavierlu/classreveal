@@ -1,0 +1,8 @@
+cordova build android --release; 
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore user.keystore C:/Users/Xavier/Desktop/classreveal/platforms/android/build/outputs/apk/android-release-unsigned.apk key; 
+jarsigner -verify C:/Users/Xavier/Desktop/classreveal/platforms/android/build/outputs/apk/android-release-unsigned.apk; 
+cd "C:\Program Files (x86)\Android\android-sdk\build-tools\23.0.0-preview"; 
+rm C:/Users/Xavier/Desktop/classreveal.apk
+.\zipalign.exe -v 4 C:/Users/Xavier/Desktop/classreveal/platforms/android/build/outputs/apk/android-release-unsigned.apk C:/Users/Xavier/Desktop/classreveal.apk
+
+
